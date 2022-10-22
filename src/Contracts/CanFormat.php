@@ -2,11 +2,14 @@
 
 namespace Hopex\VkSdk\Contracts;
 
+/**
+ * Interface CanFormat
+ * @package Hopex\VkSdk\Contracts
+ */
 interface CanFormat
 {
     /**
      * @param $data
-     * @return string
      */
     public function format($data);
 }

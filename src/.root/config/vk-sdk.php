@@ -56,7 +56,8 @@ return [
 
     // TODO: исправить документацию для api и groups
     'api' => [
-        'endpoint'  => 'https://api.vk.com/method/',
+        'auth'      => 'https://oauth.vk.com',
+        'endpoint'  => 'https://api.vk.com/method',
         'version'   => '5.131',
     ],
 
@@ -68,7 +69,15 @@ return [
                 'code' => '745cc77d276cf36c694e',
                 'verify' => true,
             ],
-            'events' => \App\VK\Chat::class
+            'events' => \App\VK\Chat::class,
+            'allow_retry_events' => true,
+        ],
+    ],
+
+    'apps' => [
+        '7967757' => [
+            'token' => 'b89c4892b89c4892b89c4892aeb8e5dc9fbb89cb89c4892d9c7b14801fb3358d6dcd092',
+            'secret' => 'OaQA1ddYuF2PLGAGKOjd',
         ],
     ],
 
@@ -102,49 +111,4 @@ return [
             ],
         ],
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Базовые коды ошибок
-    |--------------------------------------------------------------------------
-    */
-
-    'errors' => [
-        '1' => \Hopex\VkSdk\Exceptions\Api\Common\UnknownException::class,
-        '2' => \Hopex\VkSdk\Exceptions\Api\Common\DisabledException::class,
-        '3' => \Hopex\VkSdk\Exceptions\Api\Methods\MethodException::class,
-        '4' => \Hopex\VkSdk\Exceptions\Api\Common\SignatureException::class,
-        '5' => \Hopex\VkSdk\Exceptions\Api\Auth\AuthException::class,
-        '6' => \Hopex\VkSdk\Exceptions\Api\Common\TooManyException::class,
-        '7' => \Hopex\VkSdk\Exceptions\Api\Common\PermissionException::class,
-        '8' => \Hopex\VkSdk\Exceptions\Api\Common\RequestException::class,
-        '9' => \Hopex\VkSdk\Exceptions\Api\Common\FloodException::class,
-        '10' => \Hopex\VkSdk\Exceptions\Api\Common\ServerException::class,
-        '11' => \Hopex\VkSdk\Exceptions\Api\Common\EnabledInTestException::class,
-        '14' => \Hopex\VkSdk\Exceptions\Api\Common\CaptchaException::class,
-        '15' => \Hopex\VkSdk\Exceptions\Api\Accesses\AccessException::class,
-        '16' => \Hopex\VkSdk\Exceptions\Api\Auth\AuthHttpsException::class,
-        '17' => \Hopex\VkSdk\Exceptions\Api\Auth\AuthValidationException::class,
-        '18' => \Hopex\VkSdk\Exceptions\Api\Common\UserDeletedException::class,
-        '20' => \Hopex\VkSdk\Exceptions\Api\Methods\MethodPermissionException::class,
-        '21' => \Hopex\VkSdk\Exceptions\Api\Methods\MethodAdsException::class,
-        '23' => \Hopex\VkSdk\Exceptions\Api\Methods\MethodDisabledException::class,
-        '24' => \Hopex\VkSdk\Exceptions\Api\Confirmation\NeedConfirmationException::class,
-        '25' => \Hopex\VkSdk\Exceptions\Api\Confirmation\NeedTokenConfirmationException::class,
-        '27' => \Hopex\VkSdk\Exceptions\Api\Groups\GroupAuthException::class,
-        '28' => \Hopex\VkSdk\Exceptions\Api\Apps\AppAuthException::class,
-        '29' => \Hopex\VkSdk\Exceptions\Api\Common\RateLimitException::class,
-        '30' => \Hopex\VkSdk\Exceptions\Api\Common\PrivateProfileException::class,
-        '100' => \Hopex\VkSdk\Exceptions\Api\Parameters\ParamException::class,
-        '101' => \Hopex\VkSdk\Exceptions\Api\Parameters\ParamApiIdException::class,
-        '113' => \Hopex\VkSdk\Exceptions\Api\Parameters\ParamUserIdException::class,
-        '150' => \Hopex\VkSdk\Exceptions\Api\Parameters\ParamTimestampException::class,
-        '200' => \Hopex\VkSdk\Exceptions\Api\Accesses\AccessAlbumException::class,
-        '201' => \Hopex\VkSdk\Exceptions\Api\Accesses\AccessAudioException::class,
-        '203' => \Hopex\VkSdk\Exceptions\Api\Accesses\AccessGroupException::class,
-        '300' => \Hopex\VkSdk\Exceptions\Api\Albums\AlbumFullException::class,
-        '500' => \Hopex\VkSdk\Exceptions\Api\Votes\VotesPermissionException::class,
-        '600' => \Hopex\VkSdk\Exceptions\Api\Ads\AdsPermissionException::class,
-        '603' => \Hopex\VkSdk\Exceptions\Api\Ads\AdsSpecificException::class,
-    ]
 ];

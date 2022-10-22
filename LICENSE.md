@@ -1,6 +1,6 @@
 # MIT License
 
-> Copyright (c) 2022 [Schizo](https://vk.com/id244036703), [AnnieNiku](https://vk.com/id116596882)
+> Copyright (c) 2022 [Schizo](https://vk.com/id244036703), translated by [AnnieNiku](https://vk.com/id116596882)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

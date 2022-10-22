@@ -3,6 +3,7 @@
 namespace Hopex\VkSdk\Formatters;
 
 use Hopex\VkSdk\Contracts\CanFormat;
+use Hopex\VkSdk\Exceptions\SdkException;
 
 class JsonExceptionFormatter implements CanFormat
 {
@@ -14,7 +15,7 @@ class JsonExceptionFormatter implements CanFormat
     {
         return [
             'type' => 'error',
-            'message' => $data->getMessage()
+            'message' => $data instanceof SdkException ? $data->getMessage() : $data
         ];
     }
 }

@@ -1,6 +1,6 @@
 {
     "name": "hopex/laravel-vk-sdk",
-    "description": "Laravel SDK для быстрого развертывания приложений-ботов и простого использования VK API.",
+    "description": "Laravel SDK for fast deployment of bot applications and easy use of VK API.",
     "type": "library",
     "license": "MIT",
     "version": "0.0.2",
@@ -13,10 +13,11 @@
         }
     ],
     "require": {
-        "php": "^7.4||^8",
+        "php": "^8",
         "ext-json": "*"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.12"
     },
     "autoload": {
         "psr-4": {
@@ -29,12 +30,18 @@
                 "Hopex\\VkSdk\\Providers\\ServiceProvider"
             ],
             "aliases": {
-                "Group": "Hopex\\VkSdk\\Facades\\Group",
+                "VkApi": "Hopex\\VkSdk\\Facades\\VkApi",
                 "Format": "Hopex\\VkSdk\\Facades\\Format",
-                "Configure": "Hopex\\VkSdk\\Facades\\Configure"
+                "SdkConfig": "Hopex\\VkSdk\\Facades\\SdkConfig"
             }
         }
     },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/H0pex/laravel-vk-sdk"
+        }
+    ],
     "config": {
         "optimize-autoloader": true
     },

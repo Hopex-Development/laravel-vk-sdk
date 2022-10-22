@@ -5,16 +5,16 @@ namespace Hopex\VkSdk\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class Format
+ * Class SdkConfig
  * @package Hopex\VkSdk\Facades
  */
-class Format extends Facade
+class SdkConfig extends Facade
 {
     /**
      * @return string
      */
     protected static function getFacadeAccessor(): string
     {
-        return \Hopex\VkSdk\Foundation\Format::class;
+        return \Hopex\VkSdk\Foundation\SdkConfig::class;
     }
 }

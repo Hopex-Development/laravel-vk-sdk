@@ -2,9 +2,9 @@
 
 namespace Hopex\VkSdk\Providers;
 
-use Hopex\VkSdk\Foundation\Configure;
-use Hopex\VkSdk\Foundation\Core\GroupInstance;
-use Hopex\VkSdk\Foundation\Formatters\BaseFormatter;
+use Hopex\VkSdk\Foundation\Core\Api\Client;
+use Hopex\VkSdk\Foundation\SdkConfig;
+use Hopex\VkSdk\Foundation\Format;
 use Hopex\VkSdk\Services\CallbackEventService;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
@@ -19,9 +19,9 @@ class ServiceProvider extends BaseServiceProvider
     {
         $this->app->bind(CallbackEventService::class);
 
-        $this->app->bind('configure', Configure::class);
-        $this->app->bind('format', BaseFormatter::class);
-        $this->app->bind('group', GroupInstance::class);
+        $this->app->bind('sdkconfig', SdkConfig::class);
+        $this->app->bind('format', Format::class);
+        $this->app->bind('vkapi', Client::class);
     }
 
     /**
@@ -37,8 +37,9 @@ class ServiceProvider extends BaseServiceProvider
 
         $this->publishes([
             __DIR__ . '/../.root/lang/ru.php' => $this->app->langPath('ru/vk-sdk.php'),
-            __DIR__ . '/../.root/lang/en.php' => $this->app->langPath('en/vk-sdk.php'),
-        ], 'vk-sdk-lang');
+        ], 'vk-sdk-lang-ru');
+
+        $this->loadMigrationsFrom(__DIR__.'/../.root/database/migrations');
 
         $this->loadRoutesFrom(__DIR__ . '/../.root/routes/callbacks.php');
     }

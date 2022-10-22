@@ -1,16 +1,25 @@
 <?php
 
-use Hopex\VkSdk\Facades\Configure;
+use Hopex\VkSdk\Facades\SdkConfig;
 use Hopex\VkSdk\Services\CallbackEventService;
 use Illuminate\Support\Facades\Route;
 
-/**
- * Входная точка для VK API Callback POST запросов.
- * Адрес извлекается из файла конфигурации. По умолчанию 'connect'.
- *
- * @example https://example.com/api/connect
- * @code route('api.entry')
+/*
+|--------------------------------------------------------------------------
+| The entry point for VK API Callback POST requests.
+|--------------------------------------------------------------------------
+| The address is extracted from the configuration file. By default, 'connect'.
+| Example your default endpoint: https://example.com/api/connect
+| For check this, use command: <php artisan route:list>
+| For fire this route, use <route('vk.entry')>
+|
+| See more: https://dev.vk.com/api/callback/getting-started
  */
-Route::prefix('api')->post(Configure::routes('entry'), function (CallbackEventService $callback) {
-    return response($callback->division());
-})->name('api.entry');
+
+Route::prefix('api')->name('vk.')->group(function () {
+
+    Route::post(SdkConfig::routes('entry'), function (CallbackEventService $callback) {
+        return response($callback->division(), 200, ['content-type' => 'application/json;charset=utf-8', 'charset' => 'utf-8']);
+    })->name('entry');
+
+});
