@@ -2,6 +2,19 @@
 
 namespace Hopex\VkSdk\Foundation\Core\Models\Users;
 
+use Carbon\Carbon;
+use Hopex\VkSdk\Exceptions\Api\ApiException;
+use Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields\CareerField;
+use Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields\CityField;
+use Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields\CountryField;
+use Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields\EducationField;
+use Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields\LastSeenField;
+use Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields\MilitaryField;
+use Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields\RelativeField;
+use Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields\SchoolField;
+use Illuminate\Support\Collection;
+use Throwable;
+
 /**
  * Class UserProfileFields
  * @package Hopex\VkSdk\Foundation\Core\Models\Users
@@ -14,6 +27,7 @@ class UserProfileFields
     public const LAST_NAME = 'last_name';
     public const CAN_ACCESS_CLOSED = 'can_access_closed';
     public const IS_CLOSED = 'is_closed';
+
     public const ACTIVITIES = 'activities';
     public const ABOUT = 'about';
     public const BLACKLISTED = 'blacklisted';
@@ -27,8 +41,6 @@ class UserProfileFields
     public const CAN_SEND_FRIEND_REQUEST = 'can_send_friend_request';
     public const CAN_WRITE_PRIVATE_MESSAGE = 'can_write_private_message';
     public const CAREER = 'career';
-    public const COMMON_COUNT = 'common_count';
-    public const CONNECTIONS = 'connections';
     public const CONTACTS = 'contacts';
     public const CITY = 'city';
     public const COUNTRY = 'country';
@@ -75,4 +87,566 @@ class UserProfileFields
     public const TIMEZONE = 'timezone';
     public const TV = 'tv';
     public const UNIVERSITIES = 'universities';
+
+    /**
+     * @var Collection
+     */
+    public Collection $user;
+
+    /**
+     * UserFields constructor.
+     * @param Collection $user
+     */
+    public function __construct(Collection $user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getUser(): Collection
+    {
+        return $this->user;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->user->get(UserProfileFields::ID);
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstName(): string
+    {
+        return $this->user->get(UserProfileFields::FIRST_NAME);
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastName(): string
+    {
+        return $this->user->get(UserProfileFields::LAST_NAME);
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullName(): string
+    {
+        return sprintf(
+            '%s %s',
+            $this->user->get(UserProfileFields::FIRST_NAME),
+            $this->user->get(UserProfileFields::LAST_NAME)
+        );
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAccessClosed(): bool
+    {
+        return $this->user->get(UserProfileFields::CAN_ACCESS_CLOSED);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isClosed(): bool
+    {
+        return $this->user->get(UserProfileFields::IS_CLOSED);
+    }
+
+    /**
+     * @return string
+     */
+    public function getActivities(): string
+    {
+        return $this->user->get(UserProfileFields::ACTIVITIES);
+    }
+
+    /**
+     * @return string
+     */
+    public function getAbout(): string
+    {
+        return $this->user->get(UserProfileFields::ABOUT);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getBlacklisted(): bool
+    {
+        return $this->user->get(UserProfileFields::BLACKLISTED);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getBlacklistedByMe(): bool
+    {
+        return $this->user->get(UserProfileFields::BLACKLISTED_BY_ME);
+    }
+
+    /**
+     * @return string
+     */
+    public function getBooks(): string
+    {
+        return $this->user->get(UserProfileFields::BOOKS);
+    }
+
+    /**
+     * @return Carbon
+     */
+    public function getBdate(): Carbon
+    {
+        $bdate = new Carbon();
+        if ($this->user->has(UserProfileFields::BDATE)) {
+            $date = explode('.', $this->user->get(UserProfileFields::BDATE));
+            $bdate->setDate($date[2] ?? 1970, $date[1], $date[0]);
+        }
+
+        return $bdate;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getCanBeInvitedGroup(): bool
+    {
+        return $this->user->get(UserProfileFields::CAN_BE_INVITED_GROUP);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getCanPost(): bool
+    {
+        return $this->user->get(UserProfileFields::CAN_POST);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getCanSeeAllPosts(): bool
+    {
+        return $this->user->get(UserProfileFields::CAN_SEE_ALL_POSTS);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getCanSeeAudio(): bool
+    {
+        return $this->user->get(UserProfileFields::CAN_SEE_AUDIO);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getCanSendFriendRequest(): bool
+    {
+        return $this->user->get(UserProfileFields::CAN_SEND_FRIEND_REQUEST);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getCanWritePrivateMessage(): bool
+    {
+        return $this->user->get(UserProfileFields::CAN_WRITE_PRIVATE_MESSAGE);
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getCareer(): Collection
+    {
+        return collect($this->user->get(UserProfileFields::CAREER))
+            ->map(function ($item) {
+                return new CareerField($item);
+            });
+    }
+
+    /**
+     * @param string|null $token
+     * @return CityField
+     * @throws ApiException
+     * @throws Throwable
+     */
+    public function getCity(string $token = null): CityField
+    {
+        return new CityField($this->user->get(UserProfileFields::CITY), $token);
+    }
+
+    /**
+     * @param string|null $token
+     * @return CountryField
+     * @throws ApiException
+     * @throws Throwable
+     */
+    public function getCountry(string $token = null): CountryField
+    {
+        return new CountryField($this->user->get(UserProfileFields::COUNTRY), $token);
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getCropPhoto(): Collection
+    {
+        return $this->user->get(UserProfileFields::CROP_PHOTO);
+    }
+
+    /**
+     * @return string
+     */
+    public function getDomain(): string
+    {
+        return $this->user->get(UserProfileFields::DOMAIN);
+    }
+
+    /**
+     * @return EducationField
+     */
+    public function getEducation(): EducationField
+    {
+        return new EducationField($this->user);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExports(): mixed
+    {
+        return $this->user->get(UserProfileFields::EXPORTS);
+    }
+
+    /**
+     * @return int
+     */
+    public function getFollowersCount(): int
+    {
+        return $this->user->get(UserProfileFields::FOLLOWERS_COUNT);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getFriendStatus(): bool
+    {
+        return $this->user->get(UserProfileFields::FRIEND_STATUS);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getHasPhoto(): bool
+    {
+        return $this->user->get(UserProfileFields::HAS_PHOTO);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getHasMobile(): bool
+    {
+        return $this->user->get(UserProfileFields::HAS_MOBILE);
+    }
+
+    /**
+     * @return string
+     */
+    public function getHomeTown(): string
+    {
+        return $this->user->get(UserProfileFields::HOME_TOWN);
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoto100(): string
+    {
+        return $this->user->get(UserProfileFields::PHOTO_100);
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoto200(): string
+    {
+        return $this->user->get(UserProfileFields::PHOTO_200);
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoto200Orig(): string
+    {
+        return $this->user->get(UserProfileFields::PHOTO_200_ORIG);
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoto400Orig(): string
+    {
+        return $this->user->get(UserProfileFields::PHOTO_400_ORIG);
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoto50(): string
+    {
+        return $this->user->get(UserProfileFields::PHOTO_50);
+    }
+
+    /**
+     * @return int
+     */
+    public function getSex(): int
+    {
+        return $this->user->get(UserProfileFields::SEX);
+    }
+
+    /**
+     * @return string
+     */
+    public function getSite(): string
+    {
+        return $this->user->get(UserProfileFields::SITE);
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getSchools(): Collection
+    {
+        return collect($this->user->get(UserProfileFields::SCHOOLS))
+            ->map(function ($item) {
+                return new SchoolField($item);
+            });
+    }
+
+    /**
+     * @return string
+     */
+    public function getScreenName(): string
+    {
+        return $this->user->get(UserProfileFields::SCREEN_NAME);
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->user->get(UserProfileFields::STATUS);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getVerified(): bool
+    {
+        return $this->user->get(UserProfileFields::VERIFIED);
+    }
+
+    /**
+     * @return string
+     */
+    public function getGames(): string
+    {
+        return $this->user->get(UserProfileFields::GAMES);
+    }
+
+    /**
+     * @return string
+     */
+    public function getInterests(): string
+    {
+        return $this->user->get(UserProfileFields::INTERESTS);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsFavorite(): bool
+    {
+        return $this->user->get(UserProfileFields::IS_FAVORITE);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsFriend(): bool
+    {
+        return $this->user->get(UserProfileFields::IS_FRIEND);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsHiddenFromFeed(): bool
+    {
+        return $this->user->get(UserProfileFields::IS_HIDDEN_FROM_FEED);
+    }
+
+    /**
+     * @return LastSeenField
+     */
+    public function getLastSeen(): LastSeenField
+    {
+        return new LastSeenField($this->user->get(UserProfileFields::LAST_SEEN));
+    }
+
+    /**
+     * @return string
+     */
+    public function getMaidenName(): string
+    {
+        return $this->user->get(UserProfileFields::MAIDEN_NAME);
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getMilitary(): Collection
+    {
+        return collect($this->user->get(UserProfileFields::MILITARY))
+            ->map(function ($item) {
+                return new MilitaryField($item);
+            });
+    }
+
+    /**
+     * @return string
+     */
+    public function getMovies(): string
+    {
+        return $this->user->get(UserProfileFields::MOVIES);
+    }
+
+    /**
+     * @return string
+     */
+    public function getMusic(): string
+    {
+        return $this->user->get(UserProfileFields::MUSIC);
+    }
+
+    /**
+     * @return string
+     */
+    public function getNickname(): string
+    {
+        return $this->user->get(UserProfileFields::NICKNAME);
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getOccupation(): Collection
+    {
+        return $this->user->get(UserProfileFields::OCCUPATION);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getOnline(): bool
+    {
+        return $this->user->get(UserProfileFields::ONLINE);
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getPersonal(): Collection
+    {
+        return $this->user->get(UserProfileFields::PERSONAL);
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhotoId(): string
+    {
+        return $this->user->get(UserProfileFields::PHOTO_ID);
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhotoMax(): string
+    {
+        return $this->user->get(UserProfileFields::PHOTO_MAX);
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhotoMaxOrig(): string
+    {
+        return $this->user->get(UserProfileFields::PHOTO_MAX_ORIG);
+    }
+
+    /**
+     * @return string
+     */
+    public function getQuotes(): string
+    {
+        return $this->user->get(UserProfileFields::QUOTES);
+    }
+
+    /**
+     * @return int
+     */
+    public function getRelation(): int
+    {
+        return $this->user->get(UserProfileFields::RELATION);
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getRelatives(): Collection
+    {
+        return  collect($this->user->get(UserProfileFields::RELATIVES))
+            ->map(function ($item) {
+                return new RelativeField($item);
+            });
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTimezone(): mixed
+    {
+        return $this->user->get(UserProfileFields::TIMEZONE);
+    }
+
+    /**
+     * @return string
+     */
+    public function getTv(): string
+    {
+        return $this->user->get(UserProfileFields::TV);
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getUniversities(): Collection
+    {
+        return $this->user->get(UserProfileFields::UNIVERSITIES);
+    }
 }

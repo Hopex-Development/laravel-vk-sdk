@@ -2,10 +2,8 @@
 
 namespace Hopex\VkSdk\Foundation\Core\Models\Messages;
 
-use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Foundation\Core\Api\Request;
 use Illuminate\Support\Collection;
-use Throwable;
 
 /**
  * Class Message

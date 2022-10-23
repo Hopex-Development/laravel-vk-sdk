@@ -5,7 +5,7 @@ namespace Hopex\VkSdk\Foundation\Core\Models\Messages;
 use Carbon\Carbon;
 use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Facades\VkApi;
-use Hopex\VkSdk\Foundation\Core\Models\Users\UserFields;
+use Hopex\VkSdk\Foundation\Core\Models\Users\UserProfileFields;
 use Hopex\VkSdk\Foundation\Core\Models\Users\UserRequestFields;
 use Illuminate\Support\Collection;
 use Throwable;
@@ -62,18 +62,18 @@ class MessageFields
     /**
      * @param string $token
      * @param array $userProfileFields
-     * @return UserFields
+     * @return UserProfileFields
      * @throws ApiException
      * @throws Throwable
      */
-    public function getFromUser(string $token, array $userProfileFields = []): UserFields
+    public function getSender(string $token, array $userProfileFields = []): UserProfileFields
     {
-        return new UserFields(collect(VkApi::user($token)
+        return new UserProfileFields(collect(VkApi::user($token)
             ->get((new UserRequestFields())
                 ->setUserIds([
                     $this->message->get(self::FROM_ID)
                 ])
-                ->setFields($userProfileFields)
+                ->setProfileFields($userProfileFields)
             )->first()));
     }
 

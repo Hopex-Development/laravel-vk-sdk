@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'sibling' => 'Брат/сестра',
+    'parent' => 'Папа/Мама',
+    'grandparent' => 'Дедушка/бабушка',
+    'child' => 'Ребенок',
+    'grandchild' => 'Внук/внучка',
     'Access denied' => 'Доступ запрещен',
     'Access to comment denied' => 'Доступ к комментариям закрыт',
     'Access to group denied' => 'Доступ в группу закрыт',

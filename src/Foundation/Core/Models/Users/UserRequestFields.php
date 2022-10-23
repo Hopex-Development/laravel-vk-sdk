@@ -37,7 +37,7 @@ class UserRequestFields
      * @param array $fields
      * @return UserRequestFields
      */
-    public function setFields(array $fields): UserRequestFields
+    public function setProfileFields(array $fields): UserRequestFields
     {
         $this->fields = $fields;
         return $this;

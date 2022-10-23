@@ -25,7 +25,7 @@ class ApiException extends SdkException
             $code = 400;
             $message = $commonError;
         }
-        $message = preg_replace('~vk-sdk\.~', '', __("vk-sdk.{$message}"));
-        parent::__construct("ApiException: {$message}", $code, $previous);
+        $message = preg_replace('~vk-sdk\.~', '', __("vk-sdk.$message"));
+        parent::__construct("ApiException: $message", $code, $previous);
     }
 }
