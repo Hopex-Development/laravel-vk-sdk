@@ -2,8 +2,6 @@
 
 namespace Hopex\VkSdk\Exceptions\Callback;
 
-use Throwable;
-
 /**
  * Class UndefinedEventException
  * @package Hopex\VkSdk\Exceptions\Callback

@@ -3,8 +3,8 @@
 namespace Hopex\VkSdk\Exceptions;
 
 use Exception;
-use Hopex\VkSdk\Facades\SdkConfig;
 use Hopex\VkSdk\Facades\Format;
+use Hopex\VkSdk\Facades\SdkConfig;
 use Hopex\VkSdk\Formatters\JsonExceptionFormatter;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

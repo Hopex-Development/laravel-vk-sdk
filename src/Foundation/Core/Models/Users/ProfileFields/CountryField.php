@@ -4,7 +4,6 @@ namespace Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields;
 
 use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Facades\VkApi;
-use Hopex\VkSdk\Foundation\Core\Api\Request;
 use Illuminate\Support\Collection;
 use Throwable;
 

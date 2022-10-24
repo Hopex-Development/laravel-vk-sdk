@@ -3,8 +3,8 @@
 namespace Hopex\VkSdk\Providers;
 
 use Hopex\VkSdk\Foundation\Core\Api\Client;
-use Hopex\VkSdk\Foundation\SdkConfig;
 use Hopex\VkSdk\Foundation\Format;
+use Hopex\VkSdk\Foundation\SdkConfig;
 use Hopex\VkSdk\Services\CallbackEventService;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 

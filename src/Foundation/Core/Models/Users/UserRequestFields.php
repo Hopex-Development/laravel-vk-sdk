@@ -5,6 +5,7 @@ namespace Hopex\VkSdk\Foundation\Core\Models\Users;
 /**
  * Class UserRequestFields
  * @package Hopex\VkSdk\Foundation\Core\Models\Users
+ * @see https://dev.vk.com/method/users
  */
 class UserRequestFields
 {

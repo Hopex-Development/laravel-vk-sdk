@@ -3,7 +3,6 @@
 namespace Hopex\VkSdk\Formatters;
 
 use Hopex\VkSdk\Contracts\CanFormat;
-use Hopex\VkSdk\Exceptions\SdkException;
 
 /**
  * Class ClearEmptiesParametersRequestFormatter

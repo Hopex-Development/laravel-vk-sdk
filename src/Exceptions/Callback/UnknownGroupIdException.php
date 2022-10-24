@@ -2,8 +2,6 @@
 
 namespace Hopex\VkSdk\Exceptions\Callback;
 
-use Throwable;
-
 /**
  * Class UnknownGroupIdException
  * @package Hopex\VkSdk\Exceptions\Callback

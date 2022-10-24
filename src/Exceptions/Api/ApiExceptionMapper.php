@@ -2,9 +2,6 @@
 
 namespace Hopex\VkSdk\Exceptions\Api;
 
-use Exception;
-use Hopex\VkSdk\Facades\SdkConfig;
-
 /**
  * Class ApiExceptionMapper
  * @package Hopex\VkSdk\Exceptions\Api
