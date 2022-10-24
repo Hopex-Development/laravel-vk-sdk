@@ -5,7 +5,7 @@ namespace Hopex\VkSdk\Foundation\Core\Models\Database;
 use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Foundation\Core\Api\Request;
 use Hopex\VkSdk\Foundation\Core\Models\Databse\Fields\CityField;
-use Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields\CountryField;
+use Hopex\VkSdk\Foundation\Core\Models\Databse\Fields\CountryField;
 use Illuminate\Support\Collection;
 use Throwable;
 
