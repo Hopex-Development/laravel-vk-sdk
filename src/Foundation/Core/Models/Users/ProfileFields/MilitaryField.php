@@ -37,6 +37,14 @@ class MilitaryField
     }
 
     /**
+     * @return int
+     */
+    public function getCountryId(): int
+    {
+        return $this->military->get(self::COUNTRY_ID);
+    }
+
+    /**
      * @param string $token
      * @return CountryField
      * @throws ApiException
@@ -44,7 +52,7 @@ class MilitaryField
      */
     public function getCountry(string $token): CountryField
     {
-        return new CountryField($this->military->get(self::COUNTRY_ID), $token);
+        return new CountryField($this->getCountryId(), $token);
     }
 
     /**

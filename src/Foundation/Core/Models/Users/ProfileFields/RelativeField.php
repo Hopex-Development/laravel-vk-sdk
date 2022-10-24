@@ -37,6 +37,14 @@ class RelativeField
     }
 
     /**
+     * @return int
+     */
+    public function getRelativeId(): int
+    {
+        return $this->relative->get(self::ID);
+    }
+
+    /**
      * @param string $token
      * @param array $userProfileFields
      * @return UserProfileFields
@@ -48,7 +56,7 @@ class RelativeField
         return new UserProfileFields(collect(VkApi::user($token)
             ->get((new UserRequestFields())
                 ->setUserIds([
-                    $this->relative->get(self::ID)
+                    $this->getRelativeId()
                 ])
                 ->setProfileFields($userProfileFields)
             )->first()));
@@ -59,6 +67,14 @@ class RelativeField
      */
     public function getType(): string
     {
-        return preg_replace('~vk-sdk\.~', '', __('vk-sdk.' . $this->relative->get(self::TYPE)));
+        return $this->relative->get(self::TYPE);
+    }
+
+    /**
+     * @return string
+     */
+    public function getTranslationType(): string
+    {
+        return preg_replace('~vk-sdk\.~', '', __('vk-sdk.' . $this->getType()));
     }
 }

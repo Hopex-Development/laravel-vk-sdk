@@ -2,7 +2,9 @@
 
 namespace Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields;
 
+use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Illuminate\Support\Collection;
+use Throwable;
 
 /**
  * Class CareerField
@@ -17,29 +19,9 @@ class CareerField
     private const POSITION = 'position';
 
     /**
-     * @var int|null
+     * @var Collection
      */
-    public ?int $cityId;
-
-    /**
-     * @var int|null
-     */
-    public ?int $countryId;
-
-    /**
-     * @var int|null
-     */
-    public ?int $from;
-
-    /**
-     * @var int|null
-     */
-    public ?int $groupId;
-
-    /**
-     * @var string|null
-     */
-    public ?string $position;
+    private Collection $career;
 
     /**
      * CareerField constructor.
@@ -48,18 +30,20 @@ class CareerField
     public function __construct(array|Collection $career)
     {
         if ($career instanceof Collection) {
-            $this->cityId = $career->has(self::CITY_ID) ? $career->get(self::CITY_ID) : null;
-            $this->countryId = $career->has(self::COUNTRY_ID) ? $career->get(self::COUNTRY_ID) : null;
-            $this->from = $career->has(self::FROM) ? $career->get(self::FROM) : null;
-            $this->groupId = $career->has(self::GROUP_ID) ? $career->get(self::GROUP_ID) : null;
-            $this->position = $career->has(self::POSITION) ? $career->get(self::POSITION) : null;
+            $this->career = $career;
         } else {
-            $this->cityId = $career[self::CITY_ID] ?? null;
-            $this->countryId = $career[self::COUNTRY_ID] ?? null;
-            $this->from = $career[self::FROM] ?? null;
-            $this->groupId = $career[self::GROUP_ID] ?? null;
-            $this->position = $career[self::POSITION] ?? null;
+            $this->career = collect($career);
         }
+    }
+
+    /**
+     * @return CityField
+     * @throws ApiException
+     * @throws Throwable
+     */
+    public function getCity(): CityField
+    {
+        return new CityField($this->getCityId());
     }
 
     /**
@@ -67,7 +51,17 @@ class CareerField
      */
     public function getCityId(): ?int
     {
-        return $this->cityId;
+        return $this->career->get(self::CITY_ID);
+    }
+
+    /**
+     * @return CountryField
+     * @throws ApiException
+     * @throws Throwable
+     */
+    public function getCountry(): CountryField
+    {
+        return new CountryField($this->getCountryId());
     }
 
     /**
@@ -75,7 +69,7 @@ class CareerField
      */
     public function getCountryId(): ?int
     {
-        return $this->countryId;
+        return $this->career->get(self::COUNTRY_ID);
     }
 
     /**
@@ -83,7 +77,7 @@ class CareerField
      */
     public function getFrom(): ?int
     {
-        return $this->from;
+        return $this->career->get(self::FROM);
     }
 
     /**
@@ -92,7 +86,7 @@ class CareerField
     public function getGroupId(): ?int
     {
         // TODO: добавить сущность
-        return $this->groupId;
+        return $this->career->get(self::GROUP_ID);
     }
 
     /**
@@ -100,6 +94,6 @@ class CareerField
      */
     public function getPosition(): ?string
     {
-        return $this->position;
+        return $this->career->get(self::POSITION);
     }
 }

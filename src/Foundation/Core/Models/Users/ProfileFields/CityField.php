@@ -39,7 +39,12 @@ class CityField
         } elseif (is_a($city, 'array')) {
             $this->city = collect($city);
         } else {
-            $this->city = collect(VkApi::database($token)->getCitiesById([self::CITY_IDS => $city])->first());
+            $this->city = collect(VkApi::database($token)
+                ->getCitiesById([
+                    self::CITY_IDS => $city
+                ])
+                ->first()
+            );
         }
     }
 

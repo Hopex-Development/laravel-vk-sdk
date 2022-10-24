@@ -14,12 +14,12 @@ use Hopex\VkSdk\Foundation\Core\Models\Users\User;
 class Client
 {
     /**
-     * @param string $token
+     * @param string $userOrGroupToken
      * @return Group
      */
-    public function group(string $token): Group
+    public function group(string $userOrGroupToken): Group
     {
-        return new Group($token);
+        return new Group($userOrGroupToken);
     }
 
     /**
@@ -32,20 +32,20 @@ class Client
     }
 
     /**
-     * @param string $token
+     * @param string $userOrServiceToken
      * @return User
      */
-    public function user(string $token): User
+    public function user(string $userOrServiceToken): User
     {
-        return new User($token);
+        return new User($userOrServiceToken);
     }
 
     /**
-     * @param string $token
+     * @param string $userOrServiceToken
      * @return Database
      */
-    public function database(string $token): Database
+    public function database(string $userOrServiceToken): Database
     {
-        return new Database($token);
+        return new Database($userOrServiceToken);
     }
 }

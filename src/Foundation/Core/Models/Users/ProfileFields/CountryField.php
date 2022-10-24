@@ -39,7 +39,12 @@ class CountryField
         } elseif (is_a($country, 'array')) {
             $this->country = collect($country);
         } else {
-            $this->country = collect(VkApi::database($token)->getCountriesById([self::COUNTRY_IDS => $country])->first());
+            $this->country = collect(VkApi::database($token)
+                ->getCountriesById([
+                    self::COUNTRY_IDS => $country
+                ])
+                ->first()
+            );
         }
     }
 

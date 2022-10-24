@@ -22,29 +22,50 @@ class User extends Request
      * @return Collection
      * @throws ApiException
      * @throws Throwable
+     * @see https://dev.vk.com/method/users.get
      */
     public function get(UserRequestFields $requestFields): Collection
     {
         return $this->call(self::SCOPE . 'get', get_object_vars($requestFields));
     }
 
-    public function getFollowers()
+    /**
+     * @param UserRequestFields $requestFields
+     * @return Collection
+     * @throws ApiException
+     * @throws Throwable
+     * @see https://dev.vk.com/method/users.getFollowers
+     */
+    public function getFollowers(UserRequestFields $requestFields): Collection
     {
-
+        return $this->call(self::SCOPE . 'getFollowers', get_object_vars($requestFields));
     }
 
-    public function getSubscriptions()
+    /**
+     * @param UserRequestFields $requestFields
+     * @return Collection
+     * @throws ApiException
+     * @throws Throwable
+     * @see https://dev.vk.com/method/users.getSubscriptions
+     */
+    public function getSubscriptions(UserRequestFields $requestFields): Collection
     {
-
+        return $this->call(self::SCOPE . 'getSubscriptions', get_object_vars($requestFields));
     }
 
-    public function report()
+    /**
+     * @param UserRequestFields $requestFields
+     * @return Collection
+     * @throws ApiException
+     * @throws Throwable
+     */
+    public function report(UserRequestFields $requestFields): Collection
     {
-
+        return $this->call(self::SCOPE . 'report', get_object_vars($requestFields));
     }
 
     public function search()
     {
-
+        // TODO: добавить реализацию
     }
 }

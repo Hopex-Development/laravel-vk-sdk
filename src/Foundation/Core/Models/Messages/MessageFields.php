@@ -44,14 +44,6 @@ class MessageFields
     }
 
     /**
-     * @return Collection
-     */
-    public function getMessage(): Collection
-    {
-        return $this->message;
-    }
-
-    /**
      * @return Carbon
      */
     public function getDate(): Carbon
@@ -75,6 +67,14 @@ class MessageFields
                 ])
                 ->setProfileFields($userProfileFields)
             )->first()));
+    }
+
+    /**
+     * @return int
+     */
+    public function getSenderId(): int
+    {
+        return $this->message->get(self::FROM_ID);
     }
 
     /**

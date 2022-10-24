@@ -19,62 +19,20 @@ class EducationField
     private const EDUCATION_STATUS = 'education_status';
 
     /**
-     * @var int|null
+     * @var Collection
      */
-    public ?int $university;
-
-    /**
-     * @var string|null
-     */
-    public ?string $universityName;
-
-    /**
-     * @var int|null
-     */
-    public ?int $faculty;
-
-    /**
-     * @var string|null
-     */
-    public ?string $facultyName;
-
-    /**
-     * @var int|null
-     */
-    public ?int $graduation;
-
-    /**
-     * @var string|null
-     */
-    public ?string $educationForm;
-
-    /**
-     * @var string|null
-     */
-    public ?string $educationStatus;
+    private Collection $education;
 
     /**
      * EducationField constructor.
-     * @param array|Collection $city
+     * @param array|Collection $education
      */
-    public function __construct(array|Collection $city)
+    public function __construct(array|Collection $education)
     {
-        if ($city instanceof Collection) {
-            $this->university = $city->has(self::UNIVERSITY) ? $city->get(self::UNIVERSITY) : null;
-            $this->universityName = $city->has(self::UNIVERSITY_NAME) ? $city->get(self::UNIVERSITY_NAME) : null;
-            $this->faculty = $city->has(self::FACULTY) ? $city->get(self::FACULTY) : null;
-            $this->facultyName = $city->has(self::FACULTY_NAME) ? $city->get(self::FACULTY_NAME) : null;
-            $this->graduation = $city->has(self::GRADUATION) ? $city->get(self::GRADUATION) : null;
-            $this->educationForm = $city->has(self::EDUCATION_FORM) ? $city->get(self::EDUCATION_FORM) : null;
-            $this->educationStatus = $city->has(self::EDUCATION_STATUS) ? $city->get(self::EDUCATION_STATUS) : null;
+        if ($education instanceof Collection) {
+            $this->education = $education;
         } else {
-            $this->university = $city[self::UNIVERSITY] ?? null;
-            $this->universityName = $city[self::UNIVERSITY_NAME] ?? null;
-            $this->faculty = $city[self::FACULTY] ?? null;
-            $this->facultyName = $city[self::FACULTY_NAME] ?? null;
-            $this->graduation = $city[self::GRADUATION] ?? null;
-            $this->educationForm = $city[self::EDUCATION_FORM] ?? null;
-            $this->educationStatus = $city[self::EDUCATION_STATUS] ?? null;
+            $this->education = collect($education);
         }
     }
 
@@ -83,7 +41,7 @@ class EducationField
      */
     public function getUniversity(): int
     {
-        return $this->university;
+        return $this->education->get(self::UNIVERSITY);
     }
 
     /**
@@ -91,7 +49,7 @@ class EducationField
      */
     public function getUniversityName(): string
     {
-        return $this->universityName;
+        return $this->education->get(self::UNIVERSITY_NAME);
     }
 
     /**
@@ -99,7 +57,7 @@ class EducationField
      */
     public function getFaculty(): int
     {
-        return $this->faculty;
+        return $this->education->get(self::FACULTY);
     }
 
     /**
@@ -107,7 +65,7 @@ class EducationField
      */
     public function getFacultyName(): string
     {
-        return $this->facultyName;
+        return $this->education->get(self::FACULTY_NAME);
     }
 
     /**
@@ -115,7 +73,7 @@ class EducationField
      */
     public function getGraduation(): int
     {
-        return $this->graduation;
+        return $this->education->get(self::GRADUATION);
     }
 
     /**
@@ -123,7 +81,7 @@ class EducationField
      */
     public function getEducationForm(): string
     {
-        return $this->educationForm;
+        return $this->education->get(self::EDUCATION_FORM);
     }
 
     /**
@@ -131,6 +89,6 @@ class EducationField
      */
     public function getEducationStatus(): string
     {
-        return $this->educationStatus;
+        return $this->education->get(self::EDUCATION_STATUS);
     }
 }
