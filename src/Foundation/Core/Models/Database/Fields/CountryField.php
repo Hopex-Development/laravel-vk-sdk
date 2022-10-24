@@ -1,6 +1,6 @@
 <?php
 
-namespace Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields;
+namespace Hopex\VkSdk\Foundation\Core\Models\Databse\Fields;
 
 use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Facades\VkApi;
@@ -14,7 +14,6 @@ use Throwable;
 class CountryField
 {
     private const ID = 'id';
-    private const COUNTRY_IDS = 'country_ids';
     private const TITLE = 'title';
 
     /**
@@ -24,7 +23,7 @@ class CountryField
 
     /**
      * CountryField constructor.
-     * Use token when country is ID of country.
+     * Use token only when country is ID of country.
      *
      * @param int|array|Collection $country
      * @param string|null $token
@@ -38,12 +37,7 @@ class CountryField
         } elseif (is_a($country, 'array')) {
             $this->country = collect($country);
         } else {
-            $this->country = collect(VkApi::database($token)
-                ->getCountriesById([
-                    self::COUNTRY_IDS => $country
-                ])
-                ->first()
-            );
+            $this->country = VkApi::database($token)->getCountryById($country);
         }
     }
 

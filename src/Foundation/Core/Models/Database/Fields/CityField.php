@@ -1,6 +1,6 @@
 <?php
 
-namespace Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields;
+namespace Hopex\VkSdk\Foundation\Core\Models\Databse\Fields;
 
 use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Facades\VkApi;
@@ -9,12 +9,11 @@ use Throwable;
 
 /**
  * Class CityField
- * @package Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields
+ * @package Hopex\VkSdk\Foundation\Core\Models\Databse\Fields
  */
 class CityField
 {
     private const ID = 'id';
-    private const CITY_IDS = 'city_ids';
     private const TITLE = 'title';
 
     /**
@@ -24,26 +23,21 @@ class CityField
 
     /**
      * CityField constructor.
-     * Use token when city is ID of city.
+     * Use token only when city is ID of city.
      *
      * @param int|array|Collection $city
-     * @param string|null $token
+     * @param string|null $userOrServiceToken
      * @throws ApiException
      * @throws Throwable
      */
-    public function __construct(int|array|Collection $city, string $token = null)
+    public function __construct(int|array|Collection $city, string $userOrServiceToken = null)
     {
         if ($city instanceof Collection) {
             $this->city = $city;
         } elseif (is_a($city, 'array')) {
             $this->city = collect($city);
         } else {
-            $this->city = collect(VkApi::database($token)
-                ->getCitiesById([
-                    self::CITY_IDS => $city
-                ])
-                ->first()
-            );
+            $this->city = VkApi::database($userOrServiceToken)->getCityById($city);
         }
     }
 

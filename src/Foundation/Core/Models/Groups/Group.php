@@ -7,6 +7,7 @@ use Hopex\VkSdk\Foundation\Core\Api\Request;
 /**
  * Class Group
  * @package Hopex\VkSdk\Foundation\Core\Models\Groups
+ * @see https://dev.vk.com/method/groups
  */
 class Group extends Request
 {

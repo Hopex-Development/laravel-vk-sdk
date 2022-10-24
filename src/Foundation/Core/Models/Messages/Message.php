@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 /**
  * Class Message
  * @package Hopex\VkSdk\Foundation\Core\Models\Groups
+ * @see https://dev.vk.com/method/messages
  */
 class Message extends Request
 {

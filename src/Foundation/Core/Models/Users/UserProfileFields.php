@@ -4,9 +4,9 @@ namespace Hopex\VkSdk\Foundation\Core\Models\Users;
 
 use Carbon\Carbon;
 use Hopex\VkSdk\Exceptions\Api\ApiException;
+use Hopex\VkSdk\Foundation\Core\Models\Databse\Fields\CityField;
+use Hopex\VkSdk\Foundation\Core\Models\Databse\Fields\CountryField;
 use Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields\CareerField;
-use Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields\CityField;
-use Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields\CountryField;
 use Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields\EducationField;
 use Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields\LastSeenField;
 use Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields\MilitaryField;
