@@ -5,6 +5,7 @@ namespace Hopex\VkSdk\Foundation\Core\Api;
 use GuzzleHttp\Exception\RequestException;
 use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Exceptions\Api\HttpStatusCodeException;
+use Hopex\VkSdk\Exceptions\Callback\UnknownEventException;
 use Hopex\VkSdk\Exceptions\SdkException;
 use Hopex\VkSdk\Facades\Format;
 use Hopex\VkSdk\Facades\SdkConfig;
@@ -22,21 +23,27 @@ use Throwable;
  */
 class Request
 {
-    /** @var string  */
+    /**
+     * @var string
+     */
     private string $token;
 
-    /** @var string|array|null */
-    private string|null|array $version;
+    /**
+     * @var string|float
+     */
+    private string|float $version;
 
-    /** @var string|Repository|Application|mixed  */
+    /**
+     * @var string
+     */
     private string $language;
 
     /**
      * @param string $token
-     * @param string|null $version
+     * @param string|float|null $version
      * @param string|null $language
      */
-    public function __construct(string $token, string $version = null, string $language = null)
+    public function __construct(string $token, string|float $version = null, string $language = null)
     {
         $this->token = $token;
         $this->version = $version ?? SdkConfig::api('version');

@@ -14,6 +14,8 @@ use Throwable;
 
 class CallbackEventService
 {
+    private const OK = 'ok';
+
     /**
      * @var Request
      */
@@ -54,13 +56,14 @@ class CallbackEventService
             default:
                 throw_if(!method_exists(CallbackEventsContract::class, $event), UnknownEventException::class);
                 throw_if(
-                    SdkConfig::groups("$groupId.secret.verify") && SdkConfig::groups("{$groupId}.secret.code") != $this->request->json('secret'),
+                    SdkConfig::groups("$groupId.secret.verify") && SdkConfig::groups("$groupId.secret.code") != $this->request->json('secret'),
                     SecretException::class
                 );
-                return call_user_func(
+                call_user_func(
                     [new (SdkConfig::groups("$groupId.events")), $event],
                     new BaseEvent(collect($this->request->only(['group_id', 'object'])))
                 );
+                return self::OK;
         }
     }
 }
