@@ -15,37 +15,46 @@ class Client
 {
     /**
      * @param string $userOrGroupToken
+     * @param string|null $version
+     * @param string|null $language
      * @return Group
      */
-    public function group(string $userOrGroupToken): Group
+    public function group(string $userOrGroupToken, string $version = null, string $language = null): Group
     {
-        return new Group($userOrGroupToken);
+        return new Group($userOrGroupToken, $version, $language);
+    }
+
+    /**
+     * @param string $userOrGroupToken
+     * @param string|null $version
+     * @param string|null $language
+     * @return Message
+     */
+    public function message(string $userOrGroupToken, string $version = null, string $language = null): Message
+    {
+        return new Message($userOrGroupToken, $version, $language);
     }
 
     /**
      * @param string $token
-     * @return Message
-     */
-    public function message(string $token): Message
-    {
-        return new Message($token);
-    }
-
-    /**
-     * @param string $userOrServiceToken
+     * @param string|null $version
+     * @param string|null $language
      * @return User
      */
-    public function user(string $userOrServiceToken): User
+    public function user(string $token, string $version = null, string $language = null): User
     {
-        return new User($userOrServiceToken);
+        return new User($token, $version, $language);
     }
 
     /**
      * @param string $userOrServiceToken
+     * @param string|null $version
+     * @param string|null $language
      * @return Database
      */
-    public function database(string $userOrServiceToken): Database
+    public function database(string $userOrServiceToken, string $version = null, string $language = null): Database
     {
-        return new Database($userOrServiceToken);
+//        dd($userOrServiceToken);
+        return new Database($userOrServiceToken, $version, $language);
     }
 }

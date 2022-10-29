@@ -18,6 +18,6 @@ class CallbackException extends SdkException
      */
     public function __construct($message, $code = 400, Throwable $previous = null)
     {
-        parent::__construct("CallbackException: {$message}", $code, $previous);
+        parent::__construct("CallbackException: $message", $code, $previous);
     }
 }

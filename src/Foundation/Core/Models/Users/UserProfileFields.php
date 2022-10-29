@@ -4,8 +4,8 @@ namespace Hopex\VkSdk\Foundation\Core\Models\Users;
 
 use Carbon\Carbon;
 use Hopex\VkSdk\Exceptions\Api\ApiException;
-use Hopex\VkSdk\Foundation\Core\Models\Databse\Fields\CityField;
-use Hopex\VkSdk\Foundation\Core\Models\Databse\Fields\CountryField;
+use Hopex\VkSdk\Foundation\Core\Models\Database\Fields\CityField;
+use Hopex\VkSdk\Foundation\Core\Models\Database\Fields\CountryField;
 use Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields\CareerField;
 use Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields\EducationField;
 use Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields\LastSeenField;
@@ -287,6 +287,14 @@ class UserProfileFields
     }
 
     /**
+     * @return int
+     */
+    public function getCityId(): int
+    {
+        return $this->user->get(UserProfileFields::CITY)[self::ID];
+    }
+
+    /**
      * @param string|null $token
      * @return CountryField
      * @throws ApiException
@@ -295,6 +303,14 @@ class UserProfileFields
     public function getCountry(string $token = null): CountryField
     {
         return new CountryField($this->user->get(UserProfileFields::COUNTRY), $token);
+    }
+
+    /**
+     * @return int
+     */
+    public function getCountryId(): int
+    {
+        return $this->user->get(UserProfileFields::COUNTRY)[self::ID];
     }
 
     /**
