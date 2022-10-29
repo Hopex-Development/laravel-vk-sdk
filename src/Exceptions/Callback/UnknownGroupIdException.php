@@ -10,6 +10,6 @@ class UnknownGroupIdException extends CallbackException
 {
     public function __construct()
     {
-        parent::__construct(__("vk-sdk.0157"));
+        parent::__construct("Unknown community id");
     }
 }
