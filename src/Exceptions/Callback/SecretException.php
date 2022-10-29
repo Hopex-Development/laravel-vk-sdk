@@ -10,6 +10,6 @@ class SecretException extends CallbackException
 {
     public function __construct()
     {
-        parent::__construct(__("vk-sdk.0156"), 403);
+        parent::__construct("Access denied. The secret code of the event was not authenticated. Check the configuration settings.", 403);
     }
 }

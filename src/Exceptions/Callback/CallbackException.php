@@ -18,6 +18,7 @@ class CallbackException extends SdkException
      */
     public function __construct($message, $code = 400, Throwable $previous = null)
     {
+        $message = preg_replace('~vk-sdk\.~', '', __("vk-sdk.$message"));
         parent::__construct("CallbackException: $message", $code, $previous);
     }
 }

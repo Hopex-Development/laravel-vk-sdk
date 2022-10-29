@@ -10,6 +10,6 @@ class UnknownEventException extends CallbackException
 {
     public function __construct()
     {
-        parent::__construct(__("vk-sdk.0158"), 403);
+        parent::__construct("Unknown callback event", 403);
     }
 }
