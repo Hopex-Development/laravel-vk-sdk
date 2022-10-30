@@ -1,6 +1,6 @@
 <?php
 
-namespace Hopex\VkSdk\Foundation\Core\Models\Database\Fields\UniversityField;
+namespace Hopex\VkSdk\Foundation\Core\Models\Database\Fields\University;
 
 use Hopex\VkSdk\Foundation\Core\Models\Database\DatabaseField;
 

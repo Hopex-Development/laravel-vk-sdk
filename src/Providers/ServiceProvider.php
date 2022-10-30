@@ -2,7 +2,9 @@
 
 namespace Hopex\VkSdk\Providers;
 
+use Hopex\VkSdk\Contracts\HasRequestFieldsContract;
 use Hopex\VkSdk\Foundation\Core\Api\Client;
+use Hopex\VkSdk\Foundation\Core\Models\Database\Fields\School\SchoolRequestFields;
 use Hopex\VkSdk\Foundation\Format;
 use Hopex\VkSdk\Foundation\SdkConfig;
 use Hopex\VkSdk\Services\CallbackEventService;

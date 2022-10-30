@@ -2,13 +2,13 @@
 
 namespace Hopex\VkSdk\Foundation;
 
-use Hopex\VkSdk\Contracts\CanFormat;
+use Hopex\VkSdk\Contracts\CanFormatContract;
 
 /**
  * Class Format
  * @package Hopex\VkSdk\Foundation
  */
-class Format implements CanFormat
+class Format implements CanFormatContract
 {
     /** @var array  */
     private array $formatters = [];

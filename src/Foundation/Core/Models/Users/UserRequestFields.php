@@ -10,9 +10,9 @@ namespace Hopex\VkSdk\Foundation\Core\Models\Users;
 class UserRequestFields
 {
     /**
-     * @var array
+     * @var array|null
      */
-    public array $user_ids = [];
+    public ?array $user_ids = null;
 
     /**
      * @var int|null
@@ -45,14 +45,14 @@ class UserRequestFields
     public ?int $count = null;
 
     /**
-     * @var array
+     * @var array|null
      */
-    public array $fields = [];
+    public ?array $fields = null;
 
     /**
      * @var string|null
      */
-    public string|null $name_case = null;
+    public ?string $name_case = null;
 
     /**
      * @param array $user_ids

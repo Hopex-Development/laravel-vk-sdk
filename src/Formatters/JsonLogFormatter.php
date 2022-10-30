@@ -2,11 +2,11 @@
 
 namespace Hopex\VkSdk\Formatters;
 
-use Hopex\VkSdk\Contracts\CanFormat;
+use Hopex\VkSdk\Contracts\CanFormatContract;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Logger;
 
-class JsonLogFormatter implements CanFormat
+class JsonLogFormatter implements CanFormatContract
 {
     public function __invoke(Logger $logger)
     {

@@ -6,7 +6,7 @@ namespace Hopex\VkSdk\Contracts;
  * Interface CanFormat
  * @package Hopex\VkSdk\Contracts
  */
-interface CanFormat
+interface CanFormatContract
 {
     /**
      * @param $data

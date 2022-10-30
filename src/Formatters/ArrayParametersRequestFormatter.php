@@ -2,13 +2,13 @@
 
 namespace Hopex\VkSdk\Formatters;
 
-use Hopex\VkSdk\Contracts\CanFormat;
+use Hopex\VkSdk\Contracts\CanFormatContract;
 
 /**
  * Class ArrayParametersRequestFormatter
  * @package Hopex\VkSdk\Formatters
  */
-class ArrayParametersRequestFormatter implements CanFormat
+class ArrayParametersRequestFormatter implements CanFormatContract
 {
     /**
      * @param $data
