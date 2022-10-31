@@ -1,11 +1,10 @@
 <?php
 
-namespace Hopex\VkSdk\Foundation\Core\Models\Users;
+namespace Hopex\VkSdk\Foundation\Core\Models\Users\Enums;
 
 /**
  * Class UserNameCases
- * @package Hopex\VkSdk\Foundation\Core\Models\Users
- * @see https://dev.vk.com/method/users.get
+ * @package Hopex\VkSdk\Foundation\Core\Models\Users\Enums
  */
 class UserNameCases
 {

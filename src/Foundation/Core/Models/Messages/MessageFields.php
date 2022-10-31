@@ -58,15 +58,16 @@ class MessageFields
      * @throws ApiException
      * @throws Throwable
      */
-    public function getSender(string $token, array $userProfileFields = []): UserProfileFields
+    public function getSender(string $token, UserRequestFields $userRequestFields): UserProfileFields
     {
-        return new UserProfileFields(collect(VkApi::user($token)
-            ->get((new UserRequestFields())
-                ->setUserIds([
-                    $this->message->get(self::FROM_ID)
-                ])
-                ->setProfileFields($userProfileFields)
-            )->first()));
+        return new UserProfileFields([]);
+//        return new UserProfileFields(collect(VkApi::user($token)
+//            ->get((new UserRequestFields())
+//                ->setUserIds([
+//                    $this->getSenderId()
+//                ])
+//                ->setProfileFields($userRequestFields->)
+//            )->first()));
     }
 
     /**

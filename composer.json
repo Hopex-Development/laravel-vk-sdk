@@ -32,7 +32,8 @@
             "aliases": {
                 "VkApi": "Hopex\\VkSdk\\Facades\\VkApi",
                 "Format": "Hopex\\VkSdk\\Facades\\Format",
-                "SdkConfig": "Hopex\\VkSdk\\Facades\\SdkConfig"
+                "SdkConfig": "Hopex\\VkSdk\\Facades\\SdkConfig",
+                "RequestFields": "Hopex\\VkSdk\\Facades\\RequestFields"
             }
         }
     },

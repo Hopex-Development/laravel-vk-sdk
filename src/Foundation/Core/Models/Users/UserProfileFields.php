@@ -4,8 +4,9 @@ namespace Hopex\VkSdk\Foundation\Core\Models\Users;
 
 use Carbon\Carbon;
 use Hopex\VkSdk\Exceptions\Api\ApiException;
-use Hopex\VkSdk\Foundation\Core\Models\Database\Fields\CityField;
-use Hopex\VkSdk\Foundation\Core\Models\Database\Fields\CountryField;
+use Hopex\VkSdk\Facades\VkApi;
+use Hopex\VkSdk\Foundation\Core\Models\Database\Fields\City\CityField;
+use Hopex\VkSdk\Foundation\Core\Models\Database\Fields\Country\CountryField;
 use Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields\CareerField;
 use Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields\EducationField;
 use Hopex\VkSdk\Foundation\Core\Models\Users\ProfileFields\LastSeenField;
@@ -91,23 +92,15 @@ class UserProfileFields
     /**
      * @var Collection
      */
-    public Collection $user;
+    private Collection $user;
 
     /**
      * UserFields constructor.
-     * @param Collection $user
+     * @param Collection|array $user
      */
-    public function __construct(Collection $user)
+    public function __construct(Collection|array $user)
     {
-        $this->user = $user;
-    }
-
-    /**
-     * @return Collection
-     */
-    public function getUser(): Collection
-    {
-        return $this->user;
+        $this->user = $user instanceof Collection ? $user : collect($user);
     }
 
     /**
@@ -276,14 +269,14 @@ class UserProfileFields
     }
 
     /**
-     * @param string|null $token
+     * @param string $userOrServiceToken
      * @return CityField
      * @throws ApiException
      * @throws Throwable
      */
-    public function getCity(string $token = null): CityField
+    public function getCity(string $userOrServiceToken): CityField
     {
-        return new CityField($this->user->get(UserProfileFields::CITY), $token);
+        return VkApi::database($userOrServiceToken)->getCityById($this->getCityId());
     }
 
     /**
@@ -295,14 +288,14 @@ class UserProfileFields
     }
 
     /**
-     * @param string|null $token
+     * @param string $userOrServiceToken
      * @return CountryField
      * @throws ApiException
      * @throws Throwable
      */
-    public function getCountry(string $token = null): CountryField
+    public function getCountry(string $userOrServiceToken): CountryField
     {
-        return new CountryField($this->user->get(UserProfileFields::COUNTRY), $token);
+        return VkApi::database($userOrServiceToken)->getCountryById($this->getCountryId());
     }
 
     /**
