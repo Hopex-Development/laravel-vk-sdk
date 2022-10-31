@@ -64,11 +64,11 @@ class Database extends Request
 
     /**
      * @param int $cityId
-     * @return ChairField
+     * @return CityField
      * @throws ApiException
      * @throws Throwable
      */
-    public function getCityById(int $cityId): ChairField
+    public function getCityById(int $cityId): CityField
     {
         return $this->getCitiesById((new CityRequestFields())->setCityIds([$cityId]))->first();
     }

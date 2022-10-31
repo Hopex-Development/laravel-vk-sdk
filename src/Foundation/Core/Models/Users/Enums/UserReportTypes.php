@@ -1,11 +1,10 @@
 <?php
 
-namespace Hopex\VkSdk\Foundation\Core\Models\Users;
+namespace Hopex\VkSdk\Foundation\Core\Models\Users\Enums;
 
 /**
  * Class UserReportTypes
- * @package Hopex\VkSdk\Foundation\Core\Models\Users
- * @see https://dev.vk.com/method/users.report
+ * @package Hopex\VkSdk\Foundation\Core\Models\Users\Enums
  */
 class UserReportTypes
 {

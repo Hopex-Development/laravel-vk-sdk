@@ -5,6 +5,7 @@ namespace Hopex\VkSdk\Providers;
 use Hopex\VkSdk\Contracts\HasRequestFieldsContract;
 use Hopex\VkSdk\Foundation\Core\Api\Client;
 use Hopex\VkSdk\Foundation\Core\Models\Database\Fields\School\SchoolRequestFields;
+use Hopex\VkSdk\Foundation\Core\Models\RequestFields;
 use Hopex\VkSdk\Foundation\Format;
 use Hopex\VkSdk\Foundation\SdkConfig;
 use Hopex\VkSdk\Services\CallbackEventService;
@@ -24,6 +25,7 @@ class ServiceProvider extends BaseServiceProvider
         $this->app->bind('sdkconfig', SdkConfig::class);
         $this->app->bind('format', Format::class);
         $this->app->bind('vkapi', Client::class);
+        $this->app->bind('requestfields', RequestFields::class);
     }
 
     /**
