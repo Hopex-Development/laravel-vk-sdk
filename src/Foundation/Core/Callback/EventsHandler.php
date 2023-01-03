@@ -3,7 +3,6 @@
 namespace Hopex\VkSdk\Foundation\Core\Callback;
 
 use Hopex\VkSdk\Contracts\CallbackEventsContract;
-use Hopex\VkSdk\Contracts\HasRequestFieldsContract;
 
 /**
  * Class EventsHandler

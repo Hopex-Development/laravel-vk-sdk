@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('group_id');
             $table->string('type');
-            $table->string('event_id')->unique();
+            $table->string('event_id')->unique()->nullable();
             $table->timestamps();
         });
     }

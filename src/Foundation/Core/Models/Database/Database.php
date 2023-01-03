@@ -4,7 +4,6 @@ namespace Hopex\VkSdk\Foundation\Core\Models\Database;
 
 use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Foundation\Core\Api\Request;
-use Hopex\VkSdk\Foundation\Core\Models\Database\Fields\Chair\ChairField;
 use Hopex\VkSdk\Foundation\Core\Models\Database\Fields\Chair\ChairFieldsCollection;
 use Hopex\VkSdk\Foundation\Core\Models\Database\Fields\Chair\ChairRequestFields;
 use Hopex\VkSdk\Foundation\Core\Models\Database\Fields\City\CityField;

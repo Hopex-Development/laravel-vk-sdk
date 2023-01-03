@@ -4,7 +4,6 @@ namespace Hopex\VkSdk\Foundation\Core\Models\Messages;
 
 use Carbon\Carbon;
 use Hopex\VkSdk\Exceptions\Api\ApiException;
-use Hopex\VkSdk\Facades\VkApi;
 use Hopex\VkSdk\Foundation\Core\Models\Users\UserProfileFields;
 use Hopex\VkSdk\Foundation\Core\Models\Users\UserRequestFields;
 use Illuminate\Support\Collection;

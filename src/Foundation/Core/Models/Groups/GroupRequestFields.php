@@ -2,7 +2,6 @@
 
 namespace Hopex\VkSdk\Foundation\Core\Models\Groups;
 
-use Hopex\VkSdk\Foundation\Core\Api\Request;
 use Hopex\VkSdk\Foundation\Core\Models\Databse\Fields\CityField;
 use Hopex\VkSdk\Foundation\Core\Models\Databse\Fields\CountryField;
 
