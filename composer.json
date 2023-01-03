@@ -12,6 +12,7 @@
             "homepage": "https://github.com/H0pex"
         }
     ],
+    "repository": "https://github.com/Hopex-Development/laravel-vk-sdk",
     "require": {
         "php": "^8",
         "ext-json": "*"
@@ -37,12 +38,6 @@
             }
         }
     },
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/H0pex/laravel-vk-sdk"
-        }
-    ],
     "config": {
         "optimize-autoloader": true
     },

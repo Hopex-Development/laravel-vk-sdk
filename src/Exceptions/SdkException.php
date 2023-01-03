@@ -17,15 +17,15 @@ use Throwable;
  */
 class SdkException extends Exception
 {
-    /**
-     * @param $message
-     * @param $code
-     * @param Throwable|null $previous
-     */
-    public function __construct($message, $code = 500, Throwable $previous = null)
+    /** @var string  */
+    private const LOG_CHANNEL = 'channels.exception';
+
+    public function __construct()
     {
-        parent::__construct($message, $code, $previous);
+        $this->message = preg_replace("~vk-sdk\.~", '', __("vk-sdk.{$this->getMessage()}"));
         $this->report();
+
+        parent::__construct();
     }
 
     /**
@@ -33,14 +33,13 @@ class SdkException extends Exception
      */
     protected function report(): void
     {
-        Log::build((array)SdkConfig::logging('channels.exception'))->warning($this->getMessage());
+        Log::build((array)SdkConfig::logging(self::LOG_CHANNEL))->warning($this->getMessage());
     }
 
     /**
-     * @param Request $request
      * @return JsonResponse|void
      */
-    final public function render(Request $request)
+    final public function render()
     {
         if (env('LOG_LEVEL') === 'debug') {
             return new JsonResponse(

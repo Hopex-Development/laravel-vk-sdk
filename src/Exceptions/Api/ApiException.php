@@ -12,8 +12,6 @@ use Throwable;
 class ApiException extends SdkException
 {
     /**
-     * ApiException constructor.
-     *
      * @param $message
      * @param $code
      * @param Throwable|null $previous

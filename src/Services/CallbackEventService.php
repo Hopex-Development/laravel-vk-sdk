@@ -4,11 +4,13 @@ namespace Hopex\VkSdk\Services;
 
 use Hopex\VkSdk\Contracts\CallbackEventsContract;
 use Hopex\VkSdk\Exceptions\Callback\SecretException;
+use Hopex\VkSdk\Exceptions\Callback\TableNotFoundException;
 use Hopex\VkSdk\Exceptions\Callback\UnknownEventException;
 use Hopex\VkSdk\Exceptions\Callback\UnknownGroupIdException;
 use Hopex\VkSdk\Facades\SdkConfig;
 use Hopex\VkSdk\Foundation\Core\Callback\BaseEvent;
 use Hopex\VkSdk\Models\Event;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Throwable;
 
@@ -42,10 +44,14 @@ class CallbackEventService
         $eventId = $this->request->json('event_id');
         $event = $this->request->json('type');
 
-        if (SdkConfig::groups("$groupId.allow_retry_events") || !Event::where('event_id', $eventId)->first()) {
-            Event::updateOrCreate($this->request->only('group_id', 'type', 'event_id'));
-        } else {
-            return 'ok';
+        try {
+            if (SdkConfig::groups("$groupId.allow_retry_events") || !Event::where('event_id', $eventId)->first()) {
+                Event::updateOrCreate($this->request->only('group_id', 'type', 'event_id'));
+            } else {
+                return 'ok';
+            }
+        } catch (QueryException) {
+            throw new TableNotFoundException();
         }
 
         switch ($event) {
