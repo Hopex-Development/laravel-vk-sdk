@@ -20,7 +20,7 @@ class Format implements CanFormatContract
     public function with(string $formatter): static
     {
         $formatter = new $formatter();
-        if ($formatter instanceof CanFormat) {
+        if ($formatter instanceof CanFormatContract) {
             $this->formatters[] = $formatter;
         }
         return $this;

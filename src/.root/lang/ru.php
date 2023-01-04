@@ -165,5 +165,5 @@ return [
     'Unknown community id' => 'Неизвестный идентификатор сообщества',
     'Unknown callback event' => 'Неизвестное событие',
     'Invalid http status code' => 'Недопустимый код состояния http',
-    'Base table or view not found' => 'Базовая таблица или представление не найдены. Попробуйте выполнить команду php artisan migrate',
+    'Database or table not found' => 'База данных или таблица не найдены',
 ];

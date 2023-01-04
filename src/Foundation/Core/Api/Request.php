@@ -5,7 +5,6 @@ namespace Hopex\VkSdk\Foundation\Core\Api;
 use GuzzleHttp\Exception\RequestException;
 use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Exceptions\Api\HttpStatusCodeException;
-use Hopex\VkSdk\Exceptions\SdkException;
 use Hopex\VkSdk\Facades\Format;
 use Hopex\VkSdk\Facades\SdkConfig;
 use Hopex\VkSdk\Formatters\ArrayParametersRequestFormatter;
@@ -59,14 +58,14 @@ class Request
         $arguments = Format::with(ClearEmptiesParametersRequestFormatter::class)
             ->with(ArrayParametersRequestFormatter::class)
             ->format($args);
-        $arguments['access_token'] = $arguments['access_token'] ?? $this->token;
-        $arguments['v'] = $arguments['v'] ?? $this->version;
-        $arguments['lang'] = $arguments['lang'] ?? $this->language;
+        $arguments['access_token'] = $arguments['access_token'] ?? $this->getToken();
+        $arguments['v'] = $arguments['v'] ?? $this->getVersion();
+        $arguments['lang'] = $arguments['lang'] ?? $this->getLanguage();
 
         try {
             $response = Http::timeout(10)->get($this->makeUrl($method), $arguments);
-        } catch (RequestException $e) {
-            throw new SdkException($e->getMessage(), 500);
+        } catch (RequestException) {
+            throw new ApiException();
         }
 
         throw_if($response->status() != 200, HttpStatusCodeException::class);
@@ -74,23 +73,11 @@ class Request
         $body = collect(is_array($body) ? $body : []);
 
         if ($body->has('error')) {
-            throw new ApiException(code: $body->get('error')['error_code']);
+            throw new ApiException((int)$body->get('error')['error_code']);
         }
 
         return collect($body->has('response') ? $body->get('response') : $body);
     }
-
-//    public function upload(string $url, string $param, string $path)
-//    {
-//        Http::post($url);
-//        try {
-//            $response = $this->http_client->upload($url, $param, $path);
-//        } catch (TransportRequestException $e) {
-//            throw new VKClientException($e);
-//        }
-//
-//        return $this->parseResponse($response);
-//    }
 
     /**
      * @param string $method
@@ -98,11 +85,7 @@ class Request
      */
     private function makeUrl(string $method): string
     {
-        return sprintf(
-            '%s/%s',
-            SdkConfig::api('endpoint'),
-            $method
-        );
+        return sprintf('%s/%s', SdkConfig::api('endpoint'), $method);
     }
 
     /**

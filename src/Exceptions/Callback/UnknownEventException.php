@@ -2,14 +2,13 @@
 
 namespace Hopex\VkSdk\Exceptions\Callback;
 
+use Hopex\VkSdk\Exceptions\SdkException;
+
 /**
- * Class UndefinedEventException
+ * Class UnknownEventException
  * @package Hopex\VkSdk\Exceptions\Callback
  */
-class UnknownEventException extends CallbackException
+class UnknownEventException extends SdkException
 {
-    public function __construct()
-    {
-        parent::__construct("Unknown callback event", 403);
-    }
+    public $message = 'Unknown callback event';
 }

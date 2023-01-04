@@ -33,7 +33,7 @@ class SdkException extends Exception
      */
     protected function report(): void
     {
-        Log::build((array)SdkConfig::logging(self::LOG_CHANNEL))->warning($this->getMessage());
+        Log::build((array)SdkConfig::logging(self::LOG_CHANNEL))->error($this->getMessage());
     }
 
     /**
@@ -44,7 +44,7 @@ class SdkException extends Exception
         if (env('LOG_LEVEL') === 'debug') {
             return new JsonResponse(
                 Format::with(JsonExceptionFormatter::class)->format($this->getMessage()),
-                $this->getCode()
+                500
             );
         }
     }

@@ -8,16 +8,14 @@ namespace Hopex\VkSdk\Foundation;
  */
 class SdkConfig
 {
-    private const CONFIG_PREFIX        = 'vk-sdk';
-    private const CONFIG_ROUTES        = 'routes';
-    private const CONFIG_API           = 'api';
-    private const CONFIG_GROUPS        = 'groups';
-    private const CONFIG_LOGGING       = 'logging';
-    private const CONFIG_APPS          = 'apps';
+    private const CONFIG_PREFIX = 'vk-sdk';
+    private const CONFIG_ROUTES = 'routes';
+    private const CONFIG_API = 'api';
+    private const CONFIG_GROUPS = 'groups';
+    private const CONFIG_LOGGING = 'logging';
+    private const CONFIG_APPS = 'apps';
 
     /**
-     * Общий запрос к конфигурации.
-     *
      * @param string|null $key
      * @return array|string|null
      */
@@ -27,8 +25,6 @@ class SdkConfig
     }
 
     /**
-     * Конфигурация маршрутизации.
-     *
      * @param string|null $key
      * @return array|string|null
      */
@@ -38,8 +34,6 @@ class SdkConfig
     }
 
     /**
-     * Конфигурация логирования.
-     *
      * @param string|null $key
      * @return array|string|null
      */
@@ -49,8 +43,6 @@ class SdkConfig
     }
 
     /**
-     * Конфигурация подключения к API.
-     *
      * @param string|null $key
      * @return array|string|null
      */
@@ -60,8 +52,6 @@ class SdkConfig
     }
 
     /**
-     * Конфигурация групп.
-     *
      * @param string|null $key
      * @return array|string|null
      */
@@ -71,8 +61,6 @@ class SdkConfig
     }
 
     /**
-     * Конфигурация приложений.
-     *
      * @param string|null $key
      * @return array|string|null
      */

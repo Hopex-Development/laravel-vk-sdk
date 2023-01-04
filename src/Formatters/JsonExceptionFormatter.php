@@ -15,7 +15,7 @@ class JsonExceptionFormatter implements CanFormatContract
     {
         return [
             'type' => 'error',
-            'message' => $data instanceof SdkException ? $data->getMessage() : $data
+            'message' => $data
         ];
     }
 }

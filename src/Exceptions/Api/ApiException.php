@@ -11,19 +11,14 @@ use Throwable;
  */
 class ApiException extends SdkException
 {
+    public $message = 'Unknown api exception';
+
     /**
-     * @param $message
-     * @param $code
-     * @param Throwable|null $previous
+     * @param int $code
      */
-    public function __construct($message = null, $code = 400, Throwable $previous = null)
+    public function __construct(int $code = 1)
     {
-        $commonError = ApiExceptionMapper::parse($code);
-        if ($commonError) {
-            $code = 400;
-            $message = $commonError;
-        }
-        $message = preg_replace('~vk-sdk\.~', '', __("vk-sdk.$message"));
-        parent::__construct("ApiException: $message", $code, $previous);
+        $this->message = ApiExceptionMapper::parse($code) ?? $this->message;
+        parent::__construct();
     }
 }
