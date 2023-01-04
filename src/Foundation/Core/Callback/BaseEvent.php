@@ -2,8 +2,8 @@
 
 namespace Hopex\VkSdk\Foundation\Core\Callback;
 
-use Hopex\VkSdk\Foundation\Core\Models\Client\ClientFields;
-use Hopex\VkSdk\Foundation\Core\Models\Messages\MessageFields;
+use Hopex\VkSdk\Foundation\Core\Entities\Client\ClientFields;
+use Hopex\VkSdk\Foundation\Core\Entities\Messages\MessageFields;
 use Illuminate\Support\Collection;
 
 /**
@@ -12,10 +12,10 @@ use Illuminate\Support\Collection;
  */
 class BaseEvent
 {
-    private const GROUP_ID      = 'group_id';
-    private const OBJECT        = 'object';
-    private const MESSAGE       = 'message';
-    private const CLIENT_INFO   = 'client_info';
+    private const GROUP_ID = 'group_id';
+    private const OBJECT = 'object';
+    private const MESSAGE = 'message';
+    private const CLIENT_INFO = 'client_info';
 
     /**
      * @var int

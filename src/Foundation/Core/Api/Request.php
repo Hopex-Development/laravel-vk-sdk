@@ -2,6 +2,7 @@
 
 namespace Hopex\VkSdk\Foundation\Core\Api;
 
+use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Exceptions\Api\HttpStatusCodeException;
@@ -9,6 +10,8 @@ use Hopex\VkSdk\Facades\Format;
 use Hopex\VkSdk\Facades\SdkConfig;
 use Hopex\VkSdk\Formatters\ArrayParametersRequestFormatter;
 use Hopex\VkSdk\Formatters\ClearEmptiesParametersRequestFormatter;
+use Illuminate\Config\Repository;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Throwable;
@@ -17,22 +20,19 @@ use Throwable;
  * Class Request
  * @package Hopex\VkSdk\Foundation\Core\Api
  */
-class Request
+abstract class Request
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private string $token;
 
-    /**
-     * @var string|float
-     */
-    private string|float $version;
+    /** @var string|float|array|null */
+    private string|float|null|array $version;
 
-    /**
-     * @var string
-     */
+    /** @var string|Repository|Application|mixed */
     private string $language;
+
+    /** @var Client */
+    private Client $HttpClient;
 
     /**
      * @param string $token
@@ -44,14 +44,15 @@ class Request
         $this->token = $token;
         $this->version = $version ?? SdkConfig::api('version');
         $this->language = $language ?? config('app.locale');
+        $this->HttpClient = new Client(['verify' => false]);
     }
 
     /**
      * @param string $method
      * @param array $args
      * @return Collection
-     * @throws ApiException
      * @throws Throwable
+     * @throws ApiException
      */
     public function call(string $method, array $args = []): Collection
     {
@@ -63,8 +64,10 @@ class Request
         $arguments['lang'] = $arguments['lang'] ?? $this->getLanguage();
 
         try {
-            $response = Http::timeout(10)->get($this->makeUrl($method), $arguments);
-        } catch (RequestException) {
+            $response = Http::setClient($this->HttpClient)
+                ->timeout(10)
+                ->get($this->makeUrl($method), $arguments);
+        } catch (RequestException $e) {
             throw new ApiException();
         }
 
@@ -80,18 +83,9 @@ class Request
     }
 
     /**
-     * @param string $method
      * @return string
      */
-    private function makeUrl(string $method): string
-    {
-        return sprintf('%s/%s', SdkConfig::api('endpoint'), $method);
-    }
-
-    /**
-     * @return string
-     */
-    public function getToken(): string
+    private function getToken(): string
     {
         return $this->token;
     }
@@ -99,7 +93,7 @@ class Request
     /**
      * @return array|string|null
      */
-    public function getVersion(): array|string|null
+    private function getVersion(): array|string|null
     {
         return $this->version;
     }
@@ -107,8 +101,17 @@ class Request
     /**
      * @return string
      */
-    public function getLanguage(): string
+    private function getLanguage(): string
     {
         return $this->language;
+    }
+
+    /**
+     * @param string $method
+     * @return string
+     */
+    private function makeUrl(string $method): string
+    {
+        return sprintf('%s/%s', SdkConfig::api('endpoint'), $method);
     }
 }

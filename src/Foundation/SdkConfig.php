@@ -19,18 +19,18 @@ class SdkConfig
      * @param string|null $key
      * @return array|string|null
      */
-    public function query(string $key = null): array|string|null
+    public function routes(string $key = null): array|string|null
     {
-        return config(self::CONFIG_PREFIX . (!$key ? null : ".$key"));
+        return $this->query(self::CONFIG_ROUTES . (!$key ? null : ".$key"));
     }
 
     /**
      * @param string|null $key
      * @return array|string|null
      */
-    public function routes(string $key = null): array|string|null
+    public function query(string $key = null): array|string|null
     {
-        return $this->query(self::CONFIG_ROUTES . (!$key ? null : ".$key"));
+        return config(self::CONFIG_PREFIX . (!$key ? null : ".$key"));
     }
 
     /**

@@ -2,10 +2,10 @@
 
 namespace Hopex\VkSdk\Foundation\Core\Api;
 
-use Hopex\VkSdk\Foundation\Core\Models\Database\Database;
-use Hopex\VkSdk\Foundation\Core\Models\Groups\Group;
-use Hopex\VkSdk\Foundation\Core\Models\Messages\Message;
-use Hopex\VkSdk\Foundation\Core\Models\Users\User;
+use Hopex\VkSdk\Foundation\Core\Entities\Database\Database;
+use Hopex\VkSdk\Foundation\Core\Entities\Groups\Group;
+use Hopex\VkSdk\Foundation\Core\Entities\Messages\Message;
+use Hopex\VkSdk\Foundation\Core\Entities\Users\User;
 
 /**
  * Class ApiClient

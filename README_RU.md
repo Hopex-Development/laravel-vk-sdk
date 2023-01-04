@@ -12,21 +12,26 @@
 
 > #### You can read the [English version](https://github.com/H0pex/laravel-vk-sdk/README_EN)
 
-[Laravel](https://github.com/laravel/laravel) библиотека для упрощенного использования API модулей социальной сети ВКонтакте.
+[Laravel](https://github.com/laravel/laravel) библиотека для упрощенного использования API модулей социальной сети
+ВКонтакте.
 Предназначена для быстрого развертывания приложений-ботов, а также использования VK API в одностороннем порядке.
 
 # Установка
+
 Осуществить установку можно используя [composer](https://getcomposer.org/):
+
 ```
 composer require hopex/vk-api-sdk
 ```
 
 Публикация необходимых ресурсов:
+
 ```
 php artisan vendor:publish --tag=vk-sdk-config --tag=vk-sdk-lang
 ```
 
 Провайдер и фасады будут автоматически зарегистрированы, однако вы можете вручную добавить их в `config/app.php`.
+
 ```php
 'providers' => [
     // ...
@@ -41,4 +46,5 @@ php artisan vendor:publish --tag=vk-sdk-config --tag=vk-sdk-lang
 ```
 
 # Лицензия
+
 [MIT License](https://github.com/H0pex/vk-api-sdk/LICENSE)

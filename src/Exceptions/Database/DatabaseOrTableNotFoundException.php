@@ -3,7 +3,6 @@
 namespace Hopex\VkSdk\Exceptions\Database;
 
 use Hopex\VkSdk\Exceptions\SdkException;
-use Throwable;
 
 /**
  * Class DatabaseOrTableNotFoundException

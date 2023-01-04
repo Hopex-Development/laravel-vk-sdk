@@ -3,7 +3,7 @@
 namespace Hopex\VkSdk\Providers;
 
 use Hopex\VkSdk\Foundation\Core\Api\Client;
-use Hopex\VkSdk\Foundation\Core\Models\RequestFields;
+use Hopex\VkSdk\Foundation\Core\Entities\RequestFields;
 use Hopex\VkSdk\Foundation\Format;
 use Hopex\VkSdk\Foundation\SdkConfig;
 use Hopex\VkSdk\Services\CallbackEventService;
@@ -41,7 +41,7 @@ class ServiceProvider extends BaseServiceProvider
             __DIR__ . '/../.root/lang/ru.php' => $this->app->langPath('ru/vk-sdk.php'),
         ], 'vk-sdk-lang-ru');
 
-        $this->loadMigrationsFrom(__DIR__.'/../.root/database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../.root/database/migrations');
 
         $this->loadRoutesFrom(__DIR__ . '/../.root/routes/callbacks.php');
     }

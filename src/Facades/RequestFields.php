@@ -15,6 +15,6 @@ class RequestFields extends Facade
      */
     protected static function getFacadeAccessor(): string
     {
-        return \Hopex\VkSdk\Foundation\Core\Models\RequestFields::class;
+        return \Hopex\VkSdk\Foundation\Core\Entities\RequestFields::class;
     }
 }

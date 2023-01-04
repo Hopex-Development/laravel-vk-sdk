@@ -3,7 +3,6 @@
 namespace Hopex\VkSdk\Exceptions\Api;
 
 use Hopex\VkSdk\Exceptions\SdkException;
-use Throwable;
 
 /**
  * Class ApiException

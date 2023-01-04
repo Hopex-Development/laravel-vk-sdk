@@ -2,6 +2,7 @@
 
 namespace Hopex\VkSdk\Facades;
 
+use Hopex\VkSdk\Foundation\Core\Api\Client;
 use Illuminate\Support\Facades\Facade;
 
 /**
@@ -15,6 +16,6 @@ class VkApi extends Facade
      */
     protected static function getFacadeAccessor(): string
     {
-        return \Hopex\VkSdk\Foundation\Core\Api\Client::class;
+        return Client::class;
     }
 }

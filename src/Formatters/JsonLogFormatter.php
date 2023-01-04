@@ -24,9 +24,9 @@ class JsonLogFormatter implements CanFormatContract
             true,
             true)
         )
-        ->setJsonPrettyPrint(true)
-        ->addJsonEncodeOption(JSON_UNESCAPED_UNICODE)
-        ->addJsonEncodeOption(JSON_UNESCAPED_SLASHES);
+            ->setJsonPrettyPrint(true)
+            ->addJsonEncodeOption(JSON_UNESCAPED_UNICODE)
+            ->addJsonEncodeOption(JSON_UNESCAPED_SLASHES);
 
         foreach ($data->getHandlers() as $handler) {
             if (method_exists($handler, 'setFormatter'))

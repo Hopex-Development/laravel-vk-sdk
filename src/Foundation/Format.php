@@ -10,7 +10,7 @@ use Hopex\VkSdk\Contracts\CanFormatContract;
  */
 class Format implements CanFormatContract
 {
-    /** @var array  */
+    /** @var array */
     private array $formatters = [];
 
     /**

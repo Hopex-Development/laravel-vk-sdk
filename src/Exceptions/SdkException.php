@@ -7,9 +7,7 @@ use Hopex\VkSdk\Facades\Format;
 use Hopex\VkSdk\Facades\SdkConfig;
 use Hopex\VkSdk\Formatters\JsonExceptionFormatter;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Throwable;
 
 /**
  * Class SdkException
@@ -17,7 +15,7 @@ use Throwable;
  */
 class SdkException extends Exception
 {
-    /** @var string  */
+    /** @var string */
     private const LOG_CHANNEL = 'channels.exception';
 
     public function __construct()

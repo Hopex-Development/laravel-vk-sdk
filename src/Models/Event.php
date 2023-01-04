@@ -9,10 +9,10 @@ class Event extends Model
 {
     use HasFactory;
 
-    /** @var string  */
+    /** @var string */
     protected $table = 'vk__events';
 
-    /** @var string[]  */
+    /** @var string[] */
     protected $fillable = [
         'group_id',
         'type',

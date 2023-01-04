@@ -3,7 +3,6 @@
 namespace Hopex\VkSdk\Formatters;
 
 use Hopex\VkSdk\Contracts\CanFormatContract;
-use Hopex\VkSdk\Exceptions\SdkException;
 
 class JsonExceptionFormatter implements CanFormatContract
 {

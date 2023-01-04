@@ -8,7 +8,7 @@ namespace Hopex\VkSdk\Exceptions\Api;
  */
 class ApiExceptionMapper
 {
-    /** @var array|string[]  */
+    /** @var array|string[] */
     private static array $errors = [
         '1' => "Unknown error occurred",
         '2' => "Application is disabled. Enable your application or use test mode",

@@ -14,10 +14,10 @@ use Throwable;
 class OAuth
 {
     const SERVICE = 'access_token?client_id=%s&client_secret=%s&v=%s&grant_type=client_credentials';
-    const AUTHORIZE_URI     = 'authorize?client_id=%s&scope=%s&redirect_uri=%s&response_type=code&display=mobile';
+    const AUTHORIZE_URI = 'authorize?client_id=%s&scope=%s&redirect_uri=%s&response_type=code&display=mobile';
 //    const AUTHORIZE_URI     = 'authorize?client_id=%s&scope=%s&redirect_uri=%s&response_type=token&display=mobile';
-    const TOKEN_URI         = 'access_token?client_id=%s&client_secret=%s&redirect_uri=%s&code=%s';
-    const TIMEOUT           = 30;
+    const TOKEN_URI = 'access_token?client_id=%s&client_secret=%s&redirect_uri=%s&code=%s';
+    const TIMEOUT = 30;
 
     protected int $id;
     protected string $secret;

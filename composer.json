@@ -4,7 +4,13 @@
     "type": "library",
     "license": "MIT",
     "version": "0.0.2",
-    "keywords": ["php", "laravel", "vk", "api", "sdk"],
+    "keywords": [
+        "php",
+        "laravel",
+        "vk",
+        "api",
+        "sdk"
+    ],
     "authors": [
         {
             "name": "Schizo",
@@ -16,9 +22,6 @@
     "require": {
         "php": "^8",
         "ext-json": "*"
-    },
-    "require-dev": {
-        "barryvdh/laravel-ide-helper": "^2.12"
     },
     "autoload": {
         "psr-4": {

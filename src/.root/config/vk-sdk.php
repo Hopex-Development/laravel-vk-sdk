@@ -1,5 +1,8 @@
 <?php /** @noinspection GrazieInspection */
 
+use App\VK\Chat;
+use Hopex\VkSdk\Formatters\JsonLogFormatter;
+
 return [
 
     /*
@@ -56,9 +59,9 @@ return [
 
     // TODO: исправить документацию для api и groups
     'api' => [
-        'auth'      => 'https://oauth.vk.com',
-        'endpoint'  => 'https://api.vk.com/method',
-        'version'   => '5.131',
+        'auth' => 'https://oauth.vk.com',
+        'endpoint' => 'https://api.vk.com/method',
+        'version' => '5.131',
     ],
 
     'groups' => [
@@ -69,7 +72,7 @@ return [
                 'code' => '745cc77d276cf36c694e',
                 'verify' => true,
             ],
-            'events' => \App\VK\Chat::class,
+            'events' => Chat::class,
             'allow_retry_events' => true,
         ],
     ],
@@ -107,7 +110,7 @@ return [
                 'permissions' => 0755,
                 'locking' => true,
                 'days' => 30,
-                'tap' => \Hopex\VkSdk\Formatters\JsonLogFormatter::class,
+                'tap' => JsonLogFormatter::class,
             ],
         ],
     ],
