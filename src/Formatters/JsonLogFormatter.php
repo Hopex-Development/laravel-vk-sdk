@@ -6,6 +6,10 @@ use Hopex\VkSdk\Contracts\CanFormatContract;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Logger;
 
+/**
+ * Class JsonLogFormatter
+ * @package Hopex\VkSdk\Formatters
+ */
 class JsonLogFormatter implements CanFormatContract
 {
     public function __invoke(Logger $logger)

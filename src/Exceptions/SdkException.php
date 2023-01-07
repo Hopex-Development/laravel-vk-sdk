@@ -3,7 +3,6 @@
 namespace Hopex\VkSdk\Exceptions;
 
 use Exception;
-use Hopex\VkSdk\Facades\Format;
 use Hopex\VkSdk\Facades\SdkConfig;
 use Hopex\VkSdk\Formatters\JsonExceptionFormatter;
 use Illuminate\Http\JsonResponse;
@@ -41,7 +40,7 @@ class SdkException extends Exception
     {
         if (env('LOG_LEVEL') === 'debug') {
             return new JsonResponse(
-                Format::with(JsonExceptionFormatter::class)->format($this->getMessage()),
+                (new JsonExceptionFormatter())->format($this->getMessage()),
                 500
             );
         }

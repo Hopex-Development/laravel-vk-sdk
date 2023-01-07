@@ -4,6 +4,10 @@ namespace Hopex\VkSdk\Formatters;
 
 use Hopex\VkSdk\Contracts\CanFormatContract;
 
+/**
+ * Class JsonExceptionFormatter
+ * @package Hopex\VkSdk\Formatters
+ */
 class JsonExceptionFormatter implements CanFormatContract
 {
     /**

@@ -3,7 +3,10 @@
 namespace Hopex\VkSdk\Foundation\Core\Callback;
 
 use Hopex\VkSdk\Contracts\CallbackEventsContract;
+use Hopex\VkSdk\Facades\SdkConfig;
 use Hopex\VkSdk\Foundation\Core\Entities\Messages\MessageFields;
+use Illuminate\Support\Facades\Log;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class EventsHandler
@@ -11,6 +14,22 @@ use Hopex\VkSdk\Foundation\Core\Entities\Messages\MessageFields;
  */
 abstract class EventsHandler implements CallbackEventsContract
 {
+    use SessionTokens {
+        SessionTokens::__construct as sessionsConstruct;
+    }
+
+    /** @var LoggerInterface */
+    protected LoggerInterface $logger;
+
+    /** @var string */
+    protected const SUCCESS = 'ok';
+
+    public function __construct()
+    {
+        $this->sessionsConstruct();
+        $this->logger = Log::build((array)SdkConfig::logging('channels.info'));
+    }
+
     /**
      * @inheritDoc
      */

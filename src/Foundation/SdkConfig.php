@@ -8,12 +8,30 @@ namespace Hopex\VkSdk\Foundation;
  */
 class SdkConfig
 {
+    /** @var string  */
     private const CONFIG_PREFIX = 'vk-sdk';
+
+    /** @var string  */
     private const CONFIG_ROUTES = 'routes';
+
+    /** @var string  */
+
     private const CONFIG_API = 'api';
+
+    /** @var string  */
+
     private const CONFIG_GROUPS = 'groups';
+
+    /** @var string  */
+    private const CONFIG_SERVERS = 'servers';
+
+    /** @var string  */
+
     private const CONFIG_LOGGING = 'logging';
-    private const CONFIG_APPS = 'apps';
+
+    /** @var string  */
+
+    private const CONFIG_AUTH_APP = 'auth_app';
 
     /**
      * @param string|null $key
@@ -61,11 +79,26 @@ class SdkConfig
     }
 
     /**
+     * @param string $ip
+     * @param int $port
      * @param string|null $key
      * @return array|string|null
      */
-    public function apps(string $key = null): array|string|null
+    public function servers(string $ip, int $port, string $key = null): array|string|null
     {
-        return $this->query(self::CONFIG_APPS . (!$key ? null : ".$key"));
+        return $this->query(
+            self::CONFIG_SERVERS . '.' .
+            str_replace('.', '-', $ip) . "-$port" .
+            (!$key ? null : ".$key")
+        );
+    }
+
+    /**
+     * @param string|null $key
+     * @return array|string|null
+     */
+    public function authApp(string $key = null): array|string|null
+    {
+        return $this->query(self::CONFIG_AUTH_APP . (!$key ? null : ".$key"));
     }
 }

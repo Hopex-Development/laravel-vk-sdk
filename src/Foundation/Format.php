@@ -23,6 +23,7 @@ class Format implements CanFormatContract
         if ($formatter instanceof CanFormatContract) {
             $this->formatters[] = $formatter;
         }
+
         return $this;
     }
 
@@ -35,6 +36,7 @@ class Format implements CanFormatContract
         foreach ($this->formatters as $formatter) {
             $data = $formatter->format($data);
         }
+
         return $data;
     }
 }
