@@ -10,7 +10,7 @@ use Hopex\VkSdk\Exceptions\Callback\UnknownVkEntityException;
 use Hopex\VkSdk\Exceptions\Database\DatabaseOrTableNotFoundException;
 use Hopex\VkSdk\Facades\SdkConfig;
 use Hopex\VkSdk\Foundation\Core\Entities\Messages\MessageFields;
-use Hopex\VkSdk\Models\Event;
+use Hopex\VkSdk\Models\VkEvent;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -57,10 +57,10 @@ class CallbackEventsService
         try {
             if (
                 SdkConfig::groups("$groupId.allow_retry_events") ||
-                !Event::where('event_id', $eventId)->first() ||
+                !VkEvent::where('event_id', $eventId)->first() ||
                 !$eventId
             ) {
-                Event::updateOrCreate($this->request->only('group_id', 'type', 'event_id'));
+                VkEvent::updateOrCreate($this->request->only('group_id', 'type', 'event_id'));
             } else {
                 return self::SUCCESS;
             }

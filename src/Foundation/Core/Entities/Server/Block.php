@@ -5,7 +5,7 @@ namespace Hopex\VkSdk\Foundation\Core\Entities\Server;
 use Carbon\Carbon;
 
 /**
- * Class Block
+ * Class ServerBlock
  * @package Hopex\VkSdk\Foundation\Core\Entities\Server
  */
 abstract class Block extends ServerEvent

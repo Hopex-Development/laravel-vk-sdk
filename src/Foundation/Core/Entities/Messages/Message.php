@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 use Throwable;
 
 /**
- * Class Message
+ * Class ServerMessage
  * @package Hopex\VkSdk\Foundation\Core\Entities\Messages
  */
 class Message extends Request

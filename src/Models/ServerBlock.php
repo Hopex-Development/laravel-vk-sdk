@@ -5,17 +5,18 @@ namespace Hopex\VkSdk\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model
+/**
+ * Class ServerBlock
+ * @package Hopex\VkSdk\Models
+ */
+class ServerBlock extends Model
 {
     use HasFactory;
 
-    /** @var string */
-    protected $table = 'vk__events';
-
     /** @var string[] */
     protected $fillable = [
-        'group_id',
+        'server_id',
         'type',
-        'event_id',
+        'player',
     ];
 }

@@ -139,7 +139,7 @@ abstract class EventsHandler implements ServerEventsContract
      */
     public function messageSendToServer(int $groupId, int $peerId, string $name, string $text): void
     {
-        $this->logger->info("Message \"$text\" from \"$name\" has been send to server by group $groupId");
+        $this->logger->info("ServerMessage \"$text\" from \"$name\" has been send to server by group $groupId");
 //        $this->sourceQueryCall($groupId, 'sm_chat_say "' . $name . '" "' . $text . '"');
         $this->sourceQueryCall($groupId, "sm_chat_say \"$name\" \"$text\"");
 

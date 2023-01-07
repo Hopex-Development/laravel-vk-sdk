@@ -44,8 +44,8 @@ class ServiceProvider extends BaseServiceProvider
         ], 'vk-sdk-config');
 
         $this->publishes([
-            __DIR__ . '/../.root/lang/ru.php' => $this->app->langPath('ru/vk-sdk.php'),
-        ], 'vk-sdk-lang-ru');
+            __DIR__ . '/../.root/lang/' => $this->app->langPath('/'),
+        ], 'vk-sdk-lang');
 
         $this->publishes([
             __DIR__ . '/../.root/storage/sdk/keyboards' => $this->app->storagePath('app/vk-sdk/keyboards'),

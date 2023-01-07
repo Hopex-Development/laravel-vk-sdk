@@ -3,7 +3,7 @@
 namespace Hopex\VkSdk\Foundation\Core\Entities\Server;
 
 /**
- * Class Message
+ * Class ServerMessage
  * @package Hopex\VkSdk\Foundation\Core\Entities\Server
  */
 class Message extends ServerEvent
