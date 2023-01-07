@@ -4,7 +4,6 @@ namespace Hopex\VkSdk\Services;
 
 use Hopex\VkSdk\Facades\Server;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Throwable;
 
 /**
@@ -40,8 +39,7 @@ class ServerEventsService
             $this->request->only(['server_ip', 'server_port'])
         );
 
-        switch ($eventType)
-        {
+        switch ($eventType) {
             case 'server_mute_new':
                 Server::reSendMute($eventObject);
                 break;

@@ -139,12 +139,19 @@ class Server
             $scoreTable = array_map(function ($item) {
                 return preg_replace('~(^.*)(\d)(C|T|S|N)~', '$1$3', $item);
             }, $scoreTable);
-            $scoreTable = str_replace(
-                ['%MAP%', '%PLAYERS%'],
-                [$event['map'], (count($event['players']) ? count($event['bots']) : count($event['players']))],
-                implode('', $scoreTable)
-            );
         }
+
+        $scoreTable = str_replace([
+            '%MAP%',
+            '%TOTAL%',
+            '%ALIVE%'
+        ], [
+            $event['map'],
+            count($event['players']) + $event['bots'],
+            count($event['players'])
+        ],
+            implode('', $scoreTable)
+        );
 
         VkApi::message($groupToken)
             ->send((new MessageRequestFields())
