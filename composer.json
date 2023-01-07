@@ -21,7 +21,8 @@
     "repository": "https://github.com/Hopex-Development/laravel-vk-sdk",
     "require": {
         "php": "^8",
-        "ext-json": "*"
+        "ext-json": "*",
+        "xpaw/php-source-query-class": "^2.1"
     },
     "autoload": {
         "psr-4": {
