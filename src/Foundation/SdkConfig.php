@@ -8,28 +8,28 @@ namespace Hopex\VkSdk\Foundation;
  */
 class SdkConfig
 {
-    /** @var string  */
+    /** @var string */
     private const CONFIG_PREFIX = 'vk-sdk';
 
-    /** @var string  */
+    /** @var string */
     private const CONFIG_ROUTES = 'routes';
 
-    /** @var string  */
+    /** @var string */
 
     private const CONFIG_API = 'api';
 
-    /** @var string  */
+    /** @var string */
 
     private const CONFIG_GROUPS = 'groups';
 
-    /** @var string  */
+    /** @var string */
     private const CONFIG_SERVERS = 'servers';
 
-    /** @var string  */
+    /** @var string */
 
     private const CONFIG_LOGGING = 'logging';
 
-    /** @var string  */
+    /** @var string */
 
     private const CONFIG_AUTH_APP = 'auth_app';
 

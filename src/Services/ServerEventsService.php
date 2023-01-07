@@ -2,8 +2,15 @@
 
 namespace Hopex\VkSdk\Services;
 
-use Hopex\VkSdk\Facades\Server;
+use Hopex\VkSdk\Exceptions\Server\UnknownServerEntityException;
+use Hopex\VkSdk\Exceptions\Server\UnknownServerException;
+use Hopex\VkSdk\Facades\SdkConfig;
+use Hopex\VkSdk\Foundation\Core\Entities\Server\Ban;
+use Hopex\VkSdk\Foundation\Core\Entities\Server\Message;
+use Hopex\VkSdk\Foundation\Core\Entities\Server\Mute;
+use Hopex\VkSdk\Foundation\Core\Entities\Server\Statistics;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Throwable;
 
 /**
@@ -18,6 +25,9 @@ class ServerEventsService
     /** @var Request */
     public Request $request;
 
+    /** @var Collection */
+    private Collection $entities;
+
     /**
      * CallbackEventsService constructor.
      * @param Request $request
@@ -25,35 +35,57 @@ class ServerEventsService
      */
     public function __construct(Request $request)
     {
+        $this->entities = new Collection([
+            'server_mute_new' => Mute::class,
+            'server_ban_new' => Ban::class,
+            'server_statistic' => Statistics::class,
+            'server_message_new' => Message::class,
+        ]);
+
         $this->request = $request;
     }
 
     /**
      * @return string
+     * @throws UnknownServerEntityException
+     * @throws Throwable
      */
     public function divide(): string
     {
-        $eventType = $this->request->json('type');
-        $eventObject = array_merge(
-            $this->request->get('object'),
-            $this->request->only(['server_ip', 'server_port'])
+        $handler = SdkConfig::servers(
+            $this->request->json('server_ip'),
+            $this->request->json('server_port'),
+            'requests_handler'
+        );
+        throw_if(!$handler, UnknownServerException::class);
+        call_user_func(
+            [new ($handler), $this->request->json('type')],
+            $this->selectEntityByRequest()
         );
 
-        switch ($eventType) {
-            case 'server_mute_new':
-                Server::reSendMute($eventObject);
-                break;
-            case 'server_ban_new':
-                Server::reSendBan($eventObject);
-                break;
-            case 'server_statistic':
-                Server::reSendStatistics($eventObject);
-                break;
-            case 'server_message_new':
-                Server::reSendMessage($eventObject);
-                break;
+        return self::SUCCESS;
+    }
+
+    /**
+     * @return mixed
+     * @throws UnknownServerEntityException
+     */
+    private function selectEntityByRequest(): mixed
+    {
+        $entityType = $this->request->json('type');
+        $entityItems = array_merge(
+            $this->request->get('object'),
+            $this->request->only([
+                'server_ip',
+                'server_port',
+                'type'
+            ])
+        );
+
+        if (!$this->entities->has($entityType)) {
+            throw new UnknownServerEntityException();
         }
 
-        return self::SUCCESS;
+        return new ($this->entities->get($entityType))($entityItems);
     }
 }

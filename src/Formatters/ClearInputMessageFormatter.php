@@ -16,6 +16,6 @@ class ClearInputMessageFormatter implements CanFormatContract
      */
     public function format($data): string
     {
-        return preg_replace('~((^\[.*\])?\s*\!*)|(^\s*\!*)~', '', $data);
+        return explode(' ', preg_replace("~((^\[.*\])?\s*\!*)|(^\s*\!*)~", '', $data))[0];
     }
 }

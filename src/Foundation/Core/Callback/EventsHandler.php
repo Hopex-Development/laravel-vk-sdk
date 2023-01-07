@@ -26,8 +26,8 @@ abstract class EventsHandler implements CallbackEventsContract
 
     public function __construct()
     {
-        $this->sessionsConstruct();
         $this->logger = Log::build((array)SdkConfig::logging('channels.info'));
+        $this->sessionsConstruct();
     }
 
     /**

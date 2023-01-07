@@ -4,11 +4,10 @@ namespace Hopex\VkSdk\Providers;
 
 use Hopex\VkSdk\Foundation\Core\Api\Client;
 use Hopex\VkSdk\Foundation\Core\Entities\RequestFields;
-use Hopex\VkSdk\Foundation\Format;
-use Hopex\VkSdk\Foundation\SdkConfig;
 use Hopex\VkSdk\Foundation\Core\Sources\Keyboard;
 use Hopex\VkSdk\Foundation\Core\Sources\Note;
-use Hopex\VkSdk\Foundation\Server;
+use Hopex\VkSdk\Foundation\Format;
+use Hopex\VkSdk\Foundation\SdkConfig;
 use Hopex\VkSdk\Services\CallbackEventsService;
 use Hopex\VkSdk\Services\ServerEventsService;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
@@ -31,7 +30,6 @@ class ServiceProvider extends BaseServiceProvider
         $this->app->bind('requestfields', RequestFields::class);
         $this->app->bind('keyboard', Keyboard::class);
         $this->app->bind('note', Note::class);
-        $this->app->bind('server', Server::class);
     }
 
     /**

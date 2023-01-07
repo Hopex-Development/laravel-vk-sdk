@@ -166,7 +166,8 @@ return [
     'Unknown callback event' => 'Неизвестное событие',
     'Invalid http status code' => 'Недопустимый код состояния http',
     'Database or table not found' => 'База данных или таблица не найдены',
-    'Unknown or unsupported entity used' => 'Используется неизвестная или не поддерживаямая сущность',
+    'Unknown vk entity used' => 'Используется неизвестная сущность ВК',
+    'Unknown server entity used' => 'Используется неизвестная сущность сервера',
     'Unknown api exception' => 'Неизвестное исключение API',
     'Target keyboard source file not found' => 'Файл указанной клавиатуры не найден',
     'Target note source file not found' => 'Файл указанного текста не найден',
@@ -175,4 +176,6 @@ return [
     'Failure socket connection' => 'Ошибка подключения к сокету',
     'Failure SourceQuery authentication' => 'Ошибка аутентификации SourceQuery',
     'Invalid SourceQuery packet' => 'Недопустимый пакет SourceQuery',
+    'Unknown server' => 'Неизвестный сервер',
+    'Undefined server response' => 'Неопределенный ответ сервера',
 ];

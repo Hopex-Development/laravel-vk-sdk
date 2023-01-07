@@ -21,9 +21,10 @@ class Keyboard extends Source
      */
     public function get(string $key): string
     {
-        $keyboard = Storage::path(sprintf($this->path, $key));
+        $keyboard = Storage::path(sprintf($this->path, $this->makePath($key)));
 
         if (!file_exists($keyboard)) {
+            $this->logger->emergency("Keyboard not found: $keyboard");
             throw new KeyboardException();
         }
 

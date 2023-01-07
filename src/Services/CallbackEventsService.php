@@ -4,9 +4,9 @@ namespace Hopex\VkSdk\Services;
 
 use Hopex\VkSdk\Contracts\CallbackEventsContract;
 use Hopex\VkSdk\Exceptions\Callback\SecretException;
-use Hopex\VkSdk\Exceptions\Callback\UnknownEntityException;
 use Hopex\VkSdk\Exceptions\Callback\UnknownEventException;
 use Hopex\VkSdk\Exceptions\Callback\UnknownGroupIdException;
+use Hopex\VkSdk\Exceptions\Callback\UnknownVkEntityException;
 use Hopex\VkSdk\Exceptions\Database\DatabaseOrTableNotFoundException;
 use Hopex\VkSdk\Facades\SdkConfig;
 use Hopex\VkSdk\Foundation\Core\Entities\Messages\MessageFields;
@@ -46,7 +46,7 @@ class CallbackEventsService
      * @return string
      * @throws DatabaseOrTableNotFoundException
      * @throws Throwable
-     * @throws UnknownEntityException
+     * @throws UnknownVkEntityException
      */
     public function divide(): string
     {
@@ -87,7 +87,7 @@ class CallbackEventsService
 
                 $this->updateAccesses($groupId);
                 call_user_func(
-                    [new (SdkConfig::groups("$groupId.events")), $event],
+                    [new (SdkConfig::groups("$groupId.events_handler")), $event],
                     $this->selectEntityByRequest()
                 );
 
@@ -108,7 +108,7 @@ class CallbackEventsService
 
     /**
      * @return mixed
-     * @throws UnknownEntityException
+     * @throws UnknownVkEntityException
      */
     private function selectEntityByRequest(): mixed
     {
@@ -117,7 +117,7 @@ class CallbackEventsService
         $entityItems = collect($object->get($entityType));
 
         if (!$this->entities->has($entityType)) {
-            throw new UnknownEntityException();
+            throw new UnknownVkEntityException();
         }
 
         return new ($this->entities->get($entityType))($entityItems);

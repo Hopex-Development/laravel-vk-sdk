@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
  */
 class Note extends Source
 {
-    /** @var string  */
+    /** @var string */
     protected string $path = 'vk-sdk/notes/%s.md';
 
     /**
@@ -21,12 +21,13 @@ class Note extends Source
      */
     public function get(string $key): string
     {
-        $keyboard = Storage::path(sprintf($this->path, $key));
+        $note = Storage::path(sprintf($this->path, $this->makePath($key)));
 
-        if (!file_exists($keyboard)) {
+        if (!file_exists($note)) {
+            $this->logger->emergency("Note not found: $note");
             throw new NoteException();
         }
 
-        return file_get_contents($keyboard);
+        return file_get_contents($note);
     }
 }

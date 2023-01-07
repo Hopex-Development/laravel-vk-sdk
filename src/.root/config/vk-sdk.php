@@ -1,6 +1,7 @@
 <?php
 
 use App\VK\Kult\EventsMapper;
+use App\VK\Kult\RequestsMapper;
 use App\VK\Tests;
 use Hopex\VkSdk\Formatters\JsonLogFormatter;
 
@@ -113,7 +114,7 @@ return [
             ],
             'server_peer_id' => 2000000002,
             'target_server' => '46.3.223.76:27015',
-            'events' => EventsMapper::class,
+            'events_handler' => EventsMapper::class,
             'allow_retry_events' => true
         ],
     ],
@@ -122,6 +123,7 @@ return [
         '46-3-223-76-27015' => [
             'target_group_id' => 205402271,
             'rcon_password' => 'Nr8v6uxuCL8cA5NOx43cypz0DuaqCGP',
+            'requests_handler' => RequestsMapper::class
         ],
     ],
 
@@ -162,6 +164,16 @@ return [
                 'name' => 'vk-sdk-infos',
                 'driver' => 'daily',
                 'path' => storage_path('logs/vk-sdk/infos.log'),
+                'level' => env('LOG_LEVEL', 'debug'),
+                'permissions' => 0755,
+                'locking' => true,
+                'days' => 30,
+                'tap' => JsonLogFormatter::class,
+            ],
+            'source' => [
+                'name' => 'vk-sdk-sources',
+                'driver' => 'daily',
+                'path' => storage_path('logs/vk-sdk/sources.log'),
                 'level' => env('LOG_LEVEL', 'debug'),
                 'permissions' => 0755,
                 'locking' => true,
