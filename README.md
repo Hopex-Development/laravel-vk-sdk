@@ -17,6 +17,7 @@ The library provides a good foundation for deploying complex bots and includes t
 - Simple and quick confirmation of the Callback server: routes have already been created
 - Processing community events (new message, wall post, etc.)
 - Sending messages of various types to personal and group chats
+- Adding censorship to messages and player names sent from the game server
 - Integration with game servers (SourceQuery)
 - The use of an unlimited number of communities and game servers
 
