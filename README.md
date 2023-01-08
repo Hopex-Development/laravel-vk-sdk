@@ -3,11 +3,11 @@
 </p>
 
 <p align="center">
-    <img alt="Downloads" src="https://packages-api.hopex.ru/api/vk-api-sdk/packagist/hopex/downloads">
-    <img alt="Stars" src="https://packages-api.hopex.ru/api/vk-api-sdk/packagist/hopex/stars">
-    <img alt="Laravel" src="https://packages-api.hopex.ru/api/vk-api-sdk/version/laravel">
-    <img alt="PHP" src="https://packages-api.hopex.ru/api/vk-api-sdk/version/php">
-    <img alt="License" src="https://packages-api.hopex.ru/api/vk-api-sdk/license">
+    <img alt="Downloads" src="https://packages-api.hopex.ru/api/laravel-vk-sdk/packagist/hopex/downloads">
+    <img alt="Stars" src="https://packages-api.hopex.ru/api/laravel-vk-sdk/packagist/hopex/stars">
+    <img alt="Laravel" src="https://packages-api.hopex.ru/api/laravel-vk-sdk/version/laravel">
+    <img alt="PHP" src="https://packages-api.hopex.ru/api/laravel-vk-sdk/version/php">
+    <img alt="License" src="https://packages-api.hopex.ru/api/laravel-vk-sdk/license">
 </p>
 
 # About
