@@ -5,7 +5,7 @@ use Hopex\VkSdk\Services\CallbackEventsService;
 use Hopex\VkSdk\Services\ServerEventsService;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('api')->name('vk.')->group(function () {
+Route::prefix('api')->name('vk-sdk.')->group(function () {
 
     Route::post(SdkConfig::routes('group'), function (CallbackEventsService $callback) {
         return response($callback->divide(), 200, [

@@ -12,10 +12,15 @@ class ClearInputMessageFormatter implements CanFormatContract
 {
     /**
      * @param $data
-     * @return string
+     * @return array
      */
-    public function format($data): string
+    public function format($data): array
     {
-        return explode(' ', preg_replace("~((^\[.*\])?\s*\!*)|(^\s*\!*)~", '', $data))[0];
+        $input = explode(' ', preg_replace("~((^\[.*\])?\s*\!*)|(^\s*\!*)~", '$1', $data));
+        return array_merge([
+            $input[0]
+        ], [
+            implode(' ', array_slice($input, 1, count($input)))
+        ]);
     }
 }
