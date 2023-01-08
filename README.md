@@ -3,9 +3,10 @@
 </p>
 
 <p align="center">
-    <img alt="Package version" src="https://packages-api.hopex.ru/api/vk-api-sdk/packagist/hopex/downloads">
-    <img alt="Package version" src="https://packages-api.hopex.ru/api/vk-api-sdk/packagist/hopex/stars">
-    <img alt="PHP version" src="https://packages-api.hopex.ru/api/vk-api-sdk/version/php">
+    <img alt="Downloads" src="https://packages-api.hopex.ru/api/vk-api-sdk/packagist/hopex/downloads">
+    <img alt="Stars" src="https://packages-api.hopex.ru/api/vk-api-sdk/packagist/hopex/stars">
+    <img alt="Laravel" src="https://packages-api.hopex.ru/api/vk-api-sdk/version/laravel">
+    <img alt="PHP" src="https://packages-api.hopex.ru/api/vk-api-sdk/version/php">
     <img alt="License" src="https://packages-api.hopex.ru/api/vk-api-sdk/license">
 </p>
 
