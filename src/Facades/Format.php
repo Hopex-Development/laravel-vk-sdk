@@ -2,16 +2,19 @@
 
 namespace Hopex\VkSdk\Facades;
 
-use Hopex\VkSdk\Foundation\Formatters\BaseFormatter;
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * Class Format
+ * @package Hopex\VkSdk\Facades
+ */
 class Format extends Facade
 {
     /**
      * @return string
      */
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
-        return BaseFormatter::class;
+        return \Hopex\VkSdk\Foundation\Format::class;
     }
 }

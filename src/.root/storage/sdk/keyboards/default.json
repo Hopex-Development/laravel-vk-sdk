@@ -1,0 +1,14 @@
+{
+    "buttons": [
+        [
+            {
+                "action": {
+                    "type": "text",
+                    "label": "Помощь",
+                    "payload": ""
+                },
+                "color": "primary"
+            }
+        ]
+    ]
+}

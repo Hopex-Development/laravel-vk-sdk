@@ -1,50 +1,47 @@
 <p align="center">
-    <img src="https://packages-api.hopex.ru/packages/laravel-vk-sdk/logo.png" width="100%" alt="Laravel VK API SDK Logo">
+    <img src="https://packages-api.hopex.ru/storage/vk-api-sdk/banner.png" width="100%" alt="Laravel VK API SDK Logo">
 </p>
 
-# <span style="color:#F55D5C">Laravel</span> <span style="font-size:1rem">VK API SDK</span>
-
-<p>
-    <img alt="Version Badge" src="https://img.shields.io/endpoint?url=https://packages-api.hopex.ru/laravel-vk-sdk/badges/version/package">
-    <img alt="VK Badge" src="https://img.shields.io/endpoint?url=https://packages-api.hopex.ru/laravel-vk-sdk/badges/version/api">
-    <img alt="PHP Badge" src="https://img.shields.io/endpoint?url=https://packages-api.hopex.ru/laravel-vk-sdk/badges/version/php">
-    <img alt="Laravel Badge" src="https://img.shields.io/endpoint?url=https://packages-api.hopex.ru/laravel-vk-sdk/badges/version/laravel">
-    <img alt="License Badge" src="https://img.shields.io/endpoint?url=https://packages-api.hopex.ru/laravel-vk-sdk/badges/license">
+<p align="center">
+    <img alt="Downloads" src="https://packages-api.hopex.ru/api/vk-api-sdk/packagist/hopex/downloads">
+    <img alt="Stars" src="https://packages-api.hopex.ru/api/vk-api-sdk/packagist/hopex/stars">
+    <img alt="Laravel" src="https://packages-api.hopex.ru/api/vk-api-sdk/version/laravel">
+    <img alt="PHP" src="https://packages-api.hopex.ru/api/vk-api-sdk/version/php">
+    <img alt="License" src="https://packages-api.hopex.ru/api/vk-api-sdk/license">
 </p>
 
-[Laravel](https://github.com/laravel/laravel) библиотека для упрощенного использования API модулей социальной сети ВКонтакте.
-Предназначена для быстрого развертывания приложений-ботов, а также использования VK API в одностороннем порядке.
+# About
+The VK API SDK library is developed for the Laravel framework, it will allow you to use most of the modules of the VKontakte social network simply.
+We have linked VKontakte entities to each other in such a way that you can quickly build the subqueries.
+The library provides a good foundation for deploying complex bots and includes the following functionality:
+- Simple and quick confirmation of the Callback server: routes have already been created
+- Processing community events (new message, wall post, etc.)
+- Sending messages of various types to personal and group chats
+- Adding censorship to messages and player names sent from the game server
+- Integration with game servers (SourceQuery)
+- The use of an unlimited number of communities and game servers
 
-### Содержание
-* [Приступая к работе](#Приступая к работе)
-  * [Установка](#Установка)
-  * [Внутренние зависимости](#Внутренние зависимости)
-* [Лицензия](#license)
 
-## Приступая к работе
+# Installing
 
-### Установка
-Установка пакета через [composer](https://getcomposer.org/):
+1. Run the command using [composer](https://getcomposer.org/):
+
 ```
-composer require hopex/vk-api-sdk
-```
-
-#### Внутренние зависимости
-Публикация зависимостей:
-```
-php artisan vendor:publish --provider=Hopex\VkSdk\Providers\ServiceProvider --tag=vk-sdk-config --tag=vk-sdk-lang
+composer req hopex/vk-api-sdk
 ```
 
-Провайдер и фасады будут автоматически зарегистрированы, однако вы можете вручную добавить их в `config/app.php`.
-```php
-'providers' => [
-    // ...
-    Hopex\VkApiSdk\Providers\VkApiSdkServiceProvider::class,
-],
-'aliases' => Facade::defaultAliases()->merge([
-    // ...
-    'VkApiSdk' => \Hopex\VkApiSdk\Facade::class,
-])->toArray(),
+2. Publish resources:
+
+```
+php artisan vendor:publish --tag=vk-sdk-config --tag=vk-sdk-lang --tag=vk-sdk-sources
 ```
 
-# Лицензия <span style="font-size: 1rem">[MIT](https://github.com/H0pex/vk-api-sdk/LICENSE)</span>
+3. Migrate the necessary tables:
+
+```
+php artisan migrate
+```
+
+## License
+
+The VK API SDK for Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

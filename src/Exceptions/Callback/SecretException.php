@@ -2,16 +2,13 @@
 
 namespace Hopex\VkSdk\Exceptions\Callback;
 
-use Throwable;
+use Hopex\VkSdk\Exceptions\SdkException;
 
 /**
  * Class SecretException
  * @package Hopex\VkSdk\Exceptions\Callback
  */
-class SecretException extends CallbackException
+class SecretException extends SdkException
 {
-    public function __construct()
-    {
-        parent::__construct(__("vk-sdk.0156"), 403);
-    }
+    public $message = 'Access denied. The secret code of the event was not authenticated. Check the configuration settings.';
 }

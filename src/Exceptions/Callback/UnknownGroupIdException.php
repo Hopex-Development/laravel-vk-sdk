@@ -2,16 +2,13 @@
 
 namespace Hopex\VkSdk\Exceptions\Callback;
 
-use Throwable;
+use Hopex\VkSdk\Exceptions\SdkException;
 
 /**
  * Class UnknownGroupIdException
  * @package Hopex\VkSdk\Exceptions\Callback
  */
-class UnknownGroupIdException extends CallbackException
+class UnknownGroupIdException extends SdkException
 {
-    public function __construct()
-    {
-        parent::__construct(__("vk-sdk.0157"));
-    }
+    public $message = 'Unknown community id';
 }
