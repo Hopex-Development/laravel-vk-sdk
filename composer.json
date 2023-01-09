@@ -3,7 +3,7 @@
     "description": "Laravel SDK for fast deployment of bot applications and easy use of VK API.",
     "type": "library",
     "license": "MIT",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "keywords": [
         "php",
         "laravel",
