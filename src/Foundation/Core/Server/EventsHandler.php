@@ -3,6 +3,7 @@
 namespace Hopex\VkSdk\Foundation\Core\Server;
 
 use Hopex\VkSdk\Contracts\ServerEventsContract;
+use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Exceptions\SourceQuery\AuthenticationSourceQueryException;
 use Hopex\VkSdk\Exceptions\SourceQuery\InvalidArgumentSourceQueryException;
 use Hopex\VkSdk\Exceptions\SourceQuery\InvalidPacketSourceQueryException;
@@ -46,7 +47,10 @@ abstract class EventsHandler implements ServerEventsContract
     }
 
     /**
-     * @inheritDoc
+     * @param Message $message
+     * @return void
+     * @throws ApiException
+     * @throws Throwable
      */
     public function server_message_new(Message $message): void
     {
@@ -60,7 +64,10 @@ abstract class EventsHandler implements ServerEventsContract
     }
 
     /**
-     * @inheritDoc
+     * @param Mute $mute
+     * @return void
+     * @throws ApiException
+     * @throws Throwable
      */
     public function server_mute_new(Mute $mute): void
     {
@@ -78,7 +85,10 @@ abstract class EventsHandler implements ServerEventsContract
     }
 
     /**
-     * @inheritDoc
+     * @param Ban $ban
+     * @return void
+     * @throws ApiException
+     * @throws Throwable
      */
     public function server_ban_new(Ban $ban): void
     {
@@ -140,26 +150,15 @@ abstract class EventsHandler implements ServerEventsContract
     public function messageSendToServer(int $groupId, int $peerId, string $name, string $text): void
     {
         $this->logger->info("ServerMessage \"$text\" from \"$name\" has been send to server by group $groupId");
-//        $this->sourceQueryCall($groupId, 'sm_chat_say "' . $name . '" "' . $text . '"');
         $this->sourceQueryCall($groupId, "sm_chat_say \"$name\" \"$text\"");
-
-        VkApi::message(Session::get('group_token'))
-            ->send((new MessageRequestFields())
-                ->setPeerId($peerId)
-                ->setDisableMentions(true)
-                ->setDontParseLinks(true)
-                ->setMessage(str_replace([
-                    '%PLAYER%',
-                    '%MESSAGE%'
-                ], [
-                    $name,
-                    $text
-                ], Note::get('server.messages.to-server')))
-            );
     }
 
     /**
-     * @inheritDoc
+     * @param ServerEvent $event
+     * @param string $message
+     * @return void
+     * @throws Throwable
+     * @throws ApiException
      */
     public function messageSendToVk(ServerEvent $event, string $message): void
     {
