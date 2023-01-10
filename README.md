@@ -33,13 +33,19 @@ composer req hopex/vk-api-sdk
 2. Publish resources:
 
 ```
-php artisan vendor:publish --tag=vk-sdk-config --tag=vk-sdk-lang --tag=vk-sdk-sources
+php artisan vendor:publish --tag=vk-sdk-config --tag=vk-sdk-lang --tag=vk-sdk-sources --tag=vk-sdk-console --force
 ```
 
 3. Migrate the necessary tables:
 
 ```
 php artisan migrate
+```
+
+4. Make endpoints of your routes for SourceMod plugin (optional):
+
+```
+php artisan endpoint:generate --host https://domain.com
 ```
 
 ## License

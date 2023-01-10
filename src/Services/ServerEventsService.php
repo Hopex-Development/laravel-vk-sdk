@@ -9,6 +9,7 @@ use Hopex\VkSdk\Foundation\Core\Entities\Server\Ban;
 use Hopex\VkSdk\Foundation\Core\Entities\Server\Message;
 use Hopex\VkSdk\Foundation\Core\Entities\Server\Mute;
 use Hopex\VkSdk\Foundation\Core\Entities\Server\Statistics;
+use Hopex\VkSdk\Foundation\Core\Logging\ServerLogger;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Throwable;
@@ -17,7 +18,7 @@ use Throwable;
  * Class ServerEventsService
  * @package Hopex\VkSdk\Services
  */
-class ServerEventsService
+class ServerEventsService extends ServerLogger
 {
     /** @var string */
     private const SUCCESS = 'ok';
@@ -35,6 +36,8 @@ class ServerEventsService
      */
     public function __construct(Request $request)
     {
+        parent::__construct();
+
         $this->entities = new Collection([
             'server_mute_new' => Mute::class,
             'server_ban_new' => Ban::class,
@@ -43,6 +46,7 @@ class ServerEventsService
         ]);
 
         $this->request = $request;
+        $this->logger->debug($request);
     }
 
     /**

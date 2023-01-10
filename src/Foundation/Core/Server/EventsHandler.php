@@ -19,8 +19,7 @@ use Hopex\VkSdk\Foundation\Core\Entities\Server\Message;
 use Hopex\VkSdk\Foundation\Core\Entities\Server\Mute;
 use Hopex\VkSdk\Foundation\Core\Entities\Server\ServerEvent;
 use Hopex\VkSdk\Foundation\Core\Entities\Server\Statistics;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Session;
+use Hopex\VkSdk\Foundation\Core\Logging\ServerLogger;
 use Psr\Log\LoggerInterface;
 use Throwable;
 use xPaw\SourceQuery\Exception\AuthenticationException;
@@ -33,18 +32,13 @@ use xPaw\SourceQuery\SourceQuery;
  * Class EventsHandler
  * @package Hopex\VkSdk\Foundation\Core\RequestsMapper
  */
-abstract class EventsHandler implements ServerEventsContract
+abstract class EventsHandler extends ServerLogger implements ServerEventsContract
 {
     /** @var LoggerInterface */
     protected LoggerInterface $logger;
 
     /** @var string */
     protected const SUCCESS = 'ok';
-
-    public function __construct()
-    {
-        $this->logger = Log::build((array)SdkConfig::logging('channels.server'));
-    }
 
     /**
      * @param Message $message
@@ -54,6 +48,7 @@ abstract class EventsHandler implements ServerEventsContract
      */
     public function server_message_new(Message $message): void
     {
+        $this->logger->notice("Message from server by \"{$message->getPlayer()}\". Context: \"{$message->getText()}\"");
         $this->messageSendToVk($message, str_replace([
             '%PLAYER%',
             '%MESSAGE%'
@@ -71,6 +66,7 @@ abstract class EventsHandler implements ServerEventsContract
      */
     public function server_mute_new(Mute $mute): void
     {
+        $this->logger->notice("Mute from server by \"{$mute->getAdminName()}\" for \"{$mute->getPlayerName()}\"");
         $this->messageSendToVk($mute, str_replace([
             '%ADMIN%',
             '%PLAYER%',
@@ -92,6 +88,7 @@ abstract class EventsHandler implements ServerEventsContract
      */
     public function server_ban_new(Ban $ban): void
     {
+        $this->logger->notice("Ban from server by \"{$ban->getAdminName()}\" for \"{$ban->getPlayerName()}\"");
         $this->messageSendToVk($ban, str_replace([
             '%ADMIN%',
             '%PLAYER%',
@@ -169,6 +166,7 @@ abstract class EventsHandler implements ServerEventsContract
                 ->setDontParseLinks(true)
                 ->setMessage((new ClearOutPutMessageFormatter())->format($message))
             );
+        $this->logger->info("Message send to chat id {$event->getPeerId()}");
     }
 
     /**
@@ -188,7 +186,8 @@ abstract class EventsHandler implements ServerEventsContract
         try {
             $sourceQuery->Connect($ip, $port);
             $sourceQuery->SetRconPassword($password);
-            $this->logger->info($sourceQuery->Rcon($command));
+            $sourceQuery->Rcon($command);
+            $this->logger->info('Rcon successfully');
         } catch (InvalidArgumentException) {
             throw new InvalidArgumentSourceQueryException();
         } catch (SocketException) {
@@ -199,6 +198,7 @@ abstract class EventsHandler implements ServerEventsContract
             throw new InvalidPacketSourceQueryException();
         } finally {
             $sourceQuery->Disconnect();
+            $this->logger->info('SourceQuery connection closed');
         }
     }
 }

@@ -9,6 +9,16 @@
                 },
                 "color": "primary"
             }
+        ],
+        [
+            {
+                "action": {
+                    "type": "open_link",
+                    "link": "https://vk.com",
+                    "label": "О проекте",
+                    "payload": ""
+                }
+            }
         ]
     ]
 }

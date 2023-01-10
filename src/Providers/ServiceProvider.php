@@ -40,6 +40,10 @@ class ServiceProvider extends BaseServiceProvider
     public function boot(): void
     {
         $this->publishes([
+            __DIR__ . '/../Console/Commands/MakeEndpoint.php' => app_path('Console/Commands/MakeEndpoint.php'),
+        ], 'vk-sdk-console');
+
+        $this->publishes([
             __DIR__ . '/../.root/config/vk-sdk.php' => config_path('vk-sdk.php'),
         ], 'vk-sdk-config');
 
