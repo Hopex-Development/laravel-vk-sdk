@@ -3,6 +3,7 @@
 namespace Hopex\VkSdk\Foundation\Core\Sources;
 
 use Hopex\VkSdk\Exceptions\Callback\NoteException;
+use Hopex\VkSdk\Exceptions\Formatters\InvalidInputDataTypeException;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -18,6 +19,7 @@ class Note extends Source
      * @param string $key
      * @return string
      * @throws NoteException
+     * @throws InvalidInputDataTypeException
      */
     public function get(string $key): string
     {
@@ -28,6 +30,6 @@ class Note extends Source
             throw new NoteException();
         }
 
-        return file_get_contents($note);
+        return $this->load($note);
     }
 }

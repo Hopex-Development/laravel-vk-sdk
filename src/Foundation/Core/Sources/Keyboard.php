@@ -3,6 +3,7 @@
 namespace Hopex\VkSdk\Foundation\Core\Sources;
 
 use Hopex\VkSdk\Exceptions\Callback\KeyboardException;
+use Hopex\VkSdk\Exceptions\Formatters\InvalidInputDataTypeException;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -18,6 +19,7 @@ class Keyboard extends Source
      * @param string $key
      * @return string
      * @throws KeyboardException
+     * @throws InvalidInputDataTypeException
      */
     public function get(string $key): string
     {
@@ -28,6 +30,6 @@ class Keyboard extends Source
             throw new KeyboardException();
         }
 
-        return file_get_contents($keyboard);
+        return $this->load($keyboard);
     }
 }
