@@ -1,6 +1,6 @@
 <?php
 
-namespace Hopex\VkSdk\Formatters;
+namespace Hopex\VkSdk\Formatters\Message;
 
 use Hopex\VkSdk\Contracts\CanFormatContract;
 use Hopex\VkSdk\Foundation\Core\Entities\Server\Player;
@@ -8,10 +8,10 @@ use Hopex\VkSdk\Foundation\Core\Entities\Server\Statistics;
 use Throwable;
 
 /**
- * Class ScoreTableFormatter
- * @package Hopex\VkSdk\Formatters
+ * Class ScoreTableMessageFormatter
+ * @package Hopex\VkSdk\Formatters\Message
  */
-class ScoreTableFormatter implements CanFormatContract
+class ScoreTableMessageFormatter implements CanFormatContract
 {
     /**
      * @inheritDoc
@@ -60,7 +60,7 @@ class ScoreTableFormatter implements CanFormatContract
                 }
             }
             $scoreTable = array_map(function ($item) {
-                return preg_replace('~(^.*)(\d)(C|T|S|N)~', '$1$3', $item);
+                return preg_replace('~(^.*)(\d)(C|T|S|N)~m', '$1$3', $item);
             }, $scoreTable);
         }
 

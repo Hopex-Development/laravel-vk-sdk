@@ -11,8 +11,8 @@ use Hopex\VkSdk\Exceptions\SourceQuery\SocketSourceQueryException;
 use Hopex\VkSdk\Facades\Note;
 use Hopex\VkSdk\Facades\SdkConfig;
 use Hopex\VkSdk\Facades\VkApi;
-use Hopex\VkSdk\Formatters\ClearOutPutMessageFormatter;
-use Hopex\VkSdk\Formatters\ScoreTableFormatter;
+use Hopex\VkSdk\Formatters\Message\ClearOutPutMessageFormatter;
+use Hopex\VkSdk\Formatters\Message\ScoreTableMessageFormatter;
 use Hopex\VkSdk\Foundation\Core\Entities\Messages\MessageRequestFields;
 use Hopex\VkSdk\Foundation\Core\Entities\Server\Ban;
 use Hopex\VkSdk\Foundation\Core\Entities\Server\Message;
@@ -111,7 +111,7 @@ abstract class EventsHandler extends ServerLogger implements ServerEventsContrac
         $scoreTable[] = Note::get('server.scores.header');
         $row = Note::get('server.scores.row');
         $footer = Note::get('server.scores.footer');
-        $this->messageSendToVk($statistics, (new ScoreTableFormatter())->format([
+        $this->messageSendToVk($statistics, (new ScoreTableMessageFormatter())->format([
             'stats' => $statistics,
             'score_table' => $scoreTable,
             'row' => $row,

@@ -1,13 +1,13 @@
 <?php
 
-namespace Hopex\VkSdk\Formatters;
+namespace Hopex\VkSdk\Formatters\Message;
 
 use Hopex\VkSdk\Contracts\CanFormatContract;
 use Hopex\VkSdk\Facades\SdkConfig;
 
 /**
  * Class ClearOutPutMessageFormatter
- * @package Hopex\VkSdk\Formatters
+ * @package Hopex\VkSdk\Formatters\Message
  */
 class ClearOutPutMessageFormatter implements CanFormatContract
 {

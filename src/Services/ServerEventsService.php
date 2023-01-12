@@ -46,7 +46,6 @@ class ServerEventsService extends ServerLogger
         ]);
 
         $this->request = $request;
-        $this->logger->debug($request);
     }
 
     /**

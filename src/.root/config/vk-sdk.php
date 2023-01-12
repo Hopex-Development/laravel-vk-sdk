@@ -2,7 +2,6 @@
 
 use App\VK\Kult\EventsMapper;
 use App\VK\Kult\RequestsMapper;
-use App\VK\Tests;
 use Hopex\VkSdk\Formatters\JsonLogFormatter;
 
 return [
@@ -91,31 +90,19 @@ return [
     ],
 
     'groups' => [
-        84942932 => [
-            'description' => 'Test service',
-            'confirmation' => '28ec36c3',
-            'token' => 'vk1.a.-U95XUjpt2OxcSqyPydks69FwG1fAHxY5CF7pUFC-d0oG9bY4ld2HO23VQCBF8xbrS2gLDE2QXyLSH6jsCaGw5lGc2M-n8aAbwToCGLp97LiS5Lf3Ha1En3LQshkdLlZkqKS80METKyr_3nSIBF4GJLAxZNvnSd12hXe3PYZAG0oTIkVPgdguVrbs8EEcAGv',
-            'secret' => [
-                'code' => '745cc77d276cf36c694e',
-                'verify' => true,
-            ],
-            'server_peer_id' => 0,
-            'target_server' => '',
-            'events' => Tests::class,
-            'allow_retry_events' => true,
-        ],
         205402271 => [
             'description' => 'Kult Game Project',
-            'confirmation' => '1129612b',
+            'confirmation' => 'eb8df63d',
             'token' => 'vk1.a.j-mrHaaBmC8Uq_GlAqwVjG2UALgWLYFqkq-Wgr2bGlO7LHZmT5km24yi2EZU2op1sAD4NHcFq2_KPo3IEwZCvMlywO6whuI8i00kFXBTM-w0lI1RVD534whyOPLZMoCoB2JMH12no5EC7dMUa3Jd63uc1DOlCKTV8GJQi2DG2piDsv_OfC3nrKBy0DQa3q-tr6Ei6HIZ-OW5EZaOw37nNg',
             'secret' => [
                 'code' => 'ymUrvxeTHfUyRtdK',
                 'verify' => true,
             ],
-            'server_peer_id' => 2000000002,
+            'server_peer_id' => 2000000001,
+            'dev_peer_id' => 2000000002,
             'target_server' => '46.3.223.76:27015',
             'events_handler' => EventsMapper::class,
-            'allow_retry_events' => true
+            'allow_retry_events' => false
         ],
     ],
 
@@ -130,6 +117,26 @@ return [
     'auth_app' => [
         'token' => 'b89c4892b89c4892b89c4892aeb8e5dc9fbb89cb89c4892d9c7b14801fb3358d6dcd092',
         'secret' => 'OaQA1ddYuF2PLGAGKOjd',
+    ],
+
+    'source-bans' => [
+        'connection' => [
+            'driver' => 'mysql',
+            'host' => 'server239.hosting.reg.ru',
+            'port' => '3306',
+            'database' => 'u1876002_ma',
+            'username' => 'u1876002_ma',
+            'password' => 'u1876002_ma',
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix_tables' => 'sb_',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ]
     ],
 
     /*

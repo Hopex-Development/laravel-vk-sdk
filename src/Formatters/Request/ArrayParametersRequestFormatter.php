@@ -1,12 +1,12 @@
 <?php
 
-namespace Hopex\VkSdk\Formatters;
+namespace Hopex\VkSdk\Formatters\Request;
 
 use Hopex\VkSdk\Contracts\CanFormatContract;
 
 /**
  * Class ArrayParametersRequestFormatter
- * @package Hopex\VkSdk\Formatters
+ * @package Hopex\VkSdk\Formatters\Request
  */
 class ArrayParametersRequestFormatter implements CanFormatContract
 {

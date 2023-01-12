@@ -179,4 +179,5 @@ return [
     'Unknown server' => 'Неизвестный сервер',
     'Undefined server response' => 'Неопределенный ответ сервера',
     'Invalid input data type' => 'Недопустимый тип входных данных',
+    'There is no connection information to the source bans database' => 'Отсутствует информация подключения к базе данных source bans',
 ];

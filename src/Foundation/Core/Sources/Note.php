@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 class Note extends Source
 {
     /** @var string */
-    protected string $path = 'vk-sdk/notes/%s.md';
+    protected string $path = 'vk-sdk/notes/%s.dat';
 
     /**
      * @param string $key

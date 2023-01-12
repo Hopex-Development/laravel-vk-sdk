@@ -59,7 +59,7 @@ class Player
         $this->setName($player['name']);
         $this->setKills($player['kills']);
         $this->setDeaths($player['deaths']);
-        $this->setMute($player['mute']);
+        $this->setMute(isset($player['mute']));
         $this->setTime($player['time']);
     }
 

@@ -5,6 +5,7 @@ namespace Hopex\VkSdk\Foundation\Core\Sources;
 use Hopex\VkSdk\Exceptions\Formatters\InvalidInputDataTypeException;
 use Hopex\VkSdk\Facades\SdkConfig;
 use Hopex\VkSdk\Formatters\SourceDataFormatter;
+use Hopex\VkSdk\Foundation\Core\Logging\SourceLogger;
 use Illuminate\Support\Facades\Log;
 use Psr\Log\LoggerInterface;
 
@@ -12,15 +13,10 @@ use Psr\Log\LoggerInterface;
  * Class Source
  * @package Hopex\VkSdk\Foundation\Core\Sources
  */
-abstract class Source
+abstract class Source extends SourceLogger
 {
     /** @var string */
     protected string $path;
-
-    /**
-     * @var LoggerInterface
-     */
-    protected LoggerInterface $logger;
 
     /**
      * @param string $path
@@ -28,7 +24,6 @@ abstract class Source
      */
     final protected function makePath(string $path): string
     {
-        $this->logger = Log::build((array)SdkConfig::logging('channels.source'));
         return str_replace('.', DIRECTORY_SEPARATOR, $path);
     }
 
