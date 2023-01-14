@@ -9,10 +9,14 @@ use Hopex\VkSdk\Exceptions\SourceQuery\InvalidArgumentSourceQueryException;
 use Hopex\VkSdk\Exceptions\SourceQuery\InvalidPacketSourceQueryException;
 use Hopex\VkSdk\Exceptions\SourceQuery\SocketSourceQueryException;
 use Hopex\VkSdk\Facades\Note;
+use Hopex\VkSdk\Facades\RequestFields;
 use Hopex\VkSdk\Facades\SdkConfig;
 use Hopex\VkSdk\Facades\VkApi;
 use Hopex\VkSdk\Formatters\Message\ClearOutPutMessageFormatter;
 use Hopex\VkSdk\Formatters\Message\ScoreTableMessageFormatter;
+use Hopex\VkSdk\Formatters\Message\Server\MessageFromServerFormatter;
+use Hopex\VkSdk\Formatters\Message\Server\NewBanFromServerFormatter;
+use Hopex\VkSdk\Formatters\Message\Server\NewMuteFromServerFormatter;
 use Hopex\VkSdk\Foundation\Core\Entities\Messages\MessageRequestFields;
 use Hopex\VkSdk\Foundation\Core\Entities\Server\Ban;
 use Hopex\VkSdk\Foundation\Core\Entities\Server\Message;
@@ -20,7 +24,7 @@ use Hopex\VkSdk\Foundation\Core\Entities\Server\Mute;
 use Hopex\VkSdk\Foundation\Core\Entities\Server\ServerEvent;
 use Hopex\VkSdk\Foundation\Core\Entities\Server\Statistics;
 use Hopex\VkSdk\Foundation\Core\Logging\ServerLogger;
-use Psr\Log\LoggerInterface;
+use Hopex\VkSdk\Models\ServerMessage;
 use Throwable;
 use xPaw\SourceQuery\Exception\AuthenticationException;
 use xPaw\SourceQuery\Exception\InvalidArgumentException;
@@ -34,9 +38,6 @@ use xPaw\SourceQuery\SourceQuery;
  */
 abstract class EventsHandler extends ServerLogger implements ServerEventsContract
 {
-    /** @var LoggerInterface */
-    protected LoggerInterface $logger;
-
     /** @var string */
     protected const SUCCESS = 'ok';
 
@@ -49,13 +50,13 @@ abstract class EventsHandler extends ServerLogger implements ServerEventsContrac
     public function server_message_new(Message $message): void
     {
         $this->logger->notice("Message from server by \"{$message->getPlayer()}\". Context: \"{$message->getText()}\"");
-        $this->messageSendToVk($message, str_replace([
-            '%PLAYER%',
-            '%MESSAGE%'
-        ], [
-            $message->getPlayer(),
-            $message->getText()
-        ], Note::get('server.messages.from-server')));
+        $this->messageSendToVk($message, (new MessageFromServerFormatter())->format($message));
+
+        ServerMessage::create([
+            'server' => sprintf('%s:%s', $message->getIp(), $message->getPort()),
+            'sender' => $message->getPlayer(),
+            'text' => $message->getText(),
+        ]);
     }
 
     /**
@@ -67,17 +68,7 @@ abstract class EventsHandler extends ServerLogger implements ServerEventsContrac
     public function server_mute_new(Mute $mute): void
     {
         $this->logger->notice("Mute from server by \"{$mute->getAdminName()}\" for \"{$mute->getPlayerName()}\"");
-        $this->messageSendToVk($mute, str_replace([
-            '%ADMIN%',
-            '%PLAYER%',
-            '%REASON%',
-            '%TIME%'
-        ], [
-            $mute->getAdminName(),
-            $mute->getPlayerName(),
-            $mute->getReason(),
-            $mute->getTime()->format('H:i:s'),
-        ], Note::get('server.blocks.mute')));
+        $this->messageSendToVk($mute, (new NewMuteFromServerFormatter())->format($mute));
     }
 
     /**
@@ -89,17 +80,7 @@ abstract class EventsHandler extends ServerLogger implements ServerEventsContrac
     public function server_ban_new(Ban $ban): void
     {
         $this->logger->notice("Ban from server by \"{$ban->getAdminName()}\" for \"{$ban->getPlayerName()}\"");
-        $this->messageSendToVk($ban, str_replace([
-            '%ADMIN%',
-            '%PLAYER%',
-            '%REASON%',
-            '%TIME%'
-        ], [
-            $ban->getAdminName(),
-            $ban->getPlayerName(),
-            $ban->getReason(),
-            $ban->getTime()->format('H:i:s'),
-        ], Note::get('server.blocks.ban')));
+        $this->messageSendToVk($ban, (new NewBanFromServerFormatter())->format($ban));
     }
 
     /**
@@ -148,6 +129,13 @@ abstract class EventsHandler extends ServerLogger implements ServerEventsContrac
     {
         $this->logger->info("ServerMessage \"$text\" from \"$name\" has been send to server by group $groupId");
         $this->sourceQueryCall($groupId, "sm_chat_say \"$name\" \"$text\"");
+
+        ServerMessage::create([
+            'server' => SdkConfig::groups("$groupId.target_server"),
+            'sender' => $name,
+            'text' => $text,
+            'is_server_sending' => false,
+        ]);
     }
 
     /**
@@ -160,10 +148,10 @@ abstract class EventsHandler extends ServerLogger implements ServerEventsContrac
     public function messageSendToVk(ServerEvent $event, string $message): void
     {
         VkApi::message($event->getGroupToken())
-            ->send((new MessageRequestFields())
+            ->send(RequestFields::message()
                 ->setPeerId($event->getPeerId())
-                ->setDisableMentions(true)
-                ->setDontParseLinks(true)
+                ->setDisableMentions()
+                ->setDontParseLinks()
                 ->setMessage((new ClearOutPutMessageFormatter())->format($message))
             );
         $this->logger->info("Message send to chat id {$event->getPeerId()}");

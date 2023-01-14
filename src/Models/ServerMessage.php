@@ -15,8 +15,9 @@ class ServerMessage extends Model
 
     /** @var string[] */
     protected $fillable = [
-        'server_id',
-        'player',
+        'server',
+        'sender',
         'text',
+        'is_server_sending',
     ];
 }

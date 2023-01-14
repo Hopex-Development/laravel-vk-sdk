@@ -23,6 +23,7 @@ class MessageFields
     private const ATTACHMENTS = 'attachments';
     private const CONVERSATION_MESSAGE_ID = 'conversation_message_id';
     private const FORWARD_MESSAGES = 'fwd_messages';
+    private const REPLY_MESSAGES = 'reply_message';
     private const IMPORTANT = 'important';
     private const IS_HIDDEN = 'is_hidden';
     private const PEER_ID = 'peer_id';
@@ -114,7 +115,18 @@ class MessageFields
      */
     public function getForwardMessages(): array
     {
-        return $this->message->get(self::FORWARD_MESSAGES);
+        return $this->message->get(self::FORWARD_MESSAGES, []);
+    }
+
+    /**
+     * @return MessageFields|null
+     */
+    public function getReplyMessage(): ?MessageFields
+    {
+        $replyMessage = $this->message->get(self::REPLY_MESSAGES);
+        return $replyMessage
+            ? new MessageFields(collect($this->message->get(self::REPLY_MESSAGES)))
+            : $replyMessage;
     }
 
     /**

@@ -11,11 +11,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('server_blocks', function (Blueprint $table) {
+        Schema::create('players', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Server::class, 'server_id');
-            $table->string('type');
-            $table->string('player');
+            $table->unsignedBigInteger('social_id')->unique();
+            $table->string('nick')->unique();
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('server_blocks');
+        Schema::dropIfExists('players');
     }
 };

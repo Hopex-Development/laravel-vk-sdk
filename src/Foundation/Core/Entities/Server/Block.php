@@ -32,12 +32,12 @@ abstract class Block extends ServerEvent
 
     public function __construct(array $event)
     {
+        parent::__construct($event);
+
         $this->setAdminName($event['admin_name']);
         $this->setPlayerName($event['target_name']);
         $this->setReason($event['reason']);
         $this->setTime($event['duration']);
-
-        parent::__construct($event);
     }
 
     /**

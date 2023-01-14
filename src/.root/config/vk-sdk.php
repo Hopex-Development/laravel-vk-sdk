@@ -92,17 +92,24 @@ return [
     'groups' => [
         205402271 => [
             'description' => 'Kult Game Project',
-            'confirmation' => 'eb8df63d',
+            'confirmation' => '6eaef7a9',
             'token' => 'vk1.a.j-mrHaaBmC8Uq_GlAqwVjG2UALgWLYFqkq-Wgr2bGlO7LHZmT5km24yi2EZU2op1sAD4NHcFq2_KPo3IEwZCvMlywO6whuI8i00kFXBTM-w0lI1RVD534whyOPLZMoCoB2JMH12no5EC7dMUa3Jd63uc1DOlCKTV8GJQi2DG2piDsv_OfC3nrKBy0DQa3q-tr6Ei6HIZ-OW5EZaOw37nNg',
             'secret' => [
                 'code' => 'ymUrvxeTHfUyRtdK',
                 'verify' => true,
             ],
-            'server_peer_id' => 2000000001,
-            'dev_peer_id' => 2000000002,
+            'chats' => [
+                'events_handler' => EventsMapper::class,
+                'prod_peer_id' => 2000000001,
+                'dev_peer_id' => 2000000002,
+                'players_max_pagination' => 15,
+                'allow_retry_events' => false,
+                'moderators' => [
+                    244036703,
+                    312568800,
+                ],
+            ],
             'target_server' => '46.3.223.76:27015',
-            'events_handler' => EventsMapper::class,
-            'allow_retry_events' => false
         ],
     ],
 
@@ -110,7 +117,7 @@ return [
         '46-3-223-76-27015' => [
             'target_group_id' => 205402271,
             'rcon_password' => 'Nr8v6uxuCL8cA5NOx43cypz0DuaqCGP',
-            'requests_handler' => RequestsMapper::class
+            'requests_handler' => RequestsMapper::class,
         ],
     ],
 

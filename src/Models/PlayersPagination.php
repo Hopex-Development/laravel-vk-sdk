@@ -6,17 +6,26 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class ServerBlock
+ * Class Player
  * @package Hopex\VkSdk\Models
  */
-class ServerBlock extends Model
+class PlayersPagination extends Model
 {
     use HasFactory;
 
+    /**
+     * @var string
+     */
+    protected $table = 'players_pagination';
+
     /** @var string[] */
     protected $fillable = [
-        'server_id',
-        'type',
-        'player',
+        'conversation_message_id',
+        'page_index',
     ];
+
+    /**
+     * @var bool
+     */
+    public $timestamps = false;
 }

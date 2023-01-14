@@ -4,7 +4,9 @@ namespace Hopex\VkSdk\Foundation\Core\Callback;
 
 use Hopex\VkSdk\Contracts\CallbackEventsContract;
 use Hopex\VkSdk\Facades\SdkConfig;
+use Hopex\VkSdk\Foundation\Core\Entities\Messages\Events\CallbackEvent;
 use Hopex\VkSdk\Foundation\Core\Entities\Messages\MessageFields;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use Psr\Log\LoggerInterface;
 
@@ -60,5 +62,14 @@ abstract class EventsHandler implements CallbackEventsContract
     public function message_deny(MessageFields $message): void
     {
         // TODO: Implement message_deny() method.
+    }
+
+    /**
+     * @param CallbackEvent $event
+     * @return void
+     */
+    public function message_event(CallbackEvent $event): void
+    {
+        // TODO: Implement message_event() method.
     }
 }

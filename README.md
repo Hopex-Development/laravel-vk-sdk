@@ -33,7 +33,7 @@ composer req hopex/vk-api-sdk
 2. Publish resources:
 
 ```
-php artisan vendor:publish --tag=vk-sdk-config --tag=vk-sdk-lang --tag=vk-sdk-sources --tag=vk-sdk-console --force
+php artisan vendor:publish --tag=vk-sdk-config --tag=vk-sdk-lang --tag=vk-sdk-sources --tag=vk-sdk-console --tag=vk-sdk-database --force
 ```
 
 3. Migrate the necessary tables:

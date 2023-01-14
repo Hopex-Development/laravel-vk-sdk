@@ -56,7 +56,8 @@ abstract class Request
      */
     public function call(string $method, array $args = []): Collection
     {
-        $arguments = Format::with(ClearEmptiesParametersRequestFormatter::class)
+        $arguments = (new Format())
+            ->with(ClearEmptiesParametersRequestFormatter::class)
             ->with(ArrayParametersRequestFormatter::class)
             ->format($args);
         $arguments['access_token'] = $arguments['access_token'] ?? $this->getToken();
@@ -68,7 +69,7 @@ abstract class Request
                 ->timeout(10)
                 ->get($this->makeUrl($method), $arguments);
         } catch (RequestException $e) {
-            throw new ApiException();
+            throw new ApiException(message: $e->getMessage());
         }
 
         throw_if($response->status() != 200, HttpStatusCodeException::class);

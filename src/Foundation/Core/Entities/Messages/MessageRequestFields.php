@@ -135,11 +135,54 @@ class MessageRequestFields
     public ?int $subscribe_id = null;
 
     /**
+     * @var int|null
+     */
+    public ?int $conversation_message_id = null;
+
+    /**
+     * @var bool|null
+     */
+    public ?bool $keep_forward_messages = null;
+
+    /**
+     * @var bool|null
+     */
+    public ?bool $keep_snippets = null;
+
+    /**
      * MessageProperties constructor.
      */
     public function __construct()
     {
         $this->setRandomId();
+    }
+
+    /**
+     * @return MessageRequestFields
+     */
+    public function setKeepForwardMessages(): MessageRequestFields
+    {
+        $this->keep_forward_messages = true;
+        return $this;
+    }
+
+    /**
+     * @return MessageRequestFields
+     */
+    public function setKeepSnippets(): MessageRequestFields
+    {
+        $this->keep_snippets = true;
+        return $this;
+    }
+
+    /**
+     * @param int|null $conversation_message_id
+     * @return MessageRequestFields
+     */
+    public function setConversationMessageId(?int $conversation_message_id): MessageRequestFields
+    {
+        $this->conversation_message_id = $conversation_message_id;
+        return $this;
     }
 
     /**
@@ -352,22 +395,20 @@ class MessageRequestFields
     }
 
     /**
-     * @param bool|null $dont_parse_links
      * @return MessageRequestFields
      */
-    public function setDontParseLinks(?bool $dont_parse_links): MessageRequestFields
+    public function setDontParseLinks(): MessageRequestFields
     {
-        $this->dont_parse_links = $dont_parse_links;
+        $this->dont_parse_links = true;
         return $this;
     }
 
     /**
-     * @param bool|null $disable_mentions
      * @return MessageRequestFields
      */
-    public function setDisableMentions(?bool $disable_mentions): MessageRequestFields
+    public function setDisableMentions(): MessageRequestFields
     {
-        $this->disable_mentions = $disable_mentions;
+        $this->disable_mentions = true;
         return $this;
     }
 

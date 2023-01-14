@@ -2,7 +2,7 @@
 
 namespace Hopex\VkSdk\Providers;
 
-use Hopex\VkSdk\Contracts\EventsServiceContract;
+use Hopex\VkSdk\Contracts\LocalPlayersServiceContract;
 use Hopex\VkSdk\Contracts\SourceBansServiceContract;
 use Hopex\VkSdk\Foundation\Core\Api\Client;
 use Hopex\VkSdk\Foundation\Core\Entities\RequestFields;
@@ -11,6 +11,7 @@ use Hopex\VkSdk\Foundation\Core\Sources\Note;
 use Hopex\VkSdk\Foundation\Format;
 use Hopex\VkSdk\Foundation\SdkConfig;
 use Hopex\VkSdk\Services\CallbackEventsService;
+use Hopex\VkSdk\Services\LocalPlayersService;
 use Hopex\VkSdk\Services\ServerEventsService;
 use Hopex\VkSdk\Services\SourceBansService;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
@@ -26,7 +27,8 @@ class ServiceProvider extends BaseServiceProvider
     {
         $this->app->bind(CallbackEventsService::class);
         $this->app->bind(ServerEventsService::class);
-        $this->app->bind(SourceBansService::class);
+        $this->app->bind(SourceBansServiceContract::class, SourceBansService::class);
+        $this->app->bind(LocalPlayersServiceContract::class, LocalPlayersService::class);
 
         $this->app->bind('sdkconfig', SdkConfig::class);
         $this->app->bind('format', Format::class);
@@ -34,7 +36,6 @@ class ServiceProvider extends BaseServiceProvider
         $this->app->bind('requestfields', RequestFields::class);
         $this->app->bind('keyboard', Keyboard::class);
         $this->app->bind('note', Note::class);
-
     }
 
     /**
@@ -45,11 +46,11 @@ class ServiceProvider extends BaseServiceProvider
     public function boot(): void
     {
         $this->publishes([
-            __DIR__ . '/../Console/Commands/MakeEndpoint.php' => app_path('Console/Commands/MakeEndpoint.php'),
+            __DIR__ . '/../Console/Commands/' => app_path('Console/Commands/'),
         ], 'vk-sdk-console');
 
         $this->publishes([
-            __DIR__ . '/../.root/config/vk-sdk.php' => config_path('vk-sdk.php'),
+            __DIR__ . '/../.root/config/' => config_path('/'),
         ], 'vk-sdk-config');
 
         $this->publishes([
@@ -65,7 +66,10 @@ class ServiceProvider extends BaseServiceProvider
             config(['database.connections.source-bans' => config('vk-sdk.source-bans.connection')]);
         }
 
-        $this->loadMigrationsFrom(__DIR__ . '/../.root/database/migrations');
+        $this->publishes([
+            __DIR__ . '/../.root/database/migrations/' => $this->app->databasePath('migrations'),
+        ], 'vk-sdk-database');
+
         $this->loadRoutesFrom(__DIR__ . '/../.root/routes/api.php');
     }
 }

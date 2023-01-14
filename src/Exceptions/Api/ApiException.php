@@ -14,10 +14,11 @@ class ApiException extends SdkException
 
     /**
      * @param int $code
+     * @param string|null $message
      */
-    public function __construct(int $code = 1)
+    public function __construct(int $code = 1, string $message = null)
     {
-        $this->message = ApiExceptionMapper::parse($code) ?? $this->message;
+        $this->message = $message ?? ApiExceptionMapper::parse($code) ?? $this->message;
         parent::__construct();
     }
 }

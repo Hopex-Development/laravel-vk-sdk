@@ -11,12 +11,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('servers', function (Blueprint $table) {
+        Schema::create('players_pagination', function (Blueprint $table) {
             $table->id();
-            $table->string('ip');
-            $table->unsignedInteger('port');
-            $table->string('rcon_password');
-            $table->timestamps();
+            $table->unsignedBigInteger('conversation_message_id');
+            $table->unsignedBigInteger('page_index');
         });
     }
 
@@ -25,6 +23,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('servers');
+        Schema::dropIfExists('players_pagination');
     }
 };

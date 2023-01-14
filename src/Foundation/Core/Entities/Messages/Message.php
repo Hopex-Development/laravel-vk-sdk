@@ -80,12 +80,14 @@ class Message extends Request
     }
 
     /**
-     * @throws Throwable
+     * @param MessageRequestFields $messageProperties
+     * @return Collection
      * @throws ApiException
+     * @throws Throwable
      */
-    public function edit(array $args = []): Collection
+    public function edit(MessageRequestFields $messageProperties): Collection
     {
-        return $this->call(self::SCOPE . 'edit', $args);
+        return $this->call(self::SCOPE . 'edit', get_object_vars($messageProperties));
     }
 
     /**

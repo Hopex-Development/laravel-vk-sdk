@@ -1,0 +1,39 @@
+{
+    "buttons": [
+        [
+            {
+                "action": {
+                    "type": "callback",
+                    "label": "⏮",
+                    "payload": "{\"type\":\"nicks-pagination\", \"state\":\"start\"}"
+                },
+                "color": "secondary"
+            },
+            {
+                "action": {
+                    "type": "callback",
+                    "label": "◀️",
+                    "payload": "{\"type\":\"nicks-pagination\", \"state\":\"previous\"}"
+                },
+                "color": "secondary"
+            },
+            {
+                "action": {
+                    "type": "callback",
+                    "label": "▶️",
+                    "payload": "{\"type\":\"nicks-pagination\", \"state\":\"next\"}"
+                },
+                "color": "secondary"
+            },
+            {
+                "action": {
+                    "type": "callback",
+                    "label": "⏭",
+                    "payload": "{\"type\":\"nicks-pagination\", \"state\":\"end\"}"
+                },
+                "color": "secondary"
+            }
+        ]
+    ],
+    "inline": true
+}

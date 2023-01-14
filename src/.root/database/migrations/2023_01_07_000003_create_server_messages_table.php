@@ -1,6 +1,5 @@
 <?php
 
-use Hopex\VkSdk\Models\Server;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,9 +12,10 @@ return new class extends Migration {
     {
         Schema::create('server_messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Server::class, 'server_id');
-            $table->string('player');
+            $table->string('server');
+            $table->string('sender');
             $table->string('text');
+            $table->boolean('is_server_sending')->default(true);
             $table->timestamps();
         });
     }

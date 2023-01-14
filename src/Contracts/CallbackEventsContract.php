@@ -2,7 +2,9 @@
 
 namespace Hopex\VkSdk\Contracts;
 
+use Hopex\VkSdk\Foundation\Core\Entities\Messages\Events\CallbackEvent;
 use Hopex\VkSdk\Foundation\Core\Entities\Messages\MessageFields;
+use Illuminate\Support\Collection;
 
 /**
  * Interface CallbackEventsContract
@@ -33,6 +35,12 @@ interface CallbackEventsContract
      * @return void
      */
     public function message_deny(MessageFields $message): void;
+
+    /**
+     * @param CallbackEvent $event
+     * @return void
+     */
+    public function message_event(CallbackEvent $event): void;
 
 //    /**
 //     * @param BaseEvent $event

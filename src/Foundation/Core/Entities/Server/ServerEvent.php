@@ -4,6 +4,7 @@ namespace Hopex\VkSdk\Foundation\Core\Entities\Server;
 
 use Hopex\VkSdk\Exceptions\Server\UnknownServerException;
 use Hopex\VkSdk\Facades\SdkConfig;
+use Hopex\VkSdk\Models\Application;
 use Throwable;
 
 /**
@@ -13,29 +14,29 @@ use Throwable;
 abstract class ServerEvent
 {
     /**
-     * @var string
+     * @var null|string
      */
-    private string $ip;
+    private ?string $ip = null;
 
     /**
-     * @var int
+     * @var null|int
      */
-    private int $port;
+    private ?int $port = null;
 
     /**
-     * @var int
+     * @var null|int
      */
-    private int $groupId;
+    private ?int $groupId = null;
 
     /**
-     * @var int
+     * @var null|int
      */
-    private int $peerId;
+    private ?int $peerId = null;
 
     /**
-     * @var string
+     * @var null|string
      */
-    private string $groupToken;
+    private ?string $groupToken = null;
 
     /**
      * @throws Throwable
@@ -44,11 +45,22 @@ abstract class ServerEvent
     {
         throw_if(!isset($event['server_ip'], $event['server_port']), UnknownServerException::class);
 
-        $this->setIp($event['server_ip']);
-        $this->setPort($event['server_port']);
-        $this->setGroupId(SdkConfig::servers($this->getIp(), $this->getPort(), 'target_group_id'));
-        $this->setPeerId(SdkConfig::groups("{$this->getGroupId()}.server_peer_id"));
-        $this->setGroupToken(SdkConfig::groups("{$this->getGroupId()}.token"));
+        $groupId = SdkConfig::servers(
+            $event['server_ip'],
+            $event['server_port'],
+            'target_group_id'
+        );
+
+        $this
+            ->setIp($event['server_ip'])
+            ->setPort($event['server_port'])
+            ->setGroupId($groupId)
+            ->setPeerId(SdkConfig::groups("$groupId.chats.prod_peer_id"))
+            ->setGroupToken(SdkConfig::groups("$groupId.token"));
+
+        if (!Application::isProductionFor($groupId)) {
+            $this->setPeerId(SdkConfig::groups("$groupId.chats.dev_peer_id"));
+        }
     }
 
     /**
@@ -60,82 +72,92 @@ abstract class ServerEvent
     }
 
     /**
-     * @return int
+     * @return string|null
      */
-    public function getGroupId(): int
-    {
-        return $this->groupId;
-    }
-
-    /**
-     * @return int
-     */
-    public function getPeerId(): int
-    {
-        return $this->peerId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getGroupToken(): string
-    {
-        return $this->groupToken;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIp(): string
+    public function getIp(): ?string
     {
         return $this->ip;
     }
 
     /**
-     * @return int
+     * @param string|null $ip
+     * @return ServerEvent
      */
-    public function getPort(): int
+    private function setIp(?string $ip): ServerEvent
+    {
+        $this->ip = $ip;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getPort(): ?int
     {
         return $this->port;
     }
 
     /**
-     * @param string $ip
+     * @param int|null $port
+     * @return ServerEvent
      */
-    private function setIp(string $ip): void
-    {
-        $this->ip = $ip;
-    }
-
-    /**
-     * @param int $port
-     */
-    private function setPort(int $port): void
+    private function setPort(?int $port): ServerEvent
     {
         $this->port = $port;
+        return $this;
     }
 
     /**
-     * @param int $groupId
+     * @return int|null
      */
-    private function setGroupId(int $groupId): void
+    public function getGroupId(): ?int
+    {
+        return $this->groupId;
+    }
+
+    /**
+     * @param int|null $groupId
+     * @return ServerEvent
+     */
+    private function setGroupId(?int $groupId): ServerEvent
     {
         $this->groupId = $groupId;
+        return $this;
     }
 
     /**
-     * @param int $peerId
+     * @return int|null
      */
-    private function setPeerId(int $peerId): void
+    public function getPeerId(): ?int
+    {
+        return $this->peerId;
+    }
+
+    /**
+     * @param int|null $peerId
+     * @return ServerEvent
+     */
+    private function setPeerId(?int $peerId): ServerEvent
     {
         $this->peerId = $peerId;
+        return $this;
     }
 
     /**
-     * @param string $groupToken
+     * @return string|null
      */
-    private function setGroupToken(string $groupToken): void
+    public function getGroupToken(): ?string
+    {
+        return $this->groupToken;
+    }
+
+    /**
+     * @param string|null $groupToken
+     * @return ServerEvent
+     */
+    private function setGroupToken(?string $groupToken): ServerEvent
     {
         $this->groupToken = $groupToken;
+        return $this;
     }
 }

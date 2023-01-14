@@ -20,10 +20,10 @@ class Message extends ServerEvent
 
     public function __construct(array $event)
     {
+        parent::__construct($event);
+
         $this->setPlayer($event['name']);
         $this->setText($event['message']);
-
-        parent::__construct($event);
     }
 
     /**

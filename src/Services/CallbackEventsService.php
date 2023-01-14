@@ -9,14 +9,21 @@ use Hopex\VkSdk\Exceptions\Callback\UnknownGroupIdException;
 use Hopex\VkSdk\Exceptions\Callback\UnknownVkEntityException;
 use Hopex\VkSdk\Exceptions\Database\DatabaseOrTableNotFoundException;
 use Hopex\VkSdk\Facades\SdkConfig;
+use Hopex\VkSdk\Foundation\Core\Entities\Messages\Events\CallbackEvent;
 use Hopex\VkSdk\Foundation\Core\Entities\Messages\MessageFields;
+use Hopex\VkSdk\Models\Application;
 use Hopex\VkSdk\Models\VkEvent;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Throwable;
 
+/**
+ * Class CallbackEventsService
+ * @package Hopex\VkSdk\Services
+ */
 class CallbackEventsService
 {
     /** @var string */
@@ -36,7 +43,8 @@ class CallbackEventsService
     public function __construct(Request $request)
     {
         $this->entities = new Collection([
-            'message' => MessageFields::class
+            'message' => MessageFields::class,
+            'message_event' => CallbackEvent::class,
         ]);
 
         $this->request = $request;
@@ -55,10 +63,11 @@ class CallbackEventsService
         $event = $this->request->json('type');
 
         try {
-            if (
-                SdkConfig::groups("$groupId.allow_retry_events") ||
-                !VkEvent::where('event_id', $eventId)->first() ||
-                !$eventId
+            if ((
+                    !SdkConfig::groups("$groupId.chats.allow_retry_events") &&
+                    !VkEvent::where('event_id', $eventId)->first()
+                ) ||
+                !isset($eventId)
             ) {
                 VkEvent::updateOrCreate($this->request->only('group_id', 'type', 'event_id'));
             } else {
@@ -72,6 +81,13 @@ class CallbackEventsService
             case 'confirmation':
                 $code = SdkConfig::groups("$groupId.confirmation");
                 throw_if(empty($code), UnknownGroupIdException::class);
+
+                Application::updateOrCreate([
+                    'group_id' => $groupId
+                ], [
+                    'is_production' => true,
+                ]);
+
                 return $code;
             default:
                 throw_if(
@@ -87,7 +103,7 @@ class CallbackEventsService
 
                 $this->updateAccesses($groupId);
                 call_user_func(
-                    [new (SdkConfig::groups("$groupId.events_handler")), $event],
+                    [new (SdkConfig::groups("$groupId.chats.events_handler")), $event],
                     $this->selectEntityByRequest()
                 );
 
@@ -117,7 +133,17 @@ class CallbackEventsService
         $entityItems = collect($object->get($entityType));
 
         if (!$this->entities->has($entityType)) {
-            throw new UnknownVkEntityException();
+            if (!preg_match('~^[a-z_]+event$~', $this->request->json('type'))) {
+                throw new UnknownVkEntityException();
+            }
+
+            $entityType = $this->request->json('type');
+            $entityItems = $object;
+
+            $groupId = $this->request->json('group_id');
+            if (!Application::isProductionFor($groupId)) {
+                $entityItems->put('peer_id', SdkConfig::groups("$groupId.chats.dev_peer_id"));
+            }
         }
 
         return new ($this->entities->get($entityType))($entityItems);
