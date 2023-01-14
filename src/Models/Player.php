@@ -48,7 +48,7 @@ class Player extends Model
      */
     public function scopePaginateOf(Builder $builder, int $index, int $limit): Collection
     {
-        $players = $builder->get();
+        $players = $builder->get()->sortBy('nick');
         if (self::paginationPagesCount($limit) > 1) {
             return $players
                 ->sliding($limit)
