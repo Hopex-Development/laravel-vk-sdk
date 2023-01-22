@@ -10,7 +10,7 @@ use Hopex\VkSdk\Exceptions\SdkException;
  */
 class ApiException extends SdkException
 {
-    public $message = 'Unknown api exception';
+    public $message = 'Unknown VK API exception';
 
     /**
      * @param int $code

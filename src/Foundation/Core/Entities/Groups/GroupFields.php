@@ -3,9 +3,10 @@
 namespace Hopex\VkSdk\Foundation\Core\Entities\Groups;
 
 use Hopex\VkSdk\Exceptions\Api\ApiException;
-use Hopex\VkSdk\Foundation\Core\Entities\Databse\Fields\CityField;
-use Hopex\VkSdk\Foundation\Core\Entities\Databse\Fields\CountryField;
+use Hopex\VkSdk\Foundation\Core\Entities\Database\Fields\City\CityField;
+use Hopex\VkSdk\Foundation\Core\Entities\Database\Fields\Country\CountryField;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 /**
@@ -14,18 +15,46 @@ use Throwable;
  */
 class GroupFields
 {
+    private const ID = 'id';
+
     private const GROUP_ID = 'group_id';
+
     private const TITLE = 'title';
+
+    private const NAME = 'name';
+
+    private const SCREEN_NAME = 'name';
+
+    private const TYPE = 'type';
+
+    private const IS_CLOSED = 'is_closed';
+
+    private const PHOTO_50 = 'photo_50';
+
+    private const PHOTO_100 = 'photo_100';
+
+    private const PHOTO_200 = 'photo_200';
+
     private const ADDRESS = 'address';
+
     private const ADDITIONAL_ADDRESS = 'additional_address';
+
     private const COUNTRY_ID = 'country_id';
+
     private const CITY_ID = 'city_id';
+
     private const METRO_ID = 'metro_id';
+
     private const LATITUDE = 'latitude';
+
     private const LONGITUDE = 'longitude';
+
     private const PHONE = 'phone';
+
     private const WORK_INFO_STATUS = 'work_info_status';
+
     private const TIMETABLE = 'timetable';
+
     private const IS_MAIN_ADDRESS = 'is_main_address';
 
     /**
@@ -47,7 +76,9 @@ class GroupFields
      */
     public function getGroupId(): int
     {
-        return $this->group->get(self::GROUP_ID);
+        return $this->group->has(self::GROUP_ID)
+            ? $this->group->get(self::GROUP_ID)
+            : $this->group->get(self::ID);
     }
 
     /**
@@ -55,7 +86,57 @@ class GroupFields
      */
     public function getTitle(): string
     {
-        return $this->group->get(self::TITLE);
+        return $this->group->has(self::TITLE)
+            ? $this->group->get(self::TITLE)
+            : $this->group->get(self::NAME);
+    }
+
+    /**
+     * @return string
+     */
+    public function getScreenName(): string
+    {
+        return $this->group->get(self::SCREEN_NAME);
+    }
+
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->group->get(self::TYPE);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isClosed(): bool
+    {
+        return $this->group->get(self::IS_CLOSED);
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoto50(): string
+    {
+        return $this->group->get(self::PHOTO_50);
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoto100(): string
+    {
+        return $this->group->get(self::PHOTO_100);
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoto200(): string
+    {
+        return $this->group->get(self::PHOTO_200);
     }
 
     /**
@@ -79,10 +160,10 @@ class GroupFields
      * @throws ApiException
      * @throws Throwable
      */
-    public function getCountry(): CountryField
-    {
-        return new CountryField($this->getCountryId());
-    }
+//    public function getCountry(): CountryField
+//    {
+//        return new CountryField($this->getCountryId());
+//    }
 
     /**
      * @return int
@@ -97,10 +178,10 @@ class GroupFields
      * @throws ApiException
      * @throws Throwable
      */
-    public function getCity(): CityField
-    {
-        return new CityField($this->getCityId());
-    }
+//    public function getCity(): CityField
+//    {
+//        return new CityField($this->getCityId());
+//    }
 
     /**
      * @return int

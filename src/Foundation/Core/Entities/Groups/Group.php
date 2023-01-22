@@ -2,7 +2,11 @@
 
 namespace Hopex\VkSdk\Foundation\Core\Entities\Groups;
 
+use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Foundation\Core\Api\Request;
+use Hopex\VkSdk\Foundation\Core\Entities\Groups\Token\TokenPermissions;
+use Illuminate\Support\Collection;
+use Throwable;
 
 /**
  * Class Group
@@ -102,9 +106,20 @@ class Group extends Request
         return $this->call(self::SCOPE . 'getBanned', $args);
     }
 
-    public function getById(array $args = [])
+    /**
+     * @param GroupRequestFields $groupRequestFields
+     * @return Collection
+     * @throws ApiException
+     * @throws Throwable
+     */
+    public function getById(GroupRequestFields $groupRequestFields): Collection
     {
-        return $this->call(self::SCOPE . 'getById', $args);
+        return $this->call(
+            self::SCOPE . 'getById',
+            get_object_vars($groupRequestFields)
+        )->map(function ($group) {
+            return new GroupFields($group);
+        });
     }
 
     public function getCallbackConfirmationCode(array $args = [])
@@ -167,9 +182,14 @@ class Group extends Request
         return $this->call(self::SCOPE . 'getSettings', $args);
     }
 
-    public function getTokenPermissions($access_token)
+    /**
+     * @return TokenPermissions
+     * @throws ApiException
+     * @throws Throwable
+     */
+    public function getTokenPermissions(): TokenPermissions
     {
-        return $this->call(self::SCOPE . 'getTokenPermissions');
+        return new TokenPermissions($this->call(self::SCOPE . 'getTokenPermissions'));
     }
 
     public function invite(array $args = [])

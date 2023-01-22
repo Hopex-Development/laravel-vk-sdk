@@ -17,8 +17,9 @@ class SdkException extends Exception
     /** @var string */
     private const LOG_CHANNEL = 'channels.exception';
 
-    public function __construct()
+    public function __construct(string $message = null)
     {
+        $this->message = $message ?? $this->getMessage();
         $this->message = preg_replace("~vk-sdk\.~", '', __("vk-sdk.{$this->getMessage()}"));
         $this->report();
 

@@ -150,11 +150,27 @@ class MessageRequestFields
     public ?bool $keep_snippets = null;
 
     /**
+     * @var bool|null
+     */
+    public ?bool $extended = null;
+
+    /**
      * MessageProperties constructor.
      */
     public function __construct()
     {
-        $this->setRandomId();
+        $this
+            ->setRandomId()
+            ->setExtended();
+    }
+
+    /**
+     * @return MessageRequestFields
+     */
+    public function setExtended(): MessageRequestFields
+    {
+        $this->extended = true;
+        return $this;
     }
 
     /**

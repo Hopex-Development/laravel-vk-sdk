@@ -168,7 +168,7 @@ return [
     'Database or table not found' => 'База данных или таблица не найдены',
     'Unknown vk entity used' => 'Используется неизвестная сущность ВК',
     'Unknown server entity used' => 'Используется неизвестная сущность сервера',
-    'Unknown api exception' => 'Неизвестное исключение API',
+    'Unknown VK API exception' => 'Неизвестное исключение VK API',
     'Target keyboard source file not found' => 'Файл указанной клавиатуры не найден',
     'Target note source file not found' => 'Файл указанного текста не найден',
     'There are no players on the server!' => 'На сервере нет игроков!',
@@ -181,4 +181,5 @@ return [
     'Invalid input data type' => 'Недопустимый тип входных данных',
     'There is no connection information to the source bans database' => 'Отсутствует информация подключения к базе данных source bans',
     'Unknown callback message event' => 'Неизвестное событие сообщения',
+    'The token does not have the necessary permissions' => 'Токен не имеет необходимых разрешений',
 ];

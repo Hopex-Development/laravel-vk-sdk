@@ -2,9 +2,6 @@
 
 namespace Hopex\VkSdk\Foundation\Core\Entities\Groups;
 
-use Hopex\VkSdk\Foundation\Core\Entities\Databse\Fields\CityField;
-use Hopex\VkSdk\Foundation\Core\Entities\Databse\Fields\CountryField;
-
 /**
  * Class GroupRequestFields
  * @package Hopex\VkSdk\Foundation\Core\Entities\Groups
@@ -12,201 +9,212 @@ use Hopex\VkSdk\Foundation\Core\Entities\Databse\Fields\CountryField;
 class GroupRequestFields
 {
     /**
-     * @var int
+     * @var int|null
      */
-    public int $groupId;
+    public ?int $group_id = null;
 
     /**
-     * @var string
+     * @var array|null
      */
-    public string $title;
+    public ?array $group_ids = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public string $address;
+    public ?string $title = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public string $additionalAddress;
+    public ?string $address = null;
 
     /**
-     * @var int
+     * @var string|null
      */
-    public int $countryId;
+    public ?string $additional_address = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public int $cityId;
+    public ?int $country_id = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public int $metroId;
+    public ?int $city_id = null;
 
     /**
-     * @var float
+     * @var int|null
      */
-    public float $latitude;
+    public ?int $metro_id = null;
 
     /**
-     * @var float
+     * @var float|null
      */
-    public float $longitude;
+    public ?float $latitude = null;
 
     /**
-     * @var string
+     * @var float|null
      */
-    public string $phone;
-
-    /**/
-    /**
-     * @var string
-     */
-    public string $workInfoStatus;
-
-    /**/
-    /**
-     * @var string
-     */
-    public string $timetable;
+    public ?float $longitude = null;
 
     /**
-     * @var bool
+     * @var string|null
      */
-    public bool $isMainAddress;
+    public ?string $phone = null;
 
     /**
-     * @param int $groupId
+     * @var string|null
+     */
+    public ?string $work_info_status = null;
+
+    /**
+     * @var string|null
+     */
+    public ?string $timetable = null;
+
+    /**
+     * @var bool|null
+     */
+    public ?bool $is_main_address = null;
+
+    /**
+     * @param int|null $group_id
      * @return GroupRequestFields
      */
-    public function setGroupId(int $groupId): GroupRequestFields
+    public function setGroupId(?int $group_id): GroupRequestFields
     {
-        // TODO: добавить принимаемый параметр Group аналогично $this->setCityId(int|CityField $city)
-        $this->groupId = $groupId;
+        $this->group_id = $group_id;
         return $this;
     }
 
     /**
-     * @param string $title
+     * @param array|null $group_ids
      * @return GroupRequestFields
      */
-    public function setTitle(string $title): GroupRequestFields
+    public function setGroupIds(?array $group_ids): GroupRequestFields
+    {
+        $this->group_ids = $group_ids;
+        return $this;
+    }
+
+    /**
+     * @param string|null $title
+     * @return GroupRequestFields
+     */
+    public function setTitle(?string $title): GroupRequestFields
     {
         $this->title = $title;
         return $this;
     }
 
     /**
-     * @param string $address
+     * @param string|null $address
      * @return GroupRequestFields
      */
-    public function setAddress(string $address): GroupRequestFields
+    public function setAddress(?string $address): GroupRequestFields
     {
         $this->address = $address;
         return $this;
     }
 
     /**
-     * @param string $additionalAddress
+     * @param string|null $additional_address
      * @return GroupRequestFields
      */
-    public function setAdditionalAddress(string $additionalAddress): GroupRequestFields
+    public function setAdditionalAddress(?string $additional_address): GroupRequestFields
     {
-        $this->additionalAddress = $additionalAddress;
+        $this->additional_address = $additional_address;
         return $this;
     }
 
     /**
-     * @param int|CountryField $country
+     * @param int|null $country_id
      * @return GroupRequestFields
      */
-    public function setCountryId(int|CountryField $country): GroupRequestFields
+    public function setCountryId(?int $country_id): GroupRequestFields
     {
-        $this->countryId = $country instanceof CountryField ? $country->getId() : $country;
+        $this->country_id = $country_id;
         return $this;
     }
 
     /**
-     * @param int|CityField $city
+     * @param int|null $city_id
      * @return GroupRequestFields
      */
-    public function setCityId(int|CityField $city): GroupRequestFields
+    public function setCityId(?int $city_id): GroupRequestFields
     {
-        $this->cityId = $city instanceof CityField ? $city->getId() : $city;
+        $this->city_id = $city_id;
         return $this;
     }
 
     /**
-     * @param int $metroId
+     * @param int|null $metro_id
      * @return GroupRequestFields
      */
-    public function setMetroId(int $metroId): GroupRequestFields
+    public function setMetroId(?int $metro_id): GroupRequestFields
     {
-        // TODO: добавить MetroField
-        $this->metroId = $metroId;
+        $this->metro_id = $metro_id;
         return $this;
     }
 
     /**
-     * @param float $latitude
+     * @param float|null $latitude
      * @return GroupRequestFields
      */
-    public function setLatitude(float $latitude): GroupRequestFields
+    public function setLatitude(?float $latitude): GroupRequestFields
     {
         $this->latitude = $latitude;
         return $this;
     }
 
     /**
-     * @param float $longitude
+     * @param float|null $longitude
      * @return GroupRequestFields
      */
-    public function setLongitude(float $longitude): GroupRequestFields
+    public function setLongitude(?float $longitude): GroupRequestFields
     {
         $this->longitude = $longitude;
         return $this;
     }
 
     /**
-     * @param string $phone
+     * @param string|null $phone
      * @return GroupRequestFields
      */
-    public function setPhone(string $phone): GroupRequestFields
+    public function setPhone(?string $phone): GroupRequestFields
     {
         $this->phone = $phone;
         return $this;
     }
 
     /**
-     * @param string $workInfoStatus
+     * @param string|null $work_info_status
      * @return GroupRequestFields
      */
-    public function setWorkInfoStatus(string $workInfoStatus): GroupRequestFields
+    public function setWorkInfoStatus(?string $work_info_status): GroupRequestFields
     {
-        $this->workInfoStatus = $workInfoStatus;
+        $this->work_info_status = $work_info_status;
         return $this;
     }
 
     /**
-     * @param string $timetable
+     * @param string|null $timetable
      * @return GroupRequestFields
      */
-    public function setTimetable(string $timetable): GroupRequestFields
+    public function setTimetable(?string $timetable): GroupRequestFields
     {
         $this->timetable = $timetable;
         return $this;
     }
 
     /**
-     * @param bool $isMainAddress
+     * @param bool|null $is_main_address
      * @return GroupRequestFields
      */
-    public function setIsMainAddress(bool $isMainAddress): GroupRequestFields
+    public function setIsMainAddress(?bool $is_main_address): GroupRequestFields
     {
-        $this->isMainAddress = $isMainAddress;
+        $this->is_main_address = $is_main_address;
         return $this;
     }
 }

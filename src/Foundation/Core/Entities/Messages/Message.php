@@ -4,6 +4,7 @@ namespace Hopex\VkSdk\Foundation\Core\Entities\Messages;
 
 use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Foundation\Core\Api\Request;
+use Hopex\VkSdk\Foundation\Core\Entities\Messages\Conversations\ConversationsFieldsCollection;
 use Illuminate\Support\Collection;
 use Throwable;
 
@@ -148,9 +149,14 @@ class Message extends Request
      * @throws Throwable
      * @throws ApiException
      */
-    public function getConversationsById(array $args = []): Collection
+    public function getConversationsById(MessageRequestFields $requestFields, array $fields = []): ConversationsFieldsCollection
     {
-        return $this->call(self::SCOPE . 'getConversationsById', $args);
+        return new ConversationsFieldsCollection($this->call(
+            self::SCOPE . 'getConversationsById',
+            array_merge(get_object_vars($requestFields), [
+                'fields' => $fields
+            ])
+        ));
     }
 
     /**

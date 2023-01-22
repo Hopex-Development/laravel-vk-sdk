@@ -31,7 +31,6 @@ class ServiceProvider extends BaseServiceProvider
         $this->app->bind(LocalPlayersServiceContract::class, LocalPlayersService::class);
 
         $this->app->bind('sdkconfig', SdkConfig::class);
-        $this->app->bind('format', Format::class);
         $this->app->bind('vkapi', Client::class);
         $this->app->bind('requestfields', RequestFields::class);
         $this->app->bind('keyboard', Keyboard::class);
