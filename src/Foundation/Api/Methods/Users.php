@@ -5,9 +5,12 @@ namespace Hopex\VkSdk\Foundation\Api\Methods;
 use Hopex\VkSdk\Exceptions\Api\AccessTokenNotFoundException;
 use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Exceptions\Api\HttpStatusCodeException;
+use Hopex\VkSdk\Facades\RequestBuilders\UsersGetRequestBuilder as _UsersGetRequestBuilder;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersGetFollowersRequestBuilder;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersGetRequestBuilder;
-use Hopex\VkSdk\Facades\RequestBuilders\UsersGetRequestBuilder as _UsersGetRequestBuilder;
+use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersGetSubscriptionsRequestBuilder;
+use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersReportRequestBuilder;
+use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersSearchRequestBuilder;
 use Hopex\VkSdk\Foundation\Api\Responses\Users\UsersGetFollowersResponse;
 use Hopex\VkSdk\Foundation\Api\Responses\Users\UsersGetResponse;
 use Throwable;
@@ -16,6 +19,8 @@ use Throwable;
  * Users.
  *
  * @package Hopex\VkSdk\Foundation\Api\Methods
+ *
+ * @link    https://dev.vk.com/en/method/users
  */
 class Users
 {
@@ -59,15 +64,45 @@ class Users
         return new UsersGetFollowersResponse($builder->execute());
     }
 
-    public function getSubscriptions()
+    /**
+     * Returns a list of IDs of users and communities followed by the user.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.getSubscriptions
+     *
+     * @param UsersGetSubscriptionsRequestBuilder $builder
+     *
+     * @return void
+     */
+    public function getSubscriptions(UsersGetSubscriptionsRequestBuilder $builder)
     {
     }
 
-    public function report()
+    /**
+     * Reports (submits a complaint about) a user.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.report
+     *
+     * @param UsersReportRequestBuilder $builder
+     *
+     * @return void
+     */
+    public function report(UsersReportRequestBuilder $builder)
     {
     }
 
-    public function search()
+    /**
+     * Allows to search for users.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.search
+     *
+     * @param UsersSearchRequestBuilder $builder
+     *
+     * @return void
+     */
+    public function search(UsersSearchRequestBuilder $builder)
     {
     }
 }
