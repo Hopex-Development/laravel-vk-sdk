@@ -8,7 +8,7 @@ use Hopex\VkSdk\Facades\Note;
 
 /**
  * Class MessageToServerFormatter
- * @package Hopex\VkSdk\Formatters\Message
+ * @package Hopex\VkSdk\Formatters\PrivateMessage
  */
 class MessageToServerFormatter implements CanFormatContract
 {

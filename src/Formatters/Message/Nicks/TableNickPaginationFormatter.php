@@ -10,7 +10,7 @@ use Hopex\VkSdk\Models\Player;
 
 /**
  * Class TableNickPaginationFormatter
- * @package Hopex\VkSdk\Formatters\Message\Nicks
+ * @package Hopex\VkSdk\Formatters\PrivateMessage\Nicks
  */
 class TableNickPaginationFormatter implements CanFormatContract
 {

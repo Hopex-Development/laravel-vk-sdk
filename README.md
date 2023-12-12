@@ -51,3 +51,6 @@ php artisan endpoint:generate --host https://domain.com
 ## License
 
 The VK API SDK for Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+pa db:seed --class=VkApplicationSeeder

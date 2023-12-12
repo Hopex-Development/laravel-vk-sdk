@@ -11,32 +11,19 @@ use Illuminate\Support\Collection;
 use Throwable;
 
 /**
- * Class MessageFields
+ * Message fields.
+ *
  * @package Hopex\VkSdk\Foundation\Core\Entities\Messages
  */
 class MessageFields
 {
-    private const DATE = 'date';
-    private const FROM_ID = 'from_id';
-    private const ID = 'id';
-    private const OUT = 'out';
-    private const ATTACHMENTS = 'attachments';
-    private const CONVERSATION_MESSAGE_ID = 'conversation_message_id';
-    private const FORWARD_MESSAGES = 'fwd_messages';
-    private const REPLY_MESSAGES = 'reply_message';
-    private const IMPORTANT = 'important';
-    private const IS_HIDDEN = 'is_hidden';
-    private const PEER_ID = 'peer_id';
-    private const RANDOM_ID = 'random_id';
-    private const TEXT = 'text';
-
-    /**
-     * @var Collection
-     */
     private Collection $message;
 
     /**
-     * MessageFields constructor.
+     * Message fields.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
      * @param Collection $message
      */
     public function __construct(Collection $message)
@@ -45,127 +32,187 @@ class MessageFields
     }
 
     /**
+     * ...
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
      * @return Carbon
      */
     public function getDate(): Carbon
     {
-        return new Carbon($this->message->get(self::DATE));
+        return new Carbon($this->message->get('date'));
     }
 
     /**
-     * @param string $token
+     * ...
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
+     * @param string            $token
      * @param UserRequestFields $userRequestFields
-     * @param array $userProfileFields
-     * @return UserProfileFields
+     * @param array             $userProfileFields
+     *
      * @throws ApiException
      * @throws Throwable
+     * @return UserProfileFields
      */
-    public function getSender(string $token, UserRequestFields $userRequestFields, array $userProfileFields = []): UserProfileFields
-    {
+    public function getSender(
+        string $token,
+        UserRequestFields $userRequestFields,
+        array $userProfileFields = []
+    ): UserProfileFields {
         return new UserProfileFields(
-            collect(VkApi::user($token)
-                ->get($userRequestFields->setProfileFields($userProfileFields))
-                ->first())
+            collect(
+                VkApi::user($token)
+                    ->get($userRequestFields->setProfileFields($userProfileFields))
+                    ->first()
+            )
         );
     }
 
     /**
+     * ...
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
      * @return int
      */
     public function getSenderId(): int
     {
-        return $this->message->get(self::FROM_ID);
+        return $this->message->get('from_id');
     }
 
     /**
+     * ...
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
      * @return int
      */
     public function getId(): int
     {
-        return $this->message->get(self::ID);
+        return $this->message->get('id');
     }
 
     /**
+     * ...
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
      * @return int
      */
     public function getOut(): int
     {
-        return $this->message->get(self::OUT);
+        return $this->message->get('out');
     }
 
     /**
+     * ...
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
      * @return array
      */
     public function getAttachments(): array
     {
-        // TODO: добавить сущность
-        return $this->message->get(self::ATTACHMENTS);
+        // TODO:
+        // добавить сущность
+        return $this->message->get('attachments');
     }
 
     /**
+     * ...
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
      * @return int
      */
     public function getConversationMessageId(): int
     {
-        return $this->message->get(self::CONVERSATION_MESSAGE_ID);
+        return $this->message->get('conversation_message_id');
     }
 
     /**
+     * ...
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
      * @return array
      */
     public function getForwardMessages(): array
     {
-        return $this->message->get(self::FORWARD_MESSAGES, []);
+        return $this->message->get('fwd_messages', []);
     }
 
     /**
-     * @return MessageFields|null
+     * ...
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
+     * @return MessageFields
      */
-    public function getReplyMessage(): ?MessageFields
+    public function getReplyMessage(): MessageFields
     {
-        $replyMessage = $this->message->get(self::REPLY_MESSAGES);
-        return $replyMessage
-            ? new MessageFields(collect($this->message->get(self::REPLY_MESSAGES)))
-            : $replyMessage;
+        return new MessageFields(collect($this->message->get('reply_message')));
     }
 
     /**
+     * ...
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
      * @return bool
      */
     public function isImportant(): bool
     {
-        return $this->message->get(self::IMPORTANT);
+        return $this->message->get('important');
     }
 
     /**
+     * ...
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
      * @return bool
      */
     public function isHidden(): bool
     {
-        return $this->message->get(self::IS_HIDDEN);
+        return $this->message->get('is_hidden');
     }
 
     /**
+     * ...
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
      * @return int
      */
     public function getPeerId(): int
     {
-        return $this->message->get(self::PEER_ID);
+        return $this->message->get('peer_id');
     }
 
     /**
+     * ...
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
      * @return int
      */
     public function getRandomId(): int
     {
-        return $this->message->get(self::RANDOM_ID);
+        return $this->message->get('random_id');
     }
 
     /**
+     * ...
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
      * @return string
      */
     public function getText(): string
     {
-        return $this->message->get(self::TEXT);
+        return $this->message->get('text');
     }
 }

@@ -7,7 +7,7 @@ use Hopex\VkSdk\Facades\SdkConfig;
 
 /**
  * Class ClearOutPutMessageFormatter
- * @package Hopex\VkSdk\Formatters\Message
+ * @package Hopex\VkSdk\Formatters\PrivateMessage
  */
 class ClearOutPutMessageFormatter implements CanFormatContract
 {

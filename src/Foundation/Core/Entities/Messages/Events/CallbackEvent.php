@@ -10,11 +10,11 @@ use Illuminate\Support\Collection;
  */
 class CallbackEvent
 {
-    private const USER_ID = 'user_id';
-    private const PEER_ID = 'peer_id';
+    private const USER_ID = 'userId';
+    private const PEER_ID = 'peerId';
     private const EVENT_ID = 'event_id';
     private const PAYLOAD = 'payload';
-    private const CONVERSATION_MESSAGE_ID = 'conversation_message_id';
+    private const CONVERSATION_MESSAGE_ID = 'conversationMessageId';
 
     /**
      * @var Collection

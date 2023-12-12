@@ -6,7 +6,7 @@ use Hopex\VkSdk\Contracts\CanFormatContract;
 
 /**
  * Class PlayersTableMessageFormatter
- * @package Hopex\VkSdk\Formatters\Message
+ * @package Hopex\VkSdk\Formatters\PrivateMessage
  */
 class PlayersTableMessageFormatter implements CanFormatContract
 {

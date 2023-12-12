@@ -9,7 +9,7 @@ use Hopex\VkSdk\Models\Player;
 
 /**
  * Class SelfNickNameFormatter
- * @package Hopex\VkSdk\Formatters\Message
+ * @package Hopex\VkSdk\Formatters\PrivateMessage
  */
 class SelfNickNameFormatter implements CanFormatContract
 {

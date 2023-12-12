@@ -7,7 +7,7 @@ use Hopex\VkSdk\Exceptions\Formatters\InvalidInputDataTypeException;
 
 /**
  * Class SliceInputMessageFormatter
- * @package Hopex\VkSdk\Formatters\Message
+ * @package Hopex\VkSdk\Formatters\PrivateMessage
  */
 class SliceInputMessageFormatter implements CanFormatContract
 {

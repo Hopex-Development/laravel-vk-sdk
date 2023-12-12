@@ -27,18 +27,16 @@
     "autoload": {
         "psr-4": {
             "Hopex\\VkSdk\\": "src/"
-        }
+        },
+        "files": [
+            "src/vendor/helpers.php"
+        ]
     },
     "extra": {
         "laravel": {
             "providers": [
                 "Hopex\\VkSdk\\Providers\\ServiceProvider"
-            ],
-            "aliases": {
-                "VkApi": "Hopex\\VkSdk\\Facades\\VkApi",
-                "SdkConfig": "Hopex\\VkSdk\\Facades\\SdkConfig",
-                "RequestFields": "Hopex\\VkSdk\\Facades\\RequestFields"
-            }
+            ]
         }
     },
     "config": {

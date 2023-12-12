@@ -9,7 +9,7 @@ use Hopex\VkSdk\Models\Player;
 
 /**
  * Class TableNickFormatter
- * @package Hopex\VkSdk\Formatters\Message\Nicks
+ * @package Hopex\VkSdk\Formatters\PrivateMessage\Nicks
  */
 class TableNickFormatter implements CanFormatContract
 {

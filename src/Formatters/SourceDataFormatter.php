@@ -6,15 +6,22 @@ use Hopex\VkSdk\Contracts\CanFormatContract;
 use Hopex\VkSdk\Exceptions\Formatters\InvalidInputDataTypeException;
 
 /**
- * Class SourceDataFormatter
+ * SourceDataFormatter.
+ *
  * @package Hopex\VkSdk\Formatters
  */
 class SourceDataFormatter implements CanFormatContract
 {
     /**
+     * ...
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
      * @param $data
-     * @return string
+     *
      * @throws InvalidInputDataTypeException
+     *
+     * @return string
      */
     public function format($data): string
     {

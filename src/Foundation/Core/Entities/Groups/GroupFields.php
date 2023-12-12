@@ -17,7 +17,7 @@ class GroupFields
 {
     private const ID = 'id';
 
-    private const GROUP_ID = 'group_id';
+    private const GROUP_ID = 'groupId';
 
     private const TITLE = 'title';
 

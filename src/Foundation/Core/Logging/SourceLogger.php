@@ -3,17 +3,14 @@
 namespace Hopex\VkSdk\Foundation\Core\Logging;
 
 /**
- * Class SourceLogger
+ * SourceLogging.
+ *
  * @package Hopex\VkSdk\Foundation\Core\Logging
  */
-class SourceLogger
+class SourceLogger extends Logging
 {
-    use HasLogging {
-        HasLogging::__construct as loggingConstruct;
-    }
-
     public function __construct()
     {
-        $this->loggingConstruct('source');
+        parent::__construct('source');
     }
 }

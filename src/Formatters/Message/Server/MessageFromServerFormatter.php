@@ -9,7 +9,7 @@ use Hopex\VkSdk\Foundation\Core\Entities\Server\Message;
 
 /**
  * Class MessageFromServerFormatter
- * @package Hopex\VkSdk\Formatters\Message\Server
+ * @package Hopex\VkSdk\Formatters\PrivateMessage\Server
  */
 class MessageFromServerFormatter implements CanFormatContract
 {

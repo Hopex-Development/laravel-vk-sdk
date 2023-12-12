@@ -9,7 +9,7 @@ use Hopex\VkSdk\Foundation\Core\Entities\Server\Mute;
 
 /**
  * Class NewMuteFromServerFormatter
- * @package Hopex\VkSdk\Formatters\Message\Server
+ * @package Hopex\VkSdk\Formatters\PrivateMessage\Server
  */
 class NewMuteFromServerFormatter implements CanFormatContract
 {

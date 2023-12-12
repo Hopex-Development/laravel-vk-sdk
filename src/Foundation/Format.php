@@ -5,16 +5,21 @@ namespace Hopex\VkSdk\Foundation;
 use Hopex\VkSdk\Contracts\CanFormatContract;
 
 /**
- * Class Format
+ * Format.
+ *
  * @package Hopex\VkSdk\Foundation
  */
 class Format implements CanFormatContract
 {
-    /** @var array */
     private array $formatters = [];
 
     /**
+     * ...
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
      * @param string $formatter
+     *
      * @return $this
      */
     public function with(string $formatter): static
@@ -28,7 +33,12 @@ class Format implements CanFormatContract
     }
 
     /**
+     * ...
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
      * @param $data
+     *
      * @return mixed
      */
     public function format($data): mixed

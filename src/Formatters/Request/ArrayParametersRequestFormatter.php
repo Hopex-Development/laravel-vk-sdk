@@ -5,13 +5,19 @@ namespace Hopex\VkSdk\Formatters\Request;
 use Hopex\VkSdk\Contracts\CanFormatContract;
 
 /**
- * Class ArrayParametersRequestFormatter
+ * ArrayParametersRequestFormatter.
+ *
  * @package Hopex\VkSdk\Formatters\Request
  */
 class ArrayParametersRequestFormatter implements CanFormatContract
 {
     /**
+     * format.
+     *
+     * @version 0.0.0
+     *
      * @param $data
+     *
      * @return mixed
      */
     public function format($data): mixed
@@ -20,8 +26,8 @@ class ArrayParametersRequestFormatter implements CanFormatContract
             foreach ($data as $key => $value) {
                 if (is_array($value)) {
                     $data[$key] = implode(',', $value);
-                } else if (is_bool($value)) {
-                    $data[$key] = $value ? 1 : 0;
+                } elseif (is_bool($value)) {
+                    $data[$key] = (string)$value;
                 }
             }
         }

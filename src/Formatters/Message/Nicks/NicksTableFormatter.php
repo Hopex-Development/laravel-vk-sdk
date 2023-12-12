@@ -10,7 +10,7 @@ use Hopex\VkSdk\Models\Player;
 
 /**
  * Class NicksTableFormatter
- * @package Hopex\VkSdk\Formatters\Message\Nicks
+ * @package Hopex\VkSdk\Formatters\PrivateMessage\Nicks
  */
 class NicksTableFormatter implements CanFormatContract
 {

@@ -7,7 +7,7 @@ use Hopex\VkSdk\Exceptions\Formatters\InvalidInputDataTypeException;
 
 /**
  * Class ClearMentionsMessageFormatter
- * @package Hopex\VkSdk\Formatters\Message
+ * @package Hopex\VkSdk\Formatters\PrivateMessage
  */
 class ClearMentionsMessageFormatter implements CanFormatContract
 {

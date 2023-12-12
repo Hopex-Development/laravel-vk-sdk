@@ -8,7 +8,7 @@ use Hopex\VkSdk\Facades\Note;
 
 /**
  * Class EditNickNameFormatter
- * @package Hopex\VkSdk\Formatters\Message
+ * @package Hopex\VkSdk\Formatters\PrivateMessage
  */
 class EditNickNameFormatter implements CanFormatContract
 {

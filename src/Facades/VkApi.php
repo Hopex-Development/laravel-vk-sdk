@@ -2,20 +2,21 @@
 
 namespace Hopex\VkSdk\Facades;
 
-use Hopex\VkSdk\Foundation\Core\Api\Client;
+use Hopex\VkSdk\Foundation\Api\Methods\Users;
 use Illuminate\Support\Facades\Facade;
+use Hopex\VkSdk\Foundation\Api\VkApi as _VkApi;
 
 /**
- * Class VkApi
+ * VkApi.
+ *
+ * @method static Users users()
+ *
  * @package Hopex\VkSdk\Facades
  */
 class VkApi extends Facade
 {
-    /**
-     * @return string
-     */
     protected static function getFacadeAccessor(): string
     {
-        return Client::class;
+        return _VkApi::class;
     }
 }

@@ -10,5 +10,10 @@ use Hopex\VkSdk\Exceptions\SdkException;
  */
 class UnknownEventException extends SdkException
 {
-    public $message = 'Unknown callback event';
+    public $message = 'The event cannot be processed because the [%s] method is not implemented';
+
+    public function __construct(string $eventName)
+    {
+        parent::__construct($this->format($eventName));
+    }
 }

@@ -15,7 +15,7 @@ class CareerField
     private const CITY_ID = 'city_id';
     private const COUNTRY_ID = 'country_id';
     private const FROM = 'from';
-    private const GROUP_ID = 'group_id';
+    private const GROUP_ID = 'groupId';
     private const POSITION = 'position';
 
     /**

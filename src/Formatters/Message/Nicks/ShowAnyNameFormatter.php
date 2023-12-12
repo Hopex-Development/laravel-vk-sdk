@@ -9,7 +9,7 @@ use Hopex\VkSdk\Models\Player;
 
 /**
  * Class ShowAnyNameFormatter
- * @package Hopex\VkSdk\Formatters\Message
+ * @package Hopex\VkSdk\Formatters\PrivateMessage
  */
 class ShowAnyNameFormatter implements CanFormatContract
 {

@@ -7,7 +7,7 @@ use Hopex\VkSdk\Exceptions\Formatters\InvalidInputDataTypeException;
 
 /**
  * Class ClearSpacesMessageFormatter
- * @package Hopex\VkSdk\Formatters\Message
+ * @package Hopex\VkSdk\Formatters\PrivateMessage
  */
 class ClearSpacesMessageFormatter implements CanFormatContract
 {

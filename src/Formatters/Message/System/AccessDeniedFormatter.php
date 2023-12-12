@@ -8,19 +8,15 @@ use Hopex\VkSdk\Exceptions\Formatters\InvalidInputDataTypeException;
 use Hopex\VkSdk\Facades\Note;
 use Hopex\VkSdk\Facades\RequestFields;
 use Hopex\VkSdk\Facades\VkApi;
-use Hopex\VkSdk\Foundation\Core\Callback\SessionTokens;
-use Hopex\VkSdk\Foundation\Core\Entities\Server\Message;
 use Hopex\VkSdk\Foundation\Core\Entities\Users\UserProfileFields;
 use Throwable;
 
 /**
  * Class AccessDeniedFormatter
- * @package Hopex\VkSdk\Formatters\Message\System
+ * @package Hopex\VkSdk\Formatters\PrivateMessage\System
  */
 class AccessDeniedFormatter implements CanFormatContract
 {
-    use SessionTokens;
-
     /**
      * @param $data
      * @return string
@@ -36,7 +32,7 @@ class AccessDeniedFormatter implements CanFormatContract
 
         return str_replace('%MODERATORS%', implode(', ', array_map(function ($moderator) {
             $name = (new UserProfileFields(
-                collect(VkApi::user($this->getServiceToken())
+                collect(VkApi::user($this->getServiceToken()) // todo
                     ->get(RequestFields::user()->setUserId($moderator))
                     ->first()
                 )

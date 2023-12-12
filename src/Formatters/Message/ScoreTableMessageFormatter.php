@@ -9,7 +9,7 @@ use Throwable;
 
 /**
  * Class ScoreTableMessageFormatter
- * @package Hopex\VkSdk\Formatters\Message
+ * @package Hopex\VkSdk\Formatters\PrivateMessage
  */
 class ScoreTableMessageFormatter implements CanFormatContract
 {
