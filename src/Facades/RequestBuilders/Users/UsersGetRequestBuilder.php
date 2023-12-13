@@ -1,6 +1,6 @@
 <?php
 
-namespace Hopex\VkSdk\Facades\RequestBuilders;
+namespace Hopex\VkSdk\Facades\RequestBuilders\Users;
 
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\RequestBuilder;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersGetRequestBuilder as _UsersGetRequestBuilder;
@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * Users get request builder.
  *
- * @package Hopex\VkSdk\Facades\RequestBuilders
+ * @package Hopex\VkSdk\Facades\RequestBuilders\Users
  *
  * @method static _UsersGetRequestBuilder query(int $id = null) Read more in "See also".
  *

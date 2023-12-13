@@ -2,8 +2,8 @@
 
 namespace Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Traits;
 
+use Hopex\VkSdk\Facades\SimpleRequestBuilders\Users\UsersFields as _UsersFields;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced\UsersFields;
-use Hopex\VkSdk\Facades\SimpleRequestBuilders\UsersFields as _UsersFields;
 
 /**
  * HasUsersFields.

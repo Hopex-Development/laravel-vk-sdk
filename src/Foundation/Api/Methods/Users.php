@@ -5,7 +5,11 @@ namespace Hopex\VkSdk\Foundation\Api\Methods;
 use Hopex\VkSdk\Exceptions\Api\AccessTokenNotFoundException;
 use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Exceptions\Api\HttpStatusCodeException;
-use Hopex\VkSdk\Facades\RequestBuilders\UsersGetRequestBuilder as _UsersGetRequestBuilder;
+use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersGetFollowersRequestBuilder as _UsersGetFollowersRequestBuilder;
+use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersGetRequestBuilder as _UsersGetRequestBuilder;
+use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersGetSubscriptionsRequestBuilder as _UsersGetSubscriptionsRequestBuilder;
+use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersReportRequestBuilder as _UsersReportRequestBuilder;
+use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersSearchRequestBuilder as _UsersSearchRequestBuilder;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersGetFollowersRequestBuilder;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersGetRequestBuilder;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersGetSubscriptionsRequestBuilder;
@@ -50,7 +54,7 @@ class Users
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/method/users.getFollowers
      *
-     * @param UsersGetFollowersRequestBuilder $builder
+     * @param _UsersGetFollowersRequestBuilder|UsersGetFollowersRequestBuilder $builder
      *
      * @throws AccessTokenNotFoundException
      * @throws ApiException
@@ -59,7 +63,7 @@ class Users
      *
      * @return UsersGetFollowersResponse
      */
-    public function getFollowers(UsersGetFollowersRequestBuilder $builder): UsersGetFollowersResponse
+    public function getFollowers(_UsersGetFollowersRequestBuilder|UsersGetFollowersRequestBuilder $builder): UsersGetFollowersResponse
     {
         return new UsersGetFollowersResponse($builder->execute());
     }
@@ -70,11 +74,11 @@ class Users
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/method/users.getSubscriptions
      *
-     * @param UsersGetSubscriptionsRequestBuilder $builder
+     * @param _UsersGetSubscriptionsRequestBuilder|UsersGetSubscriptionsRequestBuilder $builder
      *
      * @return void
      */
-    public function getSubscriptions(UsersGetSubscriptionsRequestBuilder $builder)
+    public function getSubscriptions(_UsersGetSubscriptionsRequestBuilder|UsersGetSubscriptionsRequestBuilder $builder)
     {
     }
 
@@ -84,11 +88,11 @@ class Users
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/method/users.report
      *
-     * @param UsersReportRequestBuilder $builder
+     * @param _UsersReportRequestBuilder|UsersReportRequestBuilder $builder
      *
      * @return void
      */
-    public function report(UsersReportRequestBuilder $builder)
+    public function report(_UsersReportRequestBuilder|UsersReportRequestBuilder $builder)
     {
     }
 
@@ -98,11 +102,11 @@ class Users
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/method/users.search
      *
-     * @param UsersSearchRequestBuilder $builder
+     * @param _UsersSearchRequestBuilder|UsersSearchRequestBuilder $builder
      *
      * @return void
      */
-    public function search(UsersSearchRequestBuilder $builder)
+    public function search(_UsersSearchRequestBuilder|UsersSearchRequestBuilder $builder)
     {
     }
 }

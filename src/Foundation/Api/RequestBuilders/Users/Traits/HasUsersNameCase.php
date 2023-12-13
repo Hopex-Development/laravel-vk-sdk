@@ -2,9 +2,9 @@
 
 namespace Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Traits;
 
+use Hopex\VkSdk\Facades\SimpleRequestBuilders\Users\UsersNameCases as _UsersNameCases;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced\UsersFields;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced\UsersNameCases;
-use Hopex\VkSdk\Facades\SimpleRequestBuilders\UsersNameCases as _UsersNameCases;
 
 /**
  * HasUsersNameCase.

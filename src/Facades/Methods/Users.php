@@ -2,17 +2,11 @@
 
 namespace Hopex\VkSdk\Facades\Methods;
 
-use Illuminate\Support\Facades\Facade;
+use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersGetRequestBuilder as _UsersGetRequestBuilder;
 use Hopex\VkSdk\Foundation\Api\Methods\Users as _Users;
-use Hopex\VkSdk\Exceptions\Api\AccessTokenNotFoundException;
-use Hopex\VkSdk\Exceptions\Api\ApiException;
-use Hopex\VkSdk\Exceptions\Api\HttpStatusCodeException;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersGetFollowersRequestBuilder;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersGetRequestBuilder;
-use Hopex\VkSdk\Facades\RequestBuilders\UsersGetRequestBuilder as _UsersGetRequestBuilder;
-use Hopex\VkSdk\Foundation\Api\Responses\Users\UsersGetFollowersResponse;
-use Hopex\VkSdk\Foundation\Api\Responses\Users\UsersGetResponse;
-use Throwable;
+use Illuminate\Support\Facades\Facade;
 
 /**
  * Users.

@@ -1,14 +1,14 @@
 <?php
 
-namespace Hopex\VkSdk\Facades\SimpleRequestBuilders;
+namespace Hopex\VkSdk\Facades\SimpleRequestBuilders\Users;
 
-use Illuminate\Support\Facades\Facade;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced\UsersNameCases as _UsersNameCases;
+use Illuminate\Support\Facades\Facade;
 
 /**
  * UsersNameCases.
  *
- * @package Hopex\VkSdk\Facades\SimpleRequestBuilders
+ * @package Hopex\VkSdk\Facades\SimpleRequestBuilders\Users
  *
  * @method static _UsersNameCases query()
  */
