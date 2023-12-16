@@ -16,6 +16,8 @@ use Hopex\VkSdk\Foundation\Api\Entities\Entity;
  * @property-read int    $faculty
  * @property-read string $universityName
  * @property-read int    $university
+ * @property-read string $educationForm
+ * @property-read string $educationStatus
  */
 class Education extends Entity
 {
@@ -27,7 +29,7 @@ class Education extends Entity
      *
      * @return int
      */
-    public function university(): int
+    public function universityId(): int
     {
         return $this->university ?? 0;
     }
@@ -53,7 +55,7 @@ class Education extends Entity
      *
      * @return int
      */
-    public function faculty(): int
+    public function facultyId(): int
     {
         return $this->faculty ?? 0;
     }
@@ -79,8 +81,62 @@ class Education extends Entity
      *
      * @return int
      */
-    public function graduation(): int
+    public function graduationYear(): int
     {
         return $this->graduation ?? 0;
+    }
+
+    /**
+     * Format of education.
+     * <br><br>
+     *
+     * Possible values:
+     * * Full-time
+     * * Part-time
+     * * Distance Learning
+     * * External
+     * * Distance learning
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/reference/objects/user#education
+     *
+     * @return string
+     */
+    public function educationForm(): string
+    {
+        return $this->educationForm ?? '';
+    }
+
+    /**
+     * Education status.
+     * <br><br>
+     *
+     * Possible values:
+     * * Undergraduate applicant
+     * * Student (Specialist)
+     * * Student (Bachelor's)
+     * * Student (Master's)
+     * * Alumnus (Specialist)
+     * * Alumnus (Bachelor's)
+     * * Alumnus (Master's)
+     * * Postgraduate Student
+     * * Candidate of Sciences
+     * * PhD
+     * * Intern
+     * * Resident
+     * * Postgraduate applicant
+     * * Assistant
+     * * Doctoral student
+     * * Adjunct professor
+     * * Researcher
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/reference/objects/user#education
+     *
+     * @return string
+     */
+    public function educationStatus(): string
+    {
+        return $this->educationStatus ?? '';
     }
 }
