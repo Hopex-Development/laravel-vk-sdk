@@ -17,21 +17,16 @@ trait HasUsers
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      *
-     * @return Collection|User|false
+     * @return Collection
      */
-    public function users(): Collection|User|false
+    public function users(): Collection
     {
         $items = data_get($this->fields, 'items', []);
-        $userCreate = fn(mixed $fields) => new User(is_array($fields) ? $fields : ['id' => $fields]);
 
-        if (count($items) > 1) {
-            return collect(
-                array_map(fn(array $response) => $userCreate($response), $items)
-            );
-        } elseif (count($items) == 1) {
-            return $userCreate($items[0]);
+        if (count($items)) {
+            return collect(array_map(fn(array $item) => new User($item), $items));
         } else {
-            return false;
+            return collect();
         }
     }
 }
