@@ -370,12 +370,41 @@ class UsersSearchRequestBuilder extends RequestBuilder
     }
 
     /**
-     * Consider the presence of a photo.
+     * Search only for those who are online.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.search
+     *
+     * @return static
+     */
+    public function onlineOnly(): static
+    {
+        return $this->online(SearchOnline::ONLINE);
+    }
+
+    /**
+     * Search for everyone, regardless of the status of `online`
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.search
+     *
+     * @return static
+     */
+    public function onlineAll(): static
+    {
+        return $this->online(SearchOnline::ALL);
+    }
+
+    /**
+     * Take into account the presence of a photo.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/method/users.search
      *
      * @param SearchHasPhoto $hasPhoto
+     *
+     * @see self::withPhoto()
+     * @see self::withoutPhoto()
      *
      * @return static
      */
@@ -384,6 +413,32 @@ class UsersSearchRequestBuilder extends RequestBuilder
         return $this->addField([
             __FUNCTION__ => $hasPhoto->value,
         ]);
+    }
+
+    /**
+     * Be sure to take into account the presence of a photo.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.search
+     *
+     * @return static
+     */
+    public function withPhoto(): static
+    {
+        return $this->hasPhoto(SearchHasPhoto::YES);
+    }
+
+    /**
+     * Do not take into account the presence of a photo.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.search
+     *
+     * @return static
+     */
+    public function withoutPhoto(): static
+    {
+        return $this->hasPhoto(SearchHasPhoto::NO);
     }
 
     /**
