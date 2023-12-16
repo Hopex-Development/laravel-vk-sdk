@@ -92,7 +92,7 @@ use Illuminate\Support\Collection;
  * @property-read array   $counters
  * @property-read mixed   $connections
  * @property-read int     $commonCount
- * @property-read object  $city
+ * @property-read array   $city
  * @property-read array   $career
  * @property-read int     $canWritePrivateMessage
  * @property-read int     $canSendFriendRequest
@@ -121,6 +121,8 @@ use Illuminate\Support\Collection;
  * @property-read string  $lastNameAcc
  * @property-read string  $lastNameIns
  * @property-read string  $lastNameAbl
+ * @property-read string  $educationForm
+ * @property-read string  $educationStatus
  */
 class User extends Entity
 {
@@ -386,7 +388,7 @@ class User extends Entity
      */
     public function city(): City
     {
-        return new City((array)($this->city ?? []));
+        return new City($this->city ?? []);
     }
 
     /**
@@ -440,11 +442,13 @@ class User extends Entity
      */
     public function contacts(): Contacts
     {
-        return new Contacts([
-            $this->mobilePhone,
-            $this->homePhone,
-            $this->site,
-        ]);
+        return new Contacts(
+            collect($this->fields)->only([
+                snake('mobilePhone'),
+                snake('homePhone'),
+                snake('site'),
+            ])->toArray()
+        );
     }
 
     /**
@@ -484,7 +488,7 @@ class User extends Entity
      */
     public function country(): Country
     {
-        return new Country((array)($this->country ?? []));
+        return new Country($this->country ?? []);
     }
 
     /**
@@ -524,13 +528,17 @@ class User extends Entity
      */
     public function education(): Education
     {
-        return new Education([
-            $this->graduation,
-            $this->facultyName,
-            $this->faculty,
-            $this->universityName,
-            $this->university,
-        ]);
+        return new Education(
+            collect($this->fields)->only([
+                snake('graduation'),
+                snake('facultyName'),
+                snake('faculty'),
+                snake('universityName'),
+                snake('university'),
+                snake('educationForm'),
+                snake('educationStatus'),
+            ])->toArray()
+        );
     }
 
     /**
@@ -549,8 +557,8 @@ class User extends Entity
     /**
      * Name in Namely case.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link    https://dev.vk.com/en/reference/objects/user#first_name_%7Bcase%7D
+     * @version    VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link       https://dev.vk.com/en/reference/objects/user#first_name_%7Bcase%7D
      *
      * @return string
      * @deprecated Use the method {@see User::firstName()}
@@ -563,8 +571,8 @@ class User extends Entity
     /**
      * Name in Parent case.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link    https://dev.vk.com/en/reference/objects/user#first_name_%7Bcase%7D
+     * @version    VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link       https://dev.vk.com/en/reference/objects/user#first_name_%7Bcase%7D
      *
      * @return string
      * @deprecated Use the method {@see User::firstName()}
@@ -577,8 +585,8 @@ class User extends Entity
     /**
      * Name in Dative case.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link    https://dev.vk.com/en/reference/objects/user#first_name_%7Bcase%7D
+     * @version    VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link       https://dev.vk.com/en/reference/objects/user#first_name_%7Bcase%7D
      *
      * @return string
      * @deprecated Use the method {@see User::firstName()}
@@ -591,8 +599,8 @@ class User extends Entity
     /**
      * Name in Vindictive case.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link    https://dev.vk.com/en/reference/objects/user#first_name_%7Bcase%7D
+     * @version    VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link       https://dev.vk.com/en/reference/objects/user#first_name_%7Bcase%7D
      *
      * @return string
      * @deprecated Use the method {@see User::firstName()}
@@ -605,8 +613,8 @@ class User extends Entity
     /**
      * Name in Creatively case.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link    https://dev.vk.com/en/reference/objects/user#first_name_%7Bcase%7D
+     * @version    VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link       https://dev.vk.com/en/reference/objects/user#first_name_%7Bcase%7D
      *
      * @return string
      * @deprecated Use the method {@see User::firstName()}
@@ -619,8 +627,8 @@ class User extends Entity
     /**
      * Name in Offered case.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link    https://dev.vk.com/en/reference/objects/user#first_name_%7Bcase%7D
+     * @version    VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link       https://dev.vk.com/en/reference/objects/user#first_name_%7Bcase%7D
      *
      * @return string
      * @deprecated Use the method {@see User::firstName()}
@@ -783,8 +791,8 @@ class User extends Entity
     /**
      * Last name in Namely case.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link    https://dev.vk.com/en/reference/objects/user#last_name_%7Bcase%7D
+     * @version    VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link       https://dev.vk.com/en/reference/objects/user#last_name_%7Bcase%7D
      *
      * @return string
      * @deprecated Use the method {@see User::lastName()}
@@ -797,8 +805,8 @@ class User extends Entity
     /**
      * Last name in Parent case.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link    https://dev.vk.com/en/reference/objects/user#last_name_%7Bcase%7D
+     * @version    VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link       https://dev.vk.com/en/reference/objects/user#last_name_%7Bcase%7D
      *
      * @return string
      * @deprecated Use the method {@see User::lastName()}
@@ -811,8 +819,8 @@ class User extends Entity
     /**
      * Last name in Dative case.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link    https://dev.vk.com/en/reference/objects/user#last_name_%7Bcase%7D
+     * @version    VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link       https://dev.vk.com/en/reference/objects/user#last_name_%7Bcase%7D
      *
      * @return string
      * @deprecated Use the method {@see User::lastName()}
@@ -825,8 +833,8 @@ class User extends Entity
     /**
      * Last name in Vindictive case.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link    https://dev.vk.com/en/reference/objects/user#last_name_%7Bcase%7D
+     * @version    VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link       https://dev.vk.com/en/reference/objects/user#last_name_%7Bcase%7D
      *
      * @return string
      * @deprecated Use the method {@see User::lastName()}
@@ -839,8 +847,8 @@ class User extends Entity
     /**
      * Last name in Creatively case.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link    https://dev.vk.com/en/reference/objects/user#last_name_%7Bcase%7D
+     * @version    VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link       https://dev.vk.com/en/reference/objects/user#last_name_%7Bcase%7D
      *
      * @return string
      * @deprecated Use the method {@see User::lastName()}
@@ -853,8 +861,8 @@ class User extends Entity
     /**
      * Last name in Offered case.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link    https://dev.vk.com/en/reference/objects/user#last_name_%7Bcase%7D
+     * @version    VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link       https://dev.vk.com/en/reference/objects/user#last_name_%7Bcase%7D
      *
      * @return string
      * @deprecated Use the method {@see User::lastName()}
