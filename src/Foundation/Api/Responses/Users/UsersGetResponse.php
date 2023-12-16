@@ -2,9 +2,11 @@
 
 namespace Hopex\VkSdk\Foundation\Api\Responses\Users;
 
+use Hopex\VkSdk\Foundation\Api\Entities\Basic\User;
 use Hopex\VkSdk\Foundation\Api\Responses\Response;
 use Hopex\VkSdk\Foundation\Api\Responses\Users\Traits\HasCount;
 use Hopex\VkSdk\Foundation\Api\Responses\Users\Traits\HasUsers;
+use Illuminate\Support\Collection;
 
 /**
  * Returns enhanced user information.
@@ -36,6 +38,21 @@ use Hopex\VkSdk\Foundation\Api\Responses\Users\Traits\HasUsers;
  */
 class UsersGetResponse extends Response
 {
-    use HasUsers;
-    use HasCount;
+    /**
+     * Returns users.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
+     * @return Collection
+     */
+    public function users(): Collection
+    {
+        $items = $this->fields ?? [];
+
+        if (count($items)) {
+            return collect(array_map(fn(array $item) => new User($item), $items));
+        } else {
+            return collect();
+        }
+    }
 }
