@@ -26,23 +26,20 @@ class UsersGetRequestBuilder extends RequestBuilder
     protected string $method = 'users.get';
 
     /**
-     * The comma-listed user IDs or their short names (`screenName`).
+     * The array user IDs or their short names (`screenName`).
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/method/users.get
      *
-     * @param array|Collection $users    The comma-listed user IDs or their short names.
-     * @param callable|null    $callback The custom ID extraction function.
+     * @param array|Collection $users    The user IDs or their short names.
      *
      * @return $this
      */
-    public function userIds(array|Collection $users, callable $callback = null): static
+    public function userIds(array|Collection $users): static
     {
         $implode = fn($users) => implode(',', $users);
 
-        if ($callback) {
-            $users = $callback($users);
-        } elseif (is_array($users)) {
+        if (is_array($users)) {
             $users = $implode($users);
         } elseif ($users instanceof Collection) {
             $users = $implode($users->toArray());
@@ -53,5 +50,20 @@ class UsersGetRequestBuilder extends RequestBuilder
         ]);
 
         return $this;
+    }
+
+    /**
+     * The comma-listed user IDs or their short names (`screenName`).
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.get
+     *
+     * @param int|string ...$ids The user IDs or their short names.
+     *
+     * @return $this
+     */
+    public function userIdsCommaList(...$ids): static
+    {
+        return $this->userIds($ids);
     }
 }
