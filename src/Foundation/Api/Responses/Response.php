@@ -3,6 +3,7 @@
 namespace Hopex\VkSdk\Foundation\Api\Responses;
 
 use Hopex\VkSdk\Exceptions\Api\ApiException;
+use Hopex\VkSdk\Foundation\Api\Entities\Entity;
 use Throwable;
 
 /**
@@ -10,28 +11,29 @@ use Throwable;
  *
  * @package Hopex\VkSdk\Foundation\Api\Responses
  */
-abstract class Response
+abstract class Response extends Entity
 {
-    protected array $response;
-
     /**
      * The base object describing the VK response.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      *
-     * @param array $response
+     * @param array $fields
      *
      * @throws Throwable
      * @throws ApiException
      */
-    public function __construct(array $response)
+    public function __construct(array $fields)
     {
+        parent::__construct($fields);
+
         throw_if(
-            !empty(data_get($response, 'error')),
+            !empty(data_get($fields, 'error')),
             ApiException::class,
-            data_get($response, 'error.error_code', 1)
+            data_get($fields, 'error.error_code', 1)
         );
-        $this->response = data_get($response, 'response', $response);
+
+        $this->fields = data_get($fields, 'response', $fields);
     }
 
     /**
@@ -45,6 +47,6 @@ abstract class Response
      */
     public function __get(string $field): mixed
     {
-        return data_get($this->response, snake($field));
+        return data_get($this->fields, snake($field));
     }
 }

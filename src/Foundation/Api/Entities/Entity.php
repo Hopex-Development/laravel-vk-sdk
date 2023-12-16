@@ -3,6 +3,7 @@
 namespace Hopex\VkSdk\Foundation\Api\Entities;
 
 use Illuminate\Contracts\Support\Jsonable;
+use JetBrains\PhpStorm\NoReturn;
 use JsonSerializable;
 
 /**
@@ -14,7 +15,7 @@ use JsonSerializable;
  */
 abstract class Entity implements JsonSerializable, Jsonable
 {
-    private array $fields;
+    protected array $fields;
 
     /**
      * Base entity.
@@ -29,9 +30,36 @@ abstract class Entity implements JsonSerializable, Jsonable
     }
 
     /**
+     * Dump current entity.
+     *
+     * @version SDK: 3
+     *
+     * @return void
+     *
+     * @author  Alexandre Daubois <alex.daubois@gmail.com>
+     * @author  Nicolas Grekas <p@tchwork.com>
+     */
+    public function dump(): void
+    {
+        dump($this->fields);
+    }
+
+    /**
+     * Die and dump current entity.
+     *
+     * @version SDK: 3
+     *
+     * @return void
+     */
+    #[NoReturn] public function dd(): void
+    {
+        dd($this->fields);
+    }
+
+    /**
      * Get a field in any case.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
      * @param string $field Current field.
      *
@@ -43,9 +71,9 @@ abstract class Entity implements JsonSerializable, Jsonable
     }
 
     /**
-     * Version of api entity.
+     * Version of api entity (if exists).
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
      * @return int
      */
@@ -57,7 +85,7 @@ abstract class Entity implements JsonSerializable, Jsonable
     /**
      * @inheritdoc
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      */
     public function toJson($options = 0): bool|string
     {
@@ -67,7 +95,7 @@ abstract class Entity implements JsonSerializable, Jsonable
     /**
      * @inheritdoc
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      */
     public function jsonSerialize(): array
     {

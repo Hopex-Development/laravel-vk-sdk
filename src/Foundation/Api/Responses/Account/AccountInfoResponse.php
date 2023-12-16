@@ -34,17 +34,17 @@ class AccountInfoResponse extends Response
     /**
      * Account info response.
      *
-     * @param array $response
+     * @param array $fields
      *
      * @throws ApiException
      * @throws Throwable
      */
-    public function __construct(array $response)
+    public function __construct(array $fields)
     {
-        parent::__construct($response);
+        parent::__construct($fields);
 
         $properties = (new ReflectionClass($this))->getProperties(ReflectionProperty::IS_PRIVATE);
-        foreach ($this->response as $parameter => $value) {
+        foreach ($this->fields as $parameter => $value) {
             $property = camel(str_replace('2', 'two_', $parameter));
             if (in_array($property, $properties)) {
                 $this->{$property} = $value;

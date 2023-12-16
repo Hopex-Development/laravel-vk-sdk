@@ -22,6 +22,6 @@ class UsersReportResponse extends Response
      */
     public function completion(): bool
     {
-        return compare(1, $this->response);
+        return compare(1, $this->fields);
     }
 }

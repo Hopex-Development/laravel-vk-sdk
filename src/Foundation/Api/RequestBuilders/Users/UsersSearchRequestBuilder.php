@@ -557,6 +557,32 @@ class UsersSearchRequestBuilder extends RequestBuilder
     }
 
     /**
+     * Search among friends.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.search
+     *
+     * @return static
+     */
+    public function fromFriendsList(): static
+    {
+        return $this->fromList(SearchFromList::FRIENDS);
+    }
+
+    /**
+     * Search among subscriptions.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.search
+     *
+     * @return static
+     */
+    public function fromSubscriptionsList(): static
+    {
+        return $this->fromList(SearchFromList::SUBSCRIPTIONS);
+    }
+
+    /**
      * Referrer, where the method was called.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3

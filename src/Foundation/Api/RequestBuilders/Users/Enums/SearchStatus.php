@@ -12,42 +12,42 @@ namespace Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Enums;
 enum SearchStatus: int
 {
     /**
-     * Unmarried (not married).
+     * @var int Unmarried (not married).
      */
     case UNMARRIED = 1;
 
     /**
-     * Meet.
+     * @var int Meet.
      */
     case MEET = 2;
 
     /**
-     * Engaged.
+     * @var int Engaged.
      */
     case ENGAGED = 3;
 
     /**
-     * Married.
+     * @var int Married.
      */
     case MARRIED = 4;
 
     /**
-     * It's complicated.
+     * @var int It's complicated.
      */
     case COMPLICATED = 5;
 
     /**
-     * In an active search.
+     * @var int In an active search.
      */
     case ACTIVE_SEARCH = 6;
 
     /**
-     * 7 — влюблен(-а)
+     * @var int In love
      */
     case FOLLOWS = 7;
 
     /**
-     * In a civil marriage.
+     * @var int In a civil marriage.
      */
     case CIVIL_MARRIAGE = 8;
 }

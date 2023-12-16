@@ -12,17 +12,17 @@ namespace Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Enums;
 enum SearchSex: int
 {
     /**
-     * A woman.
+     * @var int A woman.
      */
     case FEMALE = 1;
 
     /**
-     * The woman.
+     * @var int The woman.
      */
     case MALE = 2;
 
     /**
-     * All of them (default).
+     * @var int All of them (default).
      */
     case ALL = 0;
 }

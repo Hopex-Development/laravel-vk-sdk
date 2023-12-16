@@ -12,12 +12,12 @@ namespace Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Enums;
 enum SearchSorting: int
 {
     /**
-     * By date of registration.
+     * @var int By date of registration.
      */
     case DATE = 1;
 
     /**
-     * By popularity.
+     * @var int By popularity.
      */
     case POPULARITY = 0;
 }

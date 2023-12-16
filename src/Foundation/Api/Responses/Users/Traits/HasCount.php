@@ -18,6 +18,6 @@ trait HasCount
      */
     public function count(): int
     {
-        return data_get($this->response, 'count', 0);
+        return data_get($this->fields, 'count', 0);
     }
 }

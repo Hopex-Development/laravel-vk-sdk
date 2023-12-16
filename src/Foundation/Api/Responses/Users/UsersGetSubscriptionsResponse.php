@@ -77,7 +77,7 @@ class UsersGetSubscriptionsResponse extends Response
     public function users(): Collection|array
     {
         # Not empty if `extended` is specified in the request.
-        $extendedItems = data_get($this->response, 'items', []);
+        $extendedItems = data_get($this->fields, 'items', []);
 
         # Not empty if `extended` is not specified in the request.
         $simpleEntityItems = data_get($this->users, 'items', []);
@@ -132,7 +132,7 @@ class UsersGetSubscriptionsResponse extends Response
     public function groups(): Collection|array
     {
         # Not empty if `extended` is specified in the request.
-        $extendedItems = data_get($this->response, 'items', []);
+        $extendedItems = data_get($this->fields, 'items', []);
 
         # Not empty if `extended` is not specified in the request.
         $simpleEntityItems = data_get($this->groups, 'items', []);

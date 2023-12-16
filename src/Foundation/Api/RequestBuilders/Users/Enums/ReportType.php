@@ -12,22 +12,22 @@ namespace Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Enums;
 enum ReportType: string
 {
     /**
-     * Pornography.
+     * @var string Pornography.
      */
     case PORN = 'porn';
 
     /**
-     * Sending spam.
+     * @var string Sending spam.
      */
     case SPAM = 'spam';
 
     /**
-     * Offensive behaviour.
+     * @var string Offensive behaviour.
      */
     case INSULT = 'insult';
 
     /**
-     * An advertising page that clogs the search.
+     * @var string An advertising page that clogs the search.
      */
     case ADVERTISEMENT = 'advertisement';
 }

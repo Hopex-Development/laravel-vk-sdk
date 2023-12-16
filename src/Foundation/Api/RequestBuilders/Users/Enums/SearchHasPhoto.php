@@ -12,12 +12,12 @@ namespace Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Enums;
 enum SearchHasPhoto: int
 {
     /**
-     * Search only for users with a photo.
+     * @var int Search only for users with a photo.
      */
     case YES = 1;
 
     /**
-     * Search for all users.
+     * @var int Search for all users.
      */
     case NO = 0;
 }

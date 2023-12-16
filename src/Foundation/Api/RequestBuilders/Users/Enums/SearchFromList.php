@@ -12,12 +12,12 @@ namespace Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Enums;
 enum SearchFromList: string
 {
     /**
-     * Looking for friends.
+     * @var string Looking for friends.
      */
     case FRIENDS = 'friends';
 
     /**
-     * Search among friends and subscriptions of the user.
+     * @var string Search among friends and subscriptions of the user.
      */
     case SUBSCRIPTIONS = 'subscriptions';
 }

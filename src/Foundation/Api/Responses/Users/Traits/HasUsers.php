@@ -21,7 +21,7 @@ trait HasUsers
      */
     public function users(): Collection|User|false
     {
-        $items = data_get($this->response, 'items', []);
+        $items = data_get($this->fields, 'items', []);
         $userCreate = fn(mixed $fields) => new User(is_array($fields) ? $fields : ['id' => $fields]);
 
         if (count($items) > 1) {

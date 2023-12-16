@@ -12,12 +12,12 @@ namespace Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Enums;
 enum SearchOnline: int
 {
     /**
-     * Search for all users.
+     * @var int Search for all users.
      */
     case ALL = 0;
 
     /**
-     * Search only for online users.
+     * @var int Search only for online users.
      */
     case ONLINE = 1;
 }

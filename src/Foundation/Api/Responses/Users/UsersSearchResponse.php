@@ -3,6 +3,8 @@
 namespace Hopex\VkSdk\Foundation\Api\Responses\Users;
 
 use Hopex\VkSdk\Foundation\Api\Responses\Response;
+use Hopex\VkSdk\Foundation\Api\Responses\Users\Traits\HasCount;
+use Hopex\VkSdk\Foundation\Api\Responses\Users\Traits\HasUsers;
 
 /**
  * Returns a list of users according to a given search criterion.
@@ -17,5 +19,6 @@ use Hopex\VkSdk\Foundation\Api\Responses\Response;
  */
 class UsersSearchResponse extends Response
 {
-
+    use HasCount;
+    use HasUsers;
 }
