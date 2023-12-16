@@ -8,7 +8,7 @@
     <img alt="License" src="https://packages-api.hopex.ru/api/laravel-vk-sdk/license">
 </p>
 
-# About
+## About
 
 The VK API SDK library is developed for the Laravel framework, it will allow you to use most of the modules of the VK
 social network simply. We have linked VK entities to each other in such a way that you can quickly build the
