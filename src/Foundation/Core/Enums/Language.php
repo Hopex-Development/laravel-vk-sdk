@@ -10,51 +10,37 @@ namespace Hopex\VkSdk\Foundation\Core\Enums;
 enum Language: string
 {
     /**
-     * The Russian language.
-     *
-     * @var string
+     * @var string The Russian language.
      */
     case RUSSIAN = 'ru';
 
     /**
-     * The English language.
-     *
-     * @var string
+     * @var string The English language.
      */
     case ENGLISH = 'en';
 
     /**
-     * The Belorussian language.
-     *
-     * @var string
+     * @var string The Belorussian language.
      */
     case BELORUSSIAN = 'be';
 
     /**
-     * The Spanish language.
-     *
-     * @var string
+     * @var string The Spanish language.
      */
     case SPANISH = 'es';
 
     /**
-     * The Finnish language.
-     *
-     * @var string
+     * @var string The Finnish language.
      */
     case FINNISH = 'fi';
 
     /**
-     * The German language.
-     *
-     * @var string
+     * @var string The German language.
      */
     case GERMAN = 'de';
 
     /**
-     * The Italian language.
-     *
-     * @var string
+     * @var string The Italian language.
      */
     case ITALIAN = 'it';
 }
