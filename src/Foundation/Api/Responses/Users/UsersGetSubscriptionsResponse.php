@@ -32,11 +32,25 @@ use Illuminate\Support\Collection;
  *
  * @link    https://dev.vk.com/en/method/users.getSubscriptions
  *
+ * @property-read  int   $count
  * @property-read  array $groups
  * @property-read  array $users
  */
 class UsersGetSubscriptionsResponse extends Response
 {
+    /**
+     * The total number of results - a list of users and public pages to which the current user is subscribed
+     * (from the section "Interesting pages").
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
+     * @return int
+     */
+    public function subscribesCount(): int
+    {
+        return $this->usersCount() + $this->groupsCount();
+    }
+
     /**
      * The number of results - a list of user IDs to which the current user is subscribed
      * (from the section "Interesting pages").
@@ -48,7 +62,7 @@ class UsersGetSubscriptionsResponse extends Response
      */
     public function usersCount(): int
     {
-        return data_get($this->users, 'count', 0);
+        return $this->users()->count();
     }
 
     /**
@@ -62,27 +76,30 @@ class UsersGetSubscriptionsResponse extends Response
      */
     public function users(): Collection|array
     {
-        $rootItems = data_get($this->response, 'items', []);
-        $entityItems = data_get($this->users, 'items', []);
+        # Not empty if `extended` is specified in the request.
+        $extendedItems = data_get($this->response, 'items', []);
 
-        if (compare($rootItems, $entityItems, [])) {
+        # Not empty if `extended` is not specified in the request.
+        $simpleEntityItems = data_get($this->users, 'items', []);
+
+        if (compare($extendedItems, $simpleEntityItems, [])) {
             return collect();
-        } elseif (!empty($rootItems)) {
+        } elseif (!empty($extendedItems)) {
+            return collect(
+                array_map(function (array $fields) {
+                    return new User($fields);
+                },
+                    array_filter($extendedItems, function ($item) {
+                        return compare(data_get($item, 'type', 'unknown'), 'profile');
+                    }))
+            );
+        } else {
             return collect(
                 array_map(function (int $id) {
                     return new User([
                         'id' => $id,
                     ]);
-                }, $rootItems)
-            );
-        } else {
-            return collect(
-                array_map(function (array $fields) {
-                    return new User($fields);
-                },
-                    array_filter($entityItems, function ($entity) {
-                        return compare($entity['type'], 'profile');
-                    }))
+                }, $simpleEntityItems)
             );
         }
     }
@@ -98,7 +115,7 @@ class UsersGetSubscriptionsResponse extends Response
      */
     public function groupsCount(): int
     {
-        return data_get($this->groups, 'count', 0);
+        return $this->groups()->count();
     }
 
     /**
@@ -114,27 +131,34 @@ class UsersGetSubscriptionsResponse extends Response
      */
     public function groups(): Collection|array
     {
-        $rootItems = data_get($this->response, 'items', []);
-        $entityItems = data_get($this->groups, 'items', []);
+        # Not empty if `extended` is specified in the request.
+        $extendedItems = data_get($this->response, 'items', []);
 
-        if (compare($rootItems, $entityItems, [])) {
+        # Not empty if `extended` is not specified in the request.
+        $simpleEntityItems = data_get($this->groups, 'items', []);
+
+        if (compare($extendedItems, $simpleEntityItems, [])) {
             return collect();
-        } elseif (!empty($rootItems)) {
+        } elseif (!empty($extendedItems)) {
             return collect(
-                array_map(function (int $id) {
-                    return new Group([
-                        'id' => $id,
-                    ]);
-                }, $rootItems)
+                array_map(function (array $fields) {
+                    return $fields;
+//                    return new Group($fields);
+                },
+                    array_filter($extendedItems, function ($item) {
+                        return compare(data_get($item, 'type', 'unknown'), 'page');
+                    }))
             );
         } else {
             return collect(
-                array_map(function (array $fields) {
-                    return new Group($fields);
-                },
-                    array_filter($entityItems, function ($entity) {
-                        return compare($entity['type'], 'page');
-                    }))
+                array_map(function (int $id) {
+                    return [
+                        'id' => $id,
+                    ];
+//                    return new Group([
+//                        'id' => $id,
+//                    ]);
+                }, $simpleEntityItems)
             );
         }
     }
