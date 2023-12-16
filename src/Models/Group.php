@@ -10,9 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
 /**
- * Group.
- *
- * @package Hopex\VkSdk\Models
+ * Groups table.
  *
  * @property int    $group_id
  * @property string $confirmation
@@ -35,14 +33,22 @@ use Illuminate\Support\Collection;
  * @method string longPoolEventsHandler()
  *
  * @mixin Eloquent
+ *
+ * @package Hopex\VkSdk\Models
  */
 class Group extends Model
 {
     use HasFactory;
     use HasCombineCalling;
 
+    /**
+     * @inheritdoc
+     */
     protected $table = 'vk_groups';
 
+    /**
+     * @inheritdoc
+     */
     protected $fillable = [
         'group_id',
         'confirmation',
@@ -54,6 +60,9 @@ class Group extends Model
         'long_pool_events_handler',
     ];
 
+    /**
+     * @inheritdoc
+     */
     protected $casts = [
         'need_secret_verify' => 'bool',
         'allow_retry_events' => 'bool',

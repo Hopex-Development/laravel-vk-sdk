@@ -2,20 +2,23 @@
 
 namespace Hopex\VkSdk\Facades\SimpleRequestBuilders\Users;
 
-use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced\UsersNameCases as _UsersNameCases;
+use Hopex\VkSdk\Foundation\Api\RequestBuilders\RequestBuilder;
+use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced\UsersNameCases as BaseUsersNameCases;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * UsersNameCases.
+ * See description for {@see BaseUsersNameCases}.
  *
  * @package Hopex\VkSdk\Facades\SimpleRequestBuilders\Users
  *
- * @method static _UsersNameCases query()
+ * @see     RequestBuilder::query()
+ *
+ * @method static BaseUsersNameCases query() Read more in "See also".
  */
 class UsersNameCases extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return _UsersNameCases::class;
+        return BaseUsersNameCases::class;
     }
 }

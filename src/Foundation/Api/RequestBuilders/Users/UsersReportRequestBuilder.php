@@ -2,6 +2,7 @@
 
 namespace Hopex\VkSdk\Foundation\Api\RequestBuilders\Users;
 
+use Hopex\VkSdk\Foundation\Api\RequestBuilders\RequestBuilder;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Enums\ReportType;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Traits\HasUserId;
 
@@ -12,10 +13,13 @@ use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Traits\HasUserId;
  *
  * @link    https://dev.vk.com/en/method/users.report
  */
-class UsersReportRequestBuilder
+class UsersReportRequestBuilder extends RequestBuilder
 {
     use HasUserId;
 
+    /**
+     * @inheritdoc
+     */
     protected string $method = 'users.report';
 
     /**

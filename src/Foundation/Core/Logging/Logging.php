@@ -2,12 +2,12 @@
 
 namespace Hopex\VkSdk\Foundation\Core\Logging;
 
+use Hopex\VkSdk\Facades\Config;
 use Illuminate\Support\Facades\Log;
 use Psr\Log\LoggerInterface;
-use Hopex\VkSdk\Facades\Config;
 
 /**
- * Logging.
+ * The basic logging class that defines its channel.
  *
  * @package Hopex\VkSdk\Foundation\Core\Logging
  */
@@ -16,11 +16,11 @@ abstract class Logging
     protected LoggerInterface $logger;
 
     /**
-     * HasLogging.
+     * The basic logging class that defines its channel.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
-     * @param string $channel
+     * @param string $channel The name of the channel.
      */
     public function __construct(string $channel)
     {

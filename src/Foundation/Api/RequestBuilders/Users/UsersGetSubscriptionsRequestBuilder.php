@@ -27,6 +27,9 @@ class UsersGetSubscriptionsRequestBuilder extends RequestBuilder
     use HasBounds;
     use HasUsersFields;
 
+    /**
+     * @inheritdoc
+     */
     protected string $method = 'users.getSubscriptions';
 
     /**

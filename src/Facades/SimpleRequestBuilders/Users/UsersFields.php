@@ -2,20 +2,23 @@
 
 namespace Hopex\VkSdk\Facades\SimpleRequestBuilders\Users;
 
-use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced\UsersFields as _UsersFields;
+use Hopex\VkSdk\Foundation\Api\RequestBuilders\RequestBuilder;
+use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced\UsersFields as BaseUsersFields;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Users fields.
+ * See description for {@see BaseUsersFields}.
  *
  * @package Hopex\VkSdk\Facades\SimpleRequestBuilders\Users
  *
- * @method static _UsersFields query()
+ * @see     RequestBuilder::query()
+ *
+ * @method static BaseUsersFields query() Read more in "See also".
  */
 class UsersFields extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return _UsersFields::class;
+        return BaseUsersFields::class;
     }
 }

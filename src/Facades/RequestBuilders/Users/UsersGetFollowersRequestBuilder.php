@@ -3,22 +3,22 @@
 namespace Hopex\VkSdk\Facades\RequestBuilders\Users;
 
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\RequestBuilder;
-use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersGetFollowersRequestBuilder as _UsersGetFollowersRequestBuilder;
+use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersGetFollowersRequestBuilder as BaseUsersGetFollowersRequestBuilder;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Users get followers request builder.
+ * See description for {@see BaseUsersGetFollowersRequestBuilder}.
  *
  * @package Hopex\VkSdk\Facades\RequestBuilders\Users
  *
- * @method static _UsersGetFollowersRequestBuilder query(int $id = null) Read more in "See also".
- *
  * @see     RequestBuilder::query()
+ *
+ * @method static BaseUsersGetFollowersRequestBuilder query(int $id = null) Read more in "See also".
  */
 class UsersGetFollowersRequestBuilder extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return _UsersGetFollowersRequestBuilder::class;
+        return BaseUsersGetFollowersRequestBuilder::class;
     }
 }

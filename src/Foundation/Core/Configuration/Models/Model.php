@@ -3,20 +3,27 @@
 namespace Hopex\VkSdk\Foundation\Core\Configuration\Models;
 
 /**
- * Model.
+ * Implements the basic configuration model.
  *
  * @package Hopex\VkSdk\Foundation\Core\Configuration\Models
  */
 abstract class Model
 {
+    /**
+     * Fields of the config model.
+     *
+     * @version SDK: 3
+     *
+     * @var array
+     */
     protected array $fields;
 
     /**
-     * Model.
+     * Implements the basic configuration model.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
-     * @param array $fields
+     * @param array $fields Fields of the config model.
      */
     final public function __construct(array $fields)
     {
@@ -24,11 +31,11 @@ abstract class Model
     }
 
     /**
-     * ...
+     * Get the value of the field.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
-     * @param string $name
+     * @param string $name Name of the field.
      *
      * @return array|mixed
      */

@@ -5,7 +5,7 @@ namespace Hopex\VkSdk\Foundation\Core\Configuration\Collections;
 use Hopex\VkSdk\Foundation\Core\Configuration\Models\Group;
 
 /**
- * Groups.
+ * Collection of the groups (their configurations).
  *
  * @method Group[] all()
  *
@@ -13,7 +13,13 @@ use Hopex\VkSdk\Foundation\Core\Configuration\Models\Group;
  */
 class Groups extends Collection
 {
+    /**
+     * @inheritdoc
+     */
     protected string $rootKey = 'groups';
 
+    /**
+     * @inheritdoc
+     */
     protected string $modelClass = Group::class;
 }

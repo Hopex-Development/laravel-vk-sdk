@@ -2,10 +2,6 @@
 
 namespace Hopex\VkSdk\Contracts;
 
-use Hopex\VkSdk\Foundation\Core\Entities\Messages\Events\CallbackEvent;
-use Hopex\VkSdk\Foundation\Core\Entities\Messages\MessageFields;
-use Illuminate\Support\Collection;
-
 /**
  * Interface CallbackEventsContract
  * @package Hopex\VkSdk\Contracts

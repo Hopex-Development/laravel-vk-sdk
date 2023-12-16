@@ -6,15 +6,13 @@ use Hopex\VkSdk\Contracts\CallbackEventsContract;
 use Psr\Log\LoggerInterface;
 
 /**
- * Callback.
+ * Handler for incoming callback requests.
  *
  * @package Hopex\VkSdk\Foundation\Core\Handlers
  */
 abstract class Callback implements CallbackEventsContract
 {
     protected LoggerInterface $logger;
-
-    protected const SUCCESS = 'ok';
 
     public function __construct()
     {

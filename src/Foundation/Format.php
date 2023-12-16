@@ -5,20 +5,25 @@ namespace Hopex\VkSdk\Foundation;
 use Hopex\VkSdk\Contracts\CanFormatContract;
 
 /**
- * Format.
+ * Implements the functionality of changing data using several formatters.
  *
  * @package Hopex\VkSdk\Foundation
  */
 class Format implements CanFormatContract
 {
+    /**
+     * An array of formatters that will be used to modify the data.
+     *
+     * @var array
+     */
     private array $formatters = [];
 
     /**
-     * ...
+     * Adds the formatter class to the array of formatters that will be used to modify the data.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
-     * @param string $formatter
+     * @param string $formatter The path of the formatter class.
      *
      * @return $this
      */
@@ -33,15 +38,9 @@ class Format implements CanFormatContract
     }
 
     /**
-     * ...
-     *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     *
-     * @param $data
-     *
-     * @return mixed
+     * @inheritdoc
      */
-    public function format($data): mixed
+    public function format(mixed $data): mixed
     {
         foreach ($this->formatters as $formatter) {
             $data = $formatter->format($data);

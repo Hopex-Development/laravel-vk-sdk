@@ -3,22 +3,22 @@
 namespace Hopex\VkSdk\Facades\RequestBuilders\Users;
 
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\RequestBuilder;
-use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersReportRequestBuilder as _UsersReportRequestBuilder;
+use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersReportRequestBuilder as BaseUsersReportRequestBuilder;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Users report request builder.
+ * See description for {@see BaseUsersReportRequestBuilder}.
  *
  * @package Hopex\VkSdk\Facades\RequestBuilders\Users
  *
- * @method static _UsersReportRequestBuilder query(int $id = null) Read more in "See also".
- *
  * @see     RequestBuilder::query()
+ *
+ * @method static BaseUsersReportRequestBuilder query(int $id = null) Read more in "See also".
  */
 class UsersReportRequestBuilder extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return _UsersReportRequestBuilder::class;
+        return BaseUsersReportRequestBuilder::class;
     }
 }

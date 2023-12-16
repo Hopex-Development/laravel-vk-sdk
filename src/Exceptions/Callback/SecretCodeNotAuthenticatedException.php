@@ -11,6 +11,9 @@ use Hopex\VkSdk\Exceptions\SdkException;
  */
 class SecretCodeNotAuthenticatedException extends SdkException
 {
+    /**
+     * @inheritdoc
+     */
     public $message = "The secret code of the event [%s] doesn't match with configuration secret code [%s].";
 
     /**
@@ -18,8 +21,8 @@ class SecretCodeNotAuthenticatedException extends SdkException
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      *
-     * @param string $eventCode
-     * @param string $configurationCode
+     * @param string $eventCode Secret code in the event.
+     * @param string $configurationCode Secret code in the configuration.
      */
     public function __construct(string $eventCode, string $configurationCode)
     {

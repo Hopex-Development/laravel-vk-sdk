@@ -3,7 +3,6 @@
 namespace Hopex\VkSdk\Foundation\Api\Entities;
 
 use Illuminate\Contracts\Support\Jsonable;
-use Illuminate\Support\Str;
 use JsonSerializable;
 
 /**

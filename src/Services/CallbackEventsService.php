@@ -10,31 +10,45 @@ use Hopex\VkSdk\Exceptions\Callback\UnknownGroupIdException;
 use Hopex\VkSdk\Exceptions\Callback\UnknownSecretCodeException;
 use Hopex\VkSdk\Exceptions\Database\DatabaseOrTableNotFoundException;
 use Hopex\VkSdk\Facades\Config;
+use Hopex\VkSdk\Foundation\Core\Configuration\Models\Group as GroupConfig;
 use Hopex\VkSdk\Models\Event;
 use Hopex\VkSdk\Models\Group;
-use Hopex\VkSdk\Foundation\Core\Configuration\Models\Group as GroupConfig;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Throwable;
 
 /**
- * Callback events service.
+ * Implements processing of incoming callback requests.
  *
  * @package Hopex\VkSdk\Services
  */
 class CallbackEventsService
 {
+    /**
+     * Success response code.
+     *
+     * @version SDK: 3
+     *
+     * @var string
+     */
     private const SUCCESS = 'ok';
 
+    /**
+     * Input request.
+     *
+     * @version SDK: 3
+     *
+     * @var Request
+     */
     public Request $request;
 
     /**
-     * Callback events service.
+     * Implements processing of incoming callback requests.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
-     * @param Request $request
+     * @param Request $request Input request.
      */
     public function __construct(Request $request)
     {
@@ -42,9 +56,10 @@ class CallbackEventsService
     }
 
     /**
-     * ...
+     * Redirects the input data to the handler specified in the configuration, passing the data converted into the
+     * corresponding objects to it.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
      * @throws DatabaseOrTableNotFoundException
      * @throws Throwable
@@ -60,13 +75,13 @@ class CallbackEventsService
         $apiObject = $this->request->json('object');
 
         throw_if(
-            $apiVersion != Config::api()->getVersion(),
+            $apiVersion != Config::api()->version(),
             DifferenceApiVersionException::class,
             $apiVersion,
-            Config::api()->getVersion()
+            Config::api()->version()
         );
 
-        /** @var Group $group */
+        /** @var Group $group Eloquent model of the group. */
         $group = Group::whereGroupId($groupId)->first();
 
         throw_if(!$group, UnknownGroupIdException::class, $groupId);

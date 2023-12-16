@@ -5,10 +5,14 @@ namespace Hopex\VkSdk\Exceptions\Database;
 use Hopex\VkSdk\Exceptions\SdkException;
 
 /**
- * Class DatabaseOrTableNotFoundException
+ * Database or table not found exception.
+ *
  * @package Hopex\VkSdk\Exceptions\Database
  */
 class DatabaseOrTableNotFoundException extends SdkException
 {
-    protected $message = 'Database or table not found';
+    /**
+     * @inheritdoc
+     */
+    protected $message = 'Database or table not found. Try run `php artisan migrate --force` command.';
 }

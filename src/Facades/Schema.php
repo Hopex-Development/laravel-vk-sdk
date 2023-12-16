@@ -2,11 +2,11 @@
 
 namespace Hopex\VkSdk\Facades;
 
+use Hopex\VkSdk\Foundation\Core\Storage\Schema as BaseSchema;
 use Illuminate\Support\Facades\Facade;
-use Hopex\VkSdk\Foundation\Core\Storage\Schema as _Schema;
 
 /**
- * Schema.
+ * See description for {@see BaseSchema}.
  *
  * @package Hopex\VkSdk\Facades
  *
@@ -14,11 +14,8 @@ use Hopex\VkSdk\Foundation\Core\Storage\Schema as _Schema;
  */
 class Schema extends Facade
 {
-    /**
-     * @return string
-     */
     protected static function getFacadeAccessor(): string
     {
-        return _Schema::class;
+        return BaseSchema::class;
     }
 }

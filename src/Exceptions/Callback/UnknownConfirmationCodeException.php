@@ -11,6 +11,9 @@ use Hopex\VkSdk\Exceptions\SdkException;
  */
 class UnknownConfirmationCodeException extends SdkException
 {
+    /**
+     * @inheritdoc
+     */
     public $message = 'Confirmation code is empty or not be found in group with id [%s]';
 
     /**
@@ -18,7 +21,7 @@ class UnknownConfirmationCodeException extends SdkException
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      *
-     * @param int|string $groupId
+     * @param int|string $groupId The group id.
      */
     public function __construct(int|string $groupId)
     {

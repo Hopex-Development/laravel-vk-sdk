@@ -20,6 +20,9 @@ class UsersGetRequestBuilder extends RequestBuilder
     use HasUsersFields;
     use HasUsersNameCase;
 
+    /**
+     * @inheritdoc
+     */
     protected string $method = 'users.get';
 
     /**

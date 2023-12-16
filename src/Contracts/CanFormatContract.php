@@ -3,18 +3,20 @@
 namespace Hopex\VkSdk\Contracts;
 
 /**
- * CanFormatContract.
+ * Describes the methods that determine the functionality of an object that allows formatting data..
  *
  * @package Hopex\VkSdk\Contracts
  */
 interface CanFormatContract
 {
     /**
-     * ...
+     * Modifies the data using the formatters.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
-     * @param $data
+     * @param mixed $data The data that will be modified.
+     *
+     * @return mixed
      */
-    public function format($data);
+    public function format(mixed $data): mixed;
 }

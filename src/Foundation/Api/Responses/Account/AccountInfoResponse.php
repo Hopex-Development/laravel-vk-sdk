@@ -4,7 +4,6 @@ namespace Hopex\VkSdk\Foundation\Api\Responses\Account;
 
 use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Foundation\Api\Responses\Response;
-use Illuminate\Support\Str;
 use ReflectionClass;
 use ReflectionProperty;
 use Throwable;

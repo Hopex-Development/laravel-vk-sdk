@@ -5,11 +5,12 @@ namespace Hopex\VkSdk\Foundation\Api\Methods;
 use Hopex\VkSdk\Exceptions\Api\AccessTokenNotFoundException;
 use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Exceptions\Api\HttpStatusCodeException;
-use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersGetFollowersRequestBuilder as _UsersGetFollowersRequestBuilder;
-use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersGetRequestBuilder as _UsersGetRequestBuilder;
-use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersGetSubscriptionsRequestBuilder as _UsersGetSubscriptionsRequestBuilder;
-use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersReportRequestBuilder as _UsersReportRequestBuilder;
-use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersSearchRequestBuilder as _UsersSearchRequestBuilder;
+use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersGetFollowersRequestBuilder as BaseUsersGetFollowersRequestBuilder;
+use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersGetRequestBuilder as BaseUsersGetRequestBuilder;
+use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersGetSubscriptionsRequestBuilder as BaseUsersGetSubscriptionsRequestBuilder;
+use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersReportRequestBuilder as BaseUsersReportRequestBuilder;
+use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersSearchRequestBuilder as BaseUsersSearchRequestBuilder;
+use Hopex\VkSdk\Foundation\Api\Entities\Basic\User;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersGetFollowersRequestBuilder;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersGetRequestBuilder;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersGetSubscriptionsRequestBuilder;
@@ -17,10 +18,13 @@ use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersReportRequestBuilder;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersSearchRequestBuilder;
 use Hopex\VkSdk\Foundation\Api\Responses\Users\UsersGetFollowersResponse;
 use Hopex\VkSdk\Foundation\Api\Responses\Users\UsersGetResponse;
+use Hopex\VkSdk\Foundation\Api\Responses\Users\UsersGetSubscriptionsResponse;
+use Hopex\VkSdk\Foundation\Api\Responses\Users\UsersReportResponse;
+use Hopex\VkSdk\Foundation\Api\Responses\Users\UsersSearchResponse;
 use Throwable;
 
 /**
- * Users.
+ * See description for {@see User}.
  *
  * @package Hopex\VkSdk\Foundation\Api\Methods
  *
@@ -35,7 +39,7 @@ class Users
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/method/users.get
      *
-     * @param _UsersGetRequestBuilder|UsersGetRequestBuilder $builder
+     * @param BaseUsersGetRequestBuilder|UsersGetRequestBuilder $builder
      *
      * @throws AccessTokenNotFoundException
      * @throws ApiException
@@ -43,7 +47,7 @@ class Users
      * @throws Throwable
      * @return UsersGetResponse
      */
-    public function get(_UsersGetRequestBuilder|UsersGetRequestBuilder $builder): UsersGetResponse
+    public function get(BaseUsersGetRequestBuilder|UsersGetRequestBuilder $builder): UsersGetResponse
     {
         return new UsersGetResponse($builder->execute());
     }
@@ -54,7 +58,7 @@ class Users
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/method/users.getFollowers
      *
-     * @param _UsersGetFollowersRequestBuilder|UsersGetFollowersRequestBuilder $builder
+     * @param BaseUsersGetFollowersRequestBuilder|UsersGetFollowersRequestBuilder $builder
      *
      * @throws AccessTokenNotFoundException
      * @throws ApiException
@@ -63,7 +67,7 @@ class Users
      *
      * @return UsersGetFollowersResponse
      */
-    public function getFollowers(_UsersGetFollowersRequestBuilder|UsersGetFollowersRequestBuilder $builder): UsersGetFollowersResponse
+    public function getFollowers(BaseUsersGetFollowersRequestBuilder|UsersGetFollowersRequestBuilder $builder): UsersGetFollowersResponse
     {
         return new UsersGetFollowersResponse($builder->execute());
     }
@@ -74,12 +78,18 @@ class Users
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/method/users.getSubscriptions
      *
-     * @param _UsersGetSubscriptionsRequestBuilder|UsersGetSubscriptionsRequestBuilder $builder
+     * @param BaseUsersGetSubscriptionsRequestBuilder|UsersGetSubscriptionsRequestBuilder $builder
      *
-     * @return void
+     * @throws AccessTokenNotFoundException
+     * @throws ApiException
+     * @throws HttpStatusCodeException
+     * @throws Throwable
+     *
+     * @return UsersGetSubscriptionsResponse
      */
-    public function getSubscriptions(_UsersGetSubscriptionsRequestBuilder|UsersGetSubscriptionsRequestBuilder $builder)
+    public function getSubscriptions(BaseUsersGetSubscriptionsRequestBuilder|UsersGetSubscriptionsRequestBuilder $builder): UsersGetSubscriptionsResponse
     {
+        return new UsersGetSubscriptionsResponse($builder->execute());
     }
 
     /**
@@ -88,12 +98,18 @@ class Users
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/method/users.report
      *
-     * @param _UsersReportRequestBuilder|UsersReportRequestBuilder $builder
+     * @param BaseUsersReportRequestBuilder|UsersReportRequestBuilder $builder
      *
-     * @return void
+     * @throws AccessTokenNotFoundException
+     * @throws ApiException
+     * @throws HttpStatusCodeException
+     * @throws Throwable
+     *
+     * @return UsersReportResponse
      */
-    public function report(_UsersReportRequestBuilder|UsersReportRequestBuilder $builder)
+    public function report(BaseUsersReportRequestBuilder|UsersReportRequestBuilder $builder): UsersReportResponse
     {
+        return new UsersReportResponse($builder->execute());
     }
 
     /**
@@ -102,11 +118,17 @@ class Users
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/method/users.search
      *
-     * @param _UsersSearchRequestBuilder|UsersSearchRequestBuilder $builder
+     * @param BaseUsersSearchRequestBuilder|UsersSearchRequestBuilder $builder
      *
-     * @return void
+     * @throws AccessTokenNotFoundException
+     * @throws ApiException
+     * @throws HttpStatusCodeException
+     * @throws Throwable
+     *
+     * @return UsersSearchResponse
      */
-    public function search(_UsersSearchRequestBuilder|UsersSearchRequestBuilder $builder)
+    public function search(BaseUsersSearchRequestBuilder|UsersSearchRequestBuilder $builder): UsersSearchResponse
     {
+        return new UsersSearchResponse($builder->execute());
     }
 }

@@ -2,14 +2,12 @@
 
 namespace Hopex\VkSdk\Models;
 
-use Eloquent;
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * VkEvent.
- *
- * @package Hopex\VkSdk\Models
+ * Events table.
  *
  * @property int group_id
  * @property string type
@@ -21,14 +19,21 @@ use Illuminate\Database\Eloquent\Model;
  * @method static updateOrCreate(array $only)
  *
  * @mixin Eloquent
+ *
+ * @package Hopex\VkSdk\Models
  */
 class Event extends Model
 {
     use HasFactory;
 
+    /**
+     * @inheritdoc
+     */
     protected $table = 'vk_events';
 
-    /** @var string[] */
+    /**
+     * @inheritdoc
+     */
     protected $fillable = [
         'group_id',
         'type',

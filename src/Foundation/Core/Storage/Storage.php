@@ -6,23 +6,31 @@ use Hopex\VkSdk\Exceptions\Formatters\InvalidInputDataTypeException;
 use Hopex\VkSdk\Exceptions\Storage\SourceNotFoundException;
 use Hopex\VkSdk\Formatters\SourceDataFormatter;
 use Hopex\VkSdk\Foundation\Core\Logging\SourceLogger;
-use Illuminate\Support\Facades\Storage as _Storage;
+use Illuminate\Support\Facades\Storage as BaseStorage;
 use Throwable;
 
 /**
- * Class Storage
- * @package Hopex\VkSdk\Foundation\Core\Sources
+ * Implements the basic functionality of resource processing.
+ *
+ * @package Hopex\VkSdk\Foundation\Core\Storage
  */
 class Storage extends SourceLogger
 {
+    /**
+     * The root folder of the resource.
+     *
+     * @var string
+     *
+     * @version SDK: 3
+     */
     protected string $rootFolder = 'vk-sdk';
 
     /**
-     * ...
+     * Returns data from the specified file.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
-     * @param string $fileName
+     * @param string $fileName The name of the file whose data needs to be retrieved.
      *
      * @throws InvalidInputDataTypeException
      * @throws Throwable
@@ -34,17 +42,15 @@ class Storage extends SourceLogger
         $fileName = preg_replace('~^(.*)(\..*)$~', '$1', $fileName);
         $searchDirectory = str_replace('.', DIRECTORY_SEPARATOR, $this->rootFolder);
 
-        $directoryFiles = _Storage::files($searchDirectory);
+        $directoryFiles = BaseStorage::files($searchDirectory);
         $matchingFiles = preg_grep("~$fileName\.~", $directoryFiles);
 
         throw_if(
             !$matchingFiles,
             SourceNotFoundException::class,
-            _Storage::path($searchDirectory . DIRECTORY_SEPARATOR . $fileName)
+            BaseStorage::path($searchDirectory . DIRECTORY_SEPARATOR . $fileName)
         );
 
-        return (new SourceDataFormatter())->format(
-            file_get_contents(_Storage::path($matchingFiles[0]))
-        );
+        return BaseStorage::get($matchingFiles[0]);
     }
 }

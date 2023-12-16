@@ -3,22 +3,42 @@
 namespace Hopex\VkSdk\Foundation\Api\RequestBuilders;
 
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 
 /**
- * Simple request builder.
+ * Implements the basic functionality of builders.
  *
  * @package Hopex\VkSdk\Foundation\Api\RequestBuilders
  */
 abstract class SimpleRequestBuilder
 {
+    /**
+     * Dynamic fields used to build the query.
+     *
+     * @version SDK: 3
+     *
+     * @var Collection
+     */
     protected Collection $fields;
 
+    /**
+     * Implements the basic functionality of builders.
+     *
+     * @see RequestBuilder
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     */
     public function __construct()
     {
         $this->fields = collect();
     }
 
+    /**
+     * Returns the current instance of the builder, used for facades.
+     *
+     * @version SDK: 3
+     *
+     * @return $this
+     */
     public function query(): static
     {
         return $this;
@@ -27,7 +47,7 @@ abstract class SimpleRequestBuilder
     /**
      * Adds a parameter to the request body.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
      * @param string|array $fields A string parameter or a two-dimensional array with a single key.
      *

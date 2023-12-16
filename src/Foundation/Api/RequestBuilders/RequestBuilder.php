@@ -10,31 +10,64 @@ use Hopex\VkSdk\Exceptions\Api\HttpStatusCodeException;
 use Hopex\VkSdk\Facades\Config;
 use Hopex\VkSdk\Models\Application;
 use Hopex\VkSdk\Models\Group;
-use Hopex\VkSdk\Models\Users;
+use Hopex\VkSdk\Models\User;
 use Illuminate\Support\Facades\Http;
 use Throwable;
 
 /**
- * Request builder.
+ * Performs query construction.
  *
  * @package Hopex\VkSdk\Foundation\Api\RequestBuilders
  */
 abstract class RequestBuilder extends SimpleRequestBuilder
 {
+    /**
+     * The method called by the API.
+     *
+     * @version SDK: 3
+     *
+     * @var string $method
+     */
     protected string $method;
 
+    /**
+     * The language that should be used in the API response.
+     *
+     * @version SDK: 3
+     *
+     * @var string
+     */
     private string $language;
 
+    /**
+     * The HTTP client used for API requests.
+     *
+     * @version SDK: 3
+     *
+     * @var Client
+     */
     private Client $HttpClient;
 
+    /**
+     * See description for {@see RequestBuilder::query()}.
+     *
+     * @version SDK: 3
+     *
+     * @var int|null
+     */
     private ?int $id;
 
+    /**
+     * Performs query construction.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     */
     final public function __construct()
     {
         parent::__construct();
 
         $this->HttpClient = new Client(['verify' => false]);
-        $this->language = Config::api()->getLanguage();
+        $this->language = Config::api()->language();
         $this->id = null;
     }
 
@@ -62,7 +95,7 @@ abstract class RequestBuilder extends SimpleRequestBuilder
     }
 
     /**
-     * ...
+     * Automatically receives the appropriate token for the request being executed.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      *
@@ -79,7 +112,7 @@ abstract class RequestBuilder extends SimpleRequestBuilder
         foreach ($acceptableTokenTypes as $acceptedTokenType) {
             $existsTokens->push(
                 match ($acceptedTokenType) {
-                    'user' => Users::whereUserId($this->id ?? session('user_id')[0] ?? 0)
+                    'user' => User::whereUserId($this->id ?? session('user_id')[0] ?? 0)
                         ->first()->access_token ?? null,
                     'group' => Group::whereGroupId($this->id ?? session('group_id')[0] ?? 0)
                         ->first()->token ?? null,
@@ -102,7 +135,7 @@ abstract class RequestBuilder extends SimpleRequestBuilder
     }
 
     /**
-     * ...
+     * Executes a request to VK with an automatically selected token, version, and language.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      *
@@ -118,7 +151,7 @@ abstract class RequestBuilder extends SimpleRequestBuilder
         $fields = $this->fields
             ->filter(fn($field) => !empty($field))
             ->put('access_token', $this->getAcceptableToken())
-            ->put('v', Config::api()->getVersion())
+            ->put('v', Config::api()->version())
             ->put('lang', $this->language);
 
         try {

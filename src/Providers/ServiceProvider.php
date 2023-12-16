@@ -6,6 +6,9 @@ use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ServiceProvider extends BaseServiceProvider
 {
+    /**
+     * @inheritdoc
+     */
     public function register(): void
     {
         $this->app->register(RouteServiceProvider::class);

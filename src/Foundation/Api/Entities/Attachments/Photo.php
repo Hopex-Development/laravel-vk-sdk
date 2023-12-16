@@ -5,12 +5,12 @@ namespace Hopex\VkSdk\Foundation\Api\Entities\Attachments;
 use Hopex\VkSdk\Exceptions\Api\AccessTokenNotFoundException;
 use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Exceptions\Api\HttpStatusCodeException;
-use Hopex\VkSdk\Foundation\Api\Entities\Basic\User;
 use Hopex\VkSdk\Foundation\Api\Entities\Entity;
 use Hopex\VkSdk\Foundation\Api\Entities\Helpers\PhotoSize;
 use Hopex\VkSdk\Foundation\Api\Methods\Users;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced\UsersFields;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersGetRequestBuilder;
+use Hopex\VkSdk\Foundation\Api\Responses\Users\UsersGetResponse;
 use Illuminate\Support\Carbon;
 use Throwable;
 
@@ -93,9 +93,10 @@ class Photo extends Entity
      * @throws ApiException
      * @throws HttpStatusCodeException
      * @throws Throwable
-     * @return User|false
+     *
+     * @return UsersGetResponse
      */
-    public function owner(UsersFields $usersFields = null): User|false
+    public function owner(UsersFields $usersFields = null): UsersGetResponse
     {
         return (new Users())->get(
             (new UsersGetRequestBuilder())->userIds([$this->ownerId()])->fields($usersFields ?? new UsersFields())
@@ -103,7 +104,7 @@ class Photo extends Entity
     }
 
     /**
-     * ...
+     * The ID of the post on the community wall (if the photo is posted in the community).
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/reference/objects/photo#post_id
@@ -140,9 +141,10 @@ class Photo extends Entity
      * @throws ApiException
      * @throws HttpStatusCodeException
      * @throws Throwable
-     * @return false|User
+     *
+     * @return UsersGetResponse
      */
-    public function user(UsersFields $usersFields = null): User|false
+    public function user(UsersFields $usersFields = null): UsersGetResponse
     {
         return (new Users())->get(
             (new UsersGetRequestBuilder())->userIds([$this->userId()])->fields($usersFields ?? new UsersFields())

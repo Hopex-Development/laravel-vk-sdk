@@ -9,6 +9,13 @@ namespace Hopex\VkSdk\Exceptions\Api;
  */
 class ApiExceptionMapper
 {
+    /**
+     * Array of errors with their descriptions if any exists.
+     *
+     * @version SDK: 3
+     *
+     * @var array|array[]
+     */
     private static array $errors = [
         '1' => [
             'message' => 'Unknown error occurred',
@@ -148,21 +155,21 @@ class ApiExceptionMapper
     ];
 
     /**
-     * ...
+     * Parse exception code.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      *
-     * @param $code
+     * @param int $code Exception code.
      *
      * @return string|null
      */
-    public static function parse($code): ?string
+    public static function parse(int $code): ?string
     {
         if (empty(self::$errors[$code])) {
             return null;
         } else {
             $error = self::$errors[$code];
-            $trans = fn ($text) => preg_replace(
+            $trans = fn($text) => preg_replace(
                 '~vk-sdk\.~',
                 '',
                 __("vk-sdk.$text")

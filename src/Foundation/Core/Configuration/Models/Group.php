@@ -3,7 +3,7 @@
 namespace Hopex\VkSdk\Foundation\Core\Configuration\Models;
 
 /**
- * Group.
+ * Group configuration model.
  *
  * @package Hopex\VkSdk\Foundation\Core\Configuration\Models
  *
@@ -18,11 +18,10 @@ namespace Hopex\VkSdk\Foundation\Core\Configuration\Models;
  */
 class Group extends Model
 {
-
     /**
-     * ...
+     * The group id.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
      * @return int|null
      */
@@ -32,9 +31,9 @@ class Group extends Model
     }
 
     /**
-     * ...
+     * A confirmation code for connection with the group.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
      * @return string|null
      */
@@ -44,9 +43,9 @@ class Group extends Model
     }
 
     /**
-     * ...
+     * The token for using on requests via group.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
      * @return string|null
      */
@@ -56,9 +55,9 @@ class Group extends Model
     }
 
     /**
-     * ...
+     * A secret code to confirm the validity of the request
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
      * @return string|null
      */
@@ -68,9 +67,9 @@ class Group extends Model
     }
 
     /**
-     * ...
+     * Is it necessary to verify the validity of an incoming request.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
      * @return bool|null
      */
@@ -80,9 +79,9 @@ class Group extends Model
     }
 
     /**
-     * ...
+     * Whether to allow repeated requests for a single event.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
      * @return bool|null
      */
@@ -92,9 +91,9 @@ class Group extends Model
     }
 
     /**
-     * ...
+     * Full path of callback event handler.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
      * @return string|null
      */
@@ -104,9 +103,9 @@ class Group extends Model
     }
 
     /**
-     * ...
+     * Full path of long pool event handler.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
      * @return string|null
      */

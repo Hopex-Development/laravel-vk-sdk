@@ -2,16 +2,14 @@
 
 namespace Hopex\VkSdk\Models;
 
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Database\Factories\VkApplicationFactory;
-use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
 /**
- * VkApplication.
- *
- * @package Hopex\VkSdk\Models
+ * Applications table.
  *
  * @property int    $app_id
  * @property string $secure_key
@@ -22,6 +20,8 @@ use Illuminate\Support\Collection;
  * @method static \Illuminate\Database\Eloquent\Collection whereAppId(int $id)
  *
  * @mixin Eloquent
+ *
+ * @package Hopex\VkSdk\Models
  */
 class Application extends Model
 {
@@ -30,17 +30,23 @@ class Application extends Model
     /**
      * @inheritdoc
      */
-    public static function factory($count = null, ?Collection $state = null): VkApplicationFactory
-    {
-        return new VkApplicationFactory($count, $state);
-    }
-
     protected $table = 'vk_applications';
 
+    /**
+     * @inheritdoc
+     */
     protected $fillable = [
         'app_id',
         'secure_key',
         'service_access_key',
         'redirect_url',
     ];
+
+    /**
+     * @inheritdoc
+     */
+    public static function factory($count = null, ?Collection $state = null): VkApplicationFactory
+    {
+        return new VkApplicationFactory($count, $state);
+    }
 }

@@ -6,7 +6,7 @@ use Hopex\VkSdk\Foundation\Core\Configuration\Collections\LogChannels;
 use Hopex\VkSdk\Foundation\Core\Configuration\Models\Model;
 
 /**
- * Log.
+ * Logging configuration model.
  *
  * @package Hopex\VkSdk\Foundation\Core\Configuration\Models\Logging
  *
@@ -15,9 +15,9 @@ use Hopex\VkSdk\Foundation\Core\Configuration\Models\Model;
 class Log extends Model
 {
     /**
-     * ...
+     * Whether logging is enabled.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
      * @return bool
      */
@@ -27,9 +27,9 @@ class Log extends Model
     }
 
     /**
-     * ...
+     * Available channels that are used for logging.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
      * @return LogChannels
      */

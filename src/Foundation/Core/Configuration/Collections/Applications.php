@@ -5,7 +5,7 @@ namespace Hopex\VkSdk\Foundation\Core\Configuration\Collections;
 use Hopex\VkSdk\Foundation\Core\Configuration\Models\Application;
 
 /**
- * Applications.
+ * Collection of the applications (their configurations).
  *
  * @method Application[] all()
  *
@@ -13,7 +13,13 @@ use Hopex\VkSdk\Foundation\Core\Configuration\Models\Application;
  */
 class Applications extends Collection
 {
+    /**
+     * @inheritdoc
+     */
     protected string $rootKey = 'applications';
 
+    /**
+     * @inheritdoc
+     */
     protected string $modelClass = Application::class;
 }

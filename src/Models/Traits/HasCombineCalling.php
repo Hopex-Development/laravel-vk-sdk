@@ -3,7 +3,7 @@
 namespace Hopex\VkSdk\Models\Traits;
 
 /**
- * HasCombineCalling.
+ * Implements magic methods of dynamic calls.
  *
  * @package Hopex\VkSdk\Models\Traits
  */

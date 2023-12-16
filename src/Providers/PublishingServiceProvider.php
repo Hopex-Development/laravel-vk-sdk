@@ -4,8 +4,18 @@ namespace Hopex\VkSdk\Providers;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
+/**
+ * Describes the components that are available for publication.
+ *
+ * @package Hopex\VkSdk\Providers
+ */
 class PublishingServiceProvider extends BaseServiceProvider
 {
+    /**
+     * Bootstrap the components of application for publication.
+     *
+     * @return void
+     */
     public function boot(): void
     {
         $this->publishes([

@@ -4,23 +4,34 @@ namespace Hopex\VkSdk\Exceptions;
 
 use Exception;
 use Hopex\VkSdk\Facades\Config;
-use Hopex\VkSdk\Formatters\JsonExceptionFormatter;
+use Hopex\VkSdk\Formatters\Exceptions\ExceptionMessageFormatter;
+use Hopex\VkSdk\Formatters\Exceptions\JsonExceptionFormatter;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 
 /**
- * Sdk exception.
+ * Base class for all exceptions for SDK.
  *
  * @package Hopex\VkSdk\Exceptions
  */
 class SdkException extends Exception
 {
+    /**
+     * The standard logging channel.
+     *
+     * @version SDK: 3
+     *
+     * @var string
+     */
     private const LOG_CHANNEL = 'channels.exception';
 
     /**
-     * Sdk exception.
+     * Base class for all exceptions for SDK.
      *
-     * @param string|null $message
+     * @version SDK: 3
+     *
+     * @param string|null $message Message for exception.
+     *
      */
     public function __construct(string $message = null)
     {
@@ -31,9 +42,9 @@ class SdkException extends Exception
     }
 
     /**
-     * ...
+     * Creating an entry in the logging file about the exception that occurred.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
      * @return void
      */
@@ -43,9 +54,9 @@ class SdkException extends Exception
     }
 
     /**
-     * ...
+     * Converting an exception to a JSON response.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
      * @return JsonResponse|void
      */
@@ -60,16 +71,20 @@ class SdkException extends Exception
     }
 
     /**
-     * ...
+     * Formatting of the exception message, which implements the substitution of input parameters into a template
+     * located in the redefined property of the exception message.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
-     * @param ...$args
+     * @param mixed ...$args Arguments for formatting.
      *
      * @return string
      */
-    final public function format(...$args): string
+    final public function format(mixed ...$args): string
     {
-        return sprintf($this->message, ...$args);
+        return (new ExceptionMessageFormatter())->format([
+            'message' => $this->message,
+            'arguments' => $args,
+        ]);
     }
 }

@@ -3,7 +3,7 @@
 namespace Hopex\VkSdk\Foundation\Core\Configuration\Models;
 
 /**
- * Application.
+ * Application configuration model.
  *
  * @package Hopex\VkSdk\Foundation\Core\Configuration\Models
  *
@@ -15,9 +15,9 @@ namespace Hopex\VkSdk\Foundation\Core\Configuration\Models;
 class Application extends Model
 {
     /**
-     * ...
+     * The application id.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
      * @return string|int|null
      */
@@ -27,9 +27,9 @@ class Application extends Model
     }
 
     /**
-     * ...
+     * Application Security Key.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
      * @return string|null
      */
@@ -39,9 +39,9 @@ class Application extends Model
     }
 
     /**
-     * ...
+     * Application Access Key.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
      * @return string|null
      */
@@ -51,9 +51,9 @@ class Application extends Model
     }
 
     /**
-     * ...
+     * The forwarding address where the user will be directed after successful authorization.
      *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @version SDK: 3
      *
      * @return string|null
      */

@@ -40,7 +40,6 @@ use Illuminate\Support\Collection;
  * @property-read int     $blacklistedByMe
  * @property-read string  $books
  * @property-read int     $canPost
- * @property-read int     $canSe
  * @property-read string  $wallDefault
  * @property-read string  $trackCode
  * @property-read int     $verified
@@ -221,7 +220,7 @@ class User extends Entity
     }
 
     /**
-     * The content of the field "ABOUT yourself" from the profile.
+     * The content of the field "About yourself" from the profile.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/reference/objects/user#about

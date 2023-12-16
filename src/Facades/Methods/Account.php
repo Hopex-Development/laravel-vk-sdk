@@ -2,20 +2,19 @@
 
 namespace Hopex\VkSdk\Facades\Methods;
 
-use Hopex\VkSdk\Foundation\Api\Methods\Account as _Account;
+use Hopex\VkSdk\Foundation\Api\Methods\Account as BaseAccount;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Account.
+ * See description for {@see BaseAccount}.
  *
  * @package Hopex\VkSdk\Facades\Methods
  *
- * todo добавить методы
  */
 class Account extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return _Account::class;
+        return BaseAccount::class;
     }
 }

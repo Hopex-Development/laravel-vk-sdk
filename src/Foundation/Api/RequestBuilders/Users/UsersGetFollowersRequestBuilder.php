@@ -22,5 +22,8 @@ class UsersGetFollowersRequestBuilder extends RequestBuilder
     use HasUsersNameCase;
     use HasBounds;
 
+    /**
+     * @inheritdoc
+     */
     protected string $method = 'users.getFollowers';
 }

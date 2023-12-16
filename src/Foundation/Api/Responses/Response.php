@@ -3,11 +3,10 @@
 namespace Hopex\VkSdk\Foundation\Api\Responses;
 
 use Hopex\VkSdk\Exceptions\Api\ApiException;
-use Illuminate\Support\Str;
 use Throwable;
 
 /**
- * Response.
+ * The base object describing the VK response.
  *
  * @package Hopex\VkSdk\Foundation\Api\Responses
  */
@@ -16,7 +15,9 @@ abstract class Response
     protected array $response;
 
     /**
-     * Response.
+     * The base object describing the VK response.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      *
      * @param array $response
      *
@@ -34,7 +35,7 @@ abstract class Response
     }
 
     /**
-     * ...
+     * It will be executed when reading data from inaccessible (protected or private) or non-existent properties.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      *
