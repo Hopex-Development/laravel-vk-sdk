@@ -33,5 +33,9 @@ class PublishingServiceProvider extends BaseServiceProvider
         $this->publishes([
             __DIR__ . '/../vendor/database/' => $this->app->databasePath(),
         ], 'vk-sdk-database');
+
+        $this->publishes([
+            __DIR__ . '/../vendor/tests/' => $this->app->basePath('tests/Unit'),
+        ], 'vk-sdk-tests');
     }
 }
