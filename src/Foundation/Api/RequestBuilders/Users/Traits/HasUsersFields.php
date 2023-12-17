@@ -6,14 +6,17 @@ use Hopex\VkSdk\Facades\SimpleRequestBuilders\Users\UsersFields as _UsersFields;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced\UsersFields;
 
 /**
- * HasUsersFields.
+ * The functionality of adding a field `fields` to the request.
  *
  * @package Hopex\VkSdk\Foundation\Api\RequestBuilders\Traits
- *
- * @method addField(array|UsersFields $array)
  */
 trait HasUsersFields
 {
+    /**
+     * @inheritDoc
+     */
+    abstract public function addField(string|array $fields);
+
     /**
      * List of additional profile fields that need to be returned. See
      * {@see https://dev.vk.com/en/reference/objects/user detailed description}.

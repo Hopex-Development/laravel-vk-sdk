@@ -3,18 +3,20 @@
 namespace Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Traits;
 
 use Hopex\VkSdk\Facades\SimpleRequestBuilders\Users\UsersNameCases as _UsersNameCases;
-use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced\UsersFields;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced\UsersNameCases;
 
 /**
- * HasUsersNameCase.
+ * The functionality of adding a field `nameCase` to the request.
  *
  * @package Hopex\VkSdk\Foundation\Api\RequestBuilders\Traits
-
- * @method addField(array|UsersFields $array)
  */
 trait HasUsersNameCase
 {
+    /**
+     * @inheritDoc
+     */
+    abstract public function addField(string|array $fields);
+
     /**
      * Indicate the name and surname of the user.
      *

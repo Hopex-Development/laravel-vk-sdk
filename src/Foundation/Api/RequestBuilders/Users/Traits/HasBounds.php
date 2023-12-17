@@ -3,12 +3,17 @@
 namespace Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Traits;
 
 /**
- * HasBounds.
+ * The functionality of adding a fields `offset` and `count` to the request.
  *
  * @package Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Traits
  */
 trait HasBounds
 {
+    /**
+     * @inheritDoc
+     */
+    abstract public function addField(string|array $fields);
+
     /**
      * The offset required to select a specific subset.
      *

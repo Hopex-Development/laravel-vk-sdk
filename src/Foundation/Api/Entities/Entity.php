@@ -15,6 +15,13 @@ use JsonSerializable;
  */
 abstract class Entity implements JsonSerializable, Jsonable
 {
+    /**
+     * Fields of current entity.
+     *
+     * @version SDK: 3
+     *
+     * @var array|mixed|object
+     */
     protected array $fields;
 
     /**

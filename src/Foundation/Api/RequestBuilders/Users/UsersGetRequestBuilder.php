@@ -21,7 +21,7 @@ class UsersGetRequestBuilder extends RequestBuilder
     use HasUsersNameCase;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected string $method = 'users.get';
 
@@ -29,15 +29,15 @@ class UsersGetRequestBuilder extends RequestBuilder
      * The array user IDs or their short names (`screenName`).
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
      * @link    https://dev.vk.com/en/method/users.get
      *
-     * @param array|Collection $users    The user IDs or their short names.
-     *
+     * @param  array|Collection  $users    The user IDs or their short names.
      * @return $this
      */
     public function userIds(array|Collection $users): static
     {
-        $implode = fn($users) => implode(',', $users);
+        $implode = fn ($users) => implode(',', $users);
 
         if (is_array($users)) {
             $users = $implode($users);
@@ -56,10 +56,10 @@ class UsersGetRequestBuilder extends RequestBuilder
      * The comma-listed user IDs or their short names (`screenName`).
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
      * @link    https://dev.vk.com/en/method/users.get
      *
-     * @param int|string ...$ids The user IDs or their short names.
-     *
+     * @param  int|string  ...$ids The user IDs or their short names.
      * @return $this
      */
     public function userIdsCommaList(...$ids): static

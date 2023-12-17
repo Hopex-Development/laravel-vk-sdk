@@ -6,7 +6,7 @@ use Hopex\VkSdk\Foundation\Api\Entities\Basic\User;
 use Illuminate\Support\Collection;
 
 /**
- * HasUsers.
+ * Contains a method for getting users from a response.
  *
  * @package Hopex\VkSdk\Foundation\Api\Responses\Users\Traits
  */

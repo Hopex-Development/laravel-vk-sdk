@@ -3,7 +3,7 @@
 namespace Hopex\VkSdk\Foundation\Api\Responses\Users\Traits;
 
 /**
- * HasCount.
+ * Contains a method for getting count of users from a response.
  *
  * @package Hopex\VkSdk\Foundation\Api\Responses\Users\Traits
  */

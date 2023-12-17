@@ -45,6 +45,7 @@ class Users
      * @throws ApiException
      * @throws HttpStatusCodeException
      * @throws Throwable
+     *
      * @return UsersGetResponse
      */
     public function get(BaseUsersGetRequestBuilder|UsersGetRequestBuilder $builder): UsersGetResponse

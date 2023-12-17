@@ -5,14 +5,17 @@ namespace Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Traits;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced\UsersFields;
 
 /**
- * HasUserId.
+ * The functionality of adding a field `userId` to the request.
  *
  * @package Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Traits
- *
- * @method addField(array|UsersFields $array)
  */
 trait HasUserId
 {
+    /**
+     * @inheritDoc
+     */
+    abstract public function addField(string|array $fields);
+
     /**
      * User ID.
      *
