@@ -73,4 +73,18 @@ abstract class SimpleRequestBuilder
 
         return $this;
     }
+
+    /**
+     * Clears all fields. Use this method to reset the builder to its initial state.
+     *
+     * @version SDK: 3
+     *
+     * @return $this
+     */
+    final public function clearFields(): static
+    {
+        $this->fields = collect();
+
+        return $this;
+    }
 }
