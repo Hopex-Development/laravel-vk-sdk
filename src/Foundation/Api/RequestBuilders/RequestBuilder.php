@@ -109,18 +109,14 @@ abstract class RequestBuilder extends SimpleRequestBuilder
     }
 
     /**
-     * Sets the ID of the entity (ID in the social network) whose access token must be used in the request.
-     * <br><br>
-     *
-     * There is no need to explicitly specify the community ID when working with the Community Callback API. The
-     * community ID will be automatically entered into the session during the callback and will be used implicitly.
+     * Sets the ID of the entity whose access token must be used in the request. Or return current instance.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      *
-     * @param int|null $id The ID of the user, application, or community on the social network whose access token must
-     *                     be used in building the request. There is no need to additionally specify where to look for
-     *                     the identifier, the Builder will automatically determine the type of the required token
-     *                     based on the method called by the API.
+     * @param int|null $id  The ID of the user, application, or community on the social network whose access token must
+     *                      be used in building the request. There is no need to additionally specify where to look for
+     *                      the identifier. The Builder will automatically determine the type of the required token
+     *                      based on the method called by the API.
      *
      * @return $this
      */
