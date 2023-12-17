@@ -11,6 +11,7 @@ use Hopex\VkSdk\Facades\Config;
 use Hopex\VkSdk\Models\Application;
 use Hopex\VkSdk\Models\Group;
 use Hopex\VkSdk\Models\User;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Throwable;
 
@@ -72,6 +73,42 @@ abstract class RequestBuilder extends SimpleRequestBuilder
     }
 
     /**
+     * Returns the method called by the API.
+     *
+     * @version SDK: 3
+     *
+     * @return string
+     */
+    public function getMethod(): string
+    {
+        return $this->method;
+    }
+
+    /**
+     * Returns the language that should be used in the API response.
+     *
+     * @version SDK: 3
+     *
+     * @return string
+     */
+    public function getLanguage(): string
+    {
+        return $this->language;
+    }
+
+    /**
+     * Returns the ID of the entity (ID in the social network) whose access token must be used in the request.
+     *
+     * @version SDK: 3
+     *
+     * @return int|null
+     */
+    public function getCustomId(): ?int
+    {
+        return $this->id;
+    }
+
+    /**
      * Sets the ID of the entity (ID in the social network) whose access token must be used in the request.
      * <br><br>
      *
@@ -112,18 +149,18 @@ abstract class RequestBuilder extends SimpleRequestBuilder
         foreach ($acceptableTokenTypes as $acceptedTokenType) {
             $existsTokens->push(
                 match ($acceptedTokenType) {
-                    'user' => User::whereUserId($this->id ?? session('user_id')[0] ?? 0)
-                        ->first()->access_token ?? null,
-                    'group' => Group::whereGroupId($this->id ?? session('group_id')[0] ?? 0)
-                        ->first()->token ?? null,
-                    'service' => $this->id
-                        ? Application::first()->service_access_key ?? null
-                        : Application::whereAppId($this->id)->first()->service_access_key ?? null,
+                    'user' => User::whereUserId($this->getCustomId() ?? session('user_id')[0] ?? 0)
+                        ->first()?->access_token,
+                    'group' => Group::whereGroupId($this->getCustomId() ?? session('group_id')[0] ?? 0)
+                        ->first()?->token,
+                    'service' => is_numeric($this->getCustomId())
+                        ? Application::whereAppId($this->getCustomId())->first()?->service_access_key
+                        : Application::first()?->service_access_key,
                 }
             );
         }
 
-        $token = $existsTokens->filter(fn($token) => !empty($token))->first();
+        $token = $existsTokens->filter(fn ($token) => !empty($token))->first();
 
         throw_if(
             !$token,
@@ -132,6 +169,38 @@ abstract class RequestBuilder extends SimpleRequestBuilder
         );
 
         return $token;
+    }
+
+    /**
+     * Returns the fields that should be used in the request.
+     * Values `0` and `1` are converted to booleans.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
+     * @param string|null $key Key of the field to return from the request.
+     *
+     * @return Collection The collection of fields to be used in the request.
+     */
+    public function getFields(string $key = null): Collection
+    {
+        // Check if a specific key is provided and if it exists in the fields collection
+        if ($key && $this->fields->has($key)) {
+            // Explode the comma-separated string into an array, trim each field, and map them
+            return collect(explode(',', $this->fields->get($key)))
+                ->map(fn ($field) => trim($field))
+                ->map(function ($field) {
+                    // If the field is numeric, check if it is either 0 or 1
+                    if (is_numeric($field)) {
+                        return in_array($field, [0, 1]) ? (bool)$field : (int)$field;
+                    }
+
+                    // If the field is not numeric, return it as is
+                    return $field;
+                });
+        }
+
+        // If no specific key is provided or the key doesn't exist in the fields collection, return the entire fields collection
+        return $this->fields;
     }
 
     /**
@@ -149,13 +218,13 @@ abstract class RequestBuilder extends SimpleRequestBuilder
     final public function execute(): array
     {
         $fields = $this->fields
-            ->filter(fn($field) => !empty($field))
+            ->filter(fn ($field) => !empty($field))
             ->put('access_token', $this->getAcceptableToken())
             ->put('v', Config::api()->version())
             ->put('lang', $this->language);
 
         try {
-//            dump($fields->toArray());
+            //            dump($fields->toArray());
             $response = Http::setClient($this->HttpClient)
                 ->timeout(10)
                 ->get(
