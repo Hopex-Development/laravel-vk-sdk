@@ -42,7 +42,7 @@ enum SearchStatus: int
     case ACTIVE_SEARCH = 6;
 
     /**
-     * @var int In love
+     * @var int In love.
      */
     case FOLLOWS = 7;
 

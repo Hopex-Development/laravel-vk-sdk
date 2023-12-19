@@ -64,6 +64,32 @@ class UsersSearchRequestBuilder extends AbstractRequestBuilder
     }
 
     /**
+     * Sort order by date of registration.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.search
+     *
+     * @return static
+     */
+    public function sortDate(): static
+    {
+        return $this->sort(SearchSorting::DATE);
+    }
+
+    /**
+     * Sort order by popularity.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.search
+     *
+     * @return static
+     */
+    public function sortPopularity(): static
+    {
+        return $this->sort(SearchSorting::POPULARITY);
+    }
+
+    /**
      * City ID.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
@@ -251,6 +277,45 @@ class UsersSearchRequestBuilder extends AbstractRequestBuilder
     }
 
     /**
+     * A woman.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.search
+     *
+     * @return static
+     */
+    public function sexFemale(): static
+    {
+        return $this->sex(SearchSex::FEMALE);
+    }
+
+    /**
+     * The man.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.search
+     *
+     * @return static
+     */
+    public function sexMale(): static
+    {
+        return $this->sex(SearchSex::MALE);
+    }
+
+    /**
+     * All of them (default).
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.search
+     *
+     * @return static
+     */
+    public function sexAll(): static
+    {
+        return $this->sex(SearchSex::ALL);
+    }
+
+    /**
      * Family status.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
@@ -265,6 +330,110 @@ class UsersSearchRequestBuilder extends AbstractRequestBuilder
         return $this->addField([
             __FUNCTION__ => $status->value,
         ]);
+    }
+
+    /**
+     * Unmarried (not married).
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.search
+     *
+     * @return static
+     */
+    public function statusUnmarried(): static
+    {
+        return $this->status(SearchStatus::UNMARRIED);
+    }
+
+    /**
+     * Meet.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.search
+     *
+     * @return static
+     */
+    public function statusMeet(): static
+    {
+        return $this->status(SearchStatus::MEET);
+    }
+
+    /**
+     * Engaged.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.search
+     *
+     * @return static
+     */
+    public function statusEngaged(): static
+    {
+        return $this->status(SearchStatus::ENGAGED);
+    }
+
+    /**
+     * Married.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.search
+     *
+     * @return static
+     */
+    public function statusMarried(): static
+    {
+        return $this->status(SearchStatus::MARRIED);
+    }
+
+    /**
+     * It's complicated.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.search
+     *
+     * @return static
+     */
+    public function statusComplicated(): static
+    {
+        return $this->status(SearchStatus::COMPLICATED);
+    }
+
+    /**
+     * In active search.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.search
+     *
+     * @return static
+     */
+    public function statusInActiveSearch(): static
+    {
+        return $this->status(SearchStatus::ACTIVE_SEARCH);
+    }
+
+    /**
+     * In love.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.search
+     *
+     * @return static
+     */
+    public function statusFollows(): static
+    {
+        return $this->status(SearchStatus::FOLLOWS);
+    }
+
+    /**
+     * In a civil marriage.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.search
+     *
+     * @return static
+     */
+    public function statusCivilMarriage(): static
+    {
+        return $this->status(SearchStatus::CIVIL_MARRIAGE);
     }
 
     /**
