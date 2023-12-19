@@ -5,11 +5,12 @@ namespace Hopex\VkSdk\Foundation\Api\Entities\Attachments;
 use Hopex\VkSdk\Exceptions\Api\AccessTokenNotFoundException;
 use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Exceptions\Api\HttpStatusCodeException;
+use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersGetRequestBuilder;
+use Hopex\VkSdk\Facades\VkApi;
 use Hopex\VkSdk\Foundation\Api\Entities\Basic\User;
 use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
-use Hopex\VkSdk\Foundation\Api\Methods\Users;
+use Hopex\VkSdk\Foundation\Api\RequestBuilders\AbstractRequestBuilder;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced\UsersFields;
-use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersGetRequestBuilder;
 use Illuminate\Support\Carbon;
 use Throwable;
 
@@ -39,7 +40,6 @@ use Throwable;
  */
 class Audio extends AbstractEntity
 {
-
     /**
      * Audio ID.
      *
@@ -72,19 +72,26 @@ class Audio extends AbstractEntity
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @see     Audio::ownerId()
      *
-     * @param UsersFields|null $usersFields
+     * @param UsersFields|null $usersFields             Users fields to return.
+     * @param int|null         $entityIdThatCanHasToken Similar parameter in the {@see AbstractRequestBuilder::query()}
+     *                                                  method.
      *
      * @throws AccessTokenNotFoundException
      * @throws ApiException
      * @throws HttpStatusCodeException
      * @throws Throwable
+     *
      * @return User
      */
-    public function owner(UsersFields $usersFields = null): User
+    public function owner(UsersFields $usersFields = null, int $entityIdThatCanHasToken = null): User
     {
-        return (new Users())->get(
-            (new UsersGetRequestBuilder())->userIds([$this->ownerId()])->fields($usersFields ?? new UsersFields())
-        );
+        return VkApi::users()->get(
+            UsersGetRequestBuilder::query($entityIdThatCanHasToken)
+                ->userIds([
+                    $this->ownerId(),
+                ])
+                ->fields($usersFields ?? new UsersFields())
+        )->users()->first();
     }
 
     /**

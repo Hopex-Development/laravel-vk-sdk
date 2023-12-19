@@ -86,12 +86,14 @@ class UsersGetSubscriptionsResponse extends AbstractResponse
             return collect();
         } elseif (!empty($extendedItems)) {
             return collect(
-                array_map(function (array $fields) {
-                    return new User($fields);
-                },
+                array_map(
+                    function (array $fields) {
+                        return new User($fields);
+                    },
                     array_filter($extendedItems, function ($item) {
                         return compare(data_get($item, 'type', 'unknown'), 'profile');
-                    }))
+                    })
+                )
             );
         } else {
             return collect(
@@ -141,13 +143,15 @@ class UsersGetSubscriptionsResponse extends AbstractResponse
             return collect();
         } elseif (!empty($extendedItems)) {
             return collect(
-                array_map(function (array $fields) {
-                    return $fields;
-//                    return new Group($fields);
-                },
+                array_map(
+                    function (array $fields) {
+                        return $fields;
+                        // return new Group($fields);
+                    },
                     array_filter($extendedItems, function ($item) {
                         return compare(data_get($item, 'type', 'unknown'), 'page');
-                    }))
+                    })
+                )
             );
         } else {
             return collect(
@@ -155,9 +159,9 @@ class UsersGetSubscriptionsResponse extends AbstractResponse
                     return [
                         'id' => $id,
                     ];
-//                    return new Group([
-//                        'id' => $id,
-//                    ]);
+                    //                    return new Group([
+                    //                        'id' => $id,
+                    //                    ]);
                 }, $simpleEntityItems)
             );
         }

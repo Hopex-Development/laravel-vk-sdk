@@ -5,7 +5,6 @@ namespace Hopex\VkSdk\Foundation\Api\RequestBuilders\Users;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\AbstractRequestBuilder;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Traits\HasUsersFields;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Traits\HasUsersNameCase;
-use Hopex\VkSdk\Foundation\Core\Contracts\UsersGetRequestBuilderContract;
 use Illuminate\Support\Collection;
 
 /**
