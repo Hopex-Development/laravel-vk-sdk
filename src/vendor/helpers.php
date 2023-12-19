@@ -86,6 +86,32 @@ if (!function_exists('camel')) {
      */
     function camel(string $text): string
     {
-        return Str::camel($text);
+        return \Illuminate\Support\Str::camel($text);
+    }
+}
+
+if (!function_exists('make_log_channel')) {
+    /**
+     * Make the custom log channel.
+     *
+     * @version SDK: 3
+     *
+     * @param string $folder Folder name.
+     *
+     * @return array Log channel configuration.
+     */
+    function make_log_channel(string $folder): array
+    {
+        return array_merge([
+            'driver' => 'single',
+            'level' => env('LOG_LEVEL', 'debug'),
+            'bubble' => false,
+            'permissions' => 0755,
+            'locking' => true,
+            'days' => 30,
+        ], [
+            'name' => $folder,
+            'path' => storage_path("logs/vk-sdk/$folder/".date('Y-m-d')."/$folder.log"),
+        ]);
     }
 }

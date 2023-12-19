@@ -1,19 +1,7 @@
 <?php
 
 use App\Social\CallbackEventsMapper;
-use Hopex\VkSdk\Formatters\JsonLogFormatter;
-use Hopex\VkSdk\Foundation\Core\Api\Language;
-
-$defaultLogChannel = [
-    'name' => 'vk-sdk',
-    'driver' => 'daily',
-    'path' => storage_path('logs/vk-sdk/log.log'),
-    'level' => env('LOG_LEVEL', 'debug'),
-    'permissions' => 0755,
-    'locking' => true,
-    'days' => 30,
-    'tap' => JsonLogFormatter::class,
-];
+use Hopex\VkSdk\Foundation\Core\Enums\Language;
 
 return [
     'api' => [
@@ -48,24 +36,12 @@ return [
     ],
 
     'logging' => [
-        'enabled' => true,
+        'tracing' => true,
         'channels' => [
-            'exception' => array_merge($defaultLogChannel, [
-                'name' => 'vk-sdk-exception',
-                'path' => storage_path('logs/vk-sdk/exceptions.log'),
-            ]),
-            'info' => array_merge($defaultLogChannel, [
-                'name' => 'vk-sdk-infos',
-                'path' => storage_path('logs/vk-sdk/infos.log'),
-            ]),
-            'source' => array_merge($defaultLogChannel, [
-                'name' => 'vk-sdk-sources',
-                'path' => storage_path('logs/vk-sdk/sources.log'),
-            ]),
-            'server' => array_merge($defaultLogChannel, [
-                'name' => 'vk-sdk-server',
-                'path' => storage_path('logs/vk-sdk/server.log'),
-            ]),
+            'exception' => make_log_channel('exception'),
+            'info' => make_log_channel('info'),
+            'source' => make_log_channel('source'),
+            'server' => make_log_channel('server'),
         ],
     ],
 ];
