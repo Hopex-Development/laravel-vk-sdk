@@ -33,12 +33,12 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $table = 'vk_users';
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $fillable = [
         'user_id',
@@ -58,7 +58,7 @@ class User extends Model
     ];
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $casts = [
         'expires_in' => 'datetime',

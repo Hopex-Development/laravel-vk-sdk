@@ -13,7 +13,7 @@ use Hopex\VkSdk\Contracts\CanFormatContract;
 class ExceptionMessageFormatter implements CanFormatContract
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function format(mixed $data): string
     {

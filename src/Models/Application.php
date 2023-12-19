@@ -28,12 +28,12 @@ class Application extends Model
     use HasFactory;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $table = 'vk_applications';
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $fillable = [
         'app_id',
@@ -43,7 +43,7 @@ class Application extends Model
     ];
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function factory($count = null, ?Collection $state = null): VkApplicationFactory
     {

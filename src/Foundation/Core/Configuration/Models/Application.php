@@ -12,7 +12,7 @@ namespace Hopex\VkSdk\Foundation\Core\Configuration\Models;
  * @property-read string $serviceAccessKey
  * @property-read string $redirectUri
  */
-class Application extends Model
+class Application extends AbstractModel
 {
     /**
      * The application id.

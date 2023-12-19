@@ -3,7 +3,7 @@
 namespace Hopex\VkSdk\Foundation\Api\RequestBuilders\Users;
 
 use Hopex\VkSdk\Foundation\Api\Entities\Basic\User;
-use Hopex\VkSdk\Foundation\Api\RequestBuilders\RequestBuilder;
+use Hopex\VkSdk\Foundation\Api\RequestBuilders\AbstractRequestBuilder;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Traits\HasBounds;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Traits\HasUserId;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Traits\HasUsersFields;
@@ -21,14 +21,14 @@ use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Traits\HasUsersFields;
  *
  * @link    https://dev.vk.com/en/method/users.getSubscriptions
  */
-class UsersGetSubscriptionsRequestBuilder extends RequestBuilder
+class UsersGetSubscriptionsRequestBuilder extends AbstractRequestBuilder
 {
     use HasUserId;
     use HasBounds;
     use HasUsersFields;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected string $method = 'users.getSubscriptions';
 

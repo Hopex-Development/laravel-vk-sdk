@@ -10,7 +10,7 @@ namespace Hopex\VkSdk\Exceptions\Api;
 class AccessTokenNotFoundException extends ApiException
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $message = 'Access token for [%s] not found';
 

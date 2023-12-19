@@ -2,7 +2,7 @@
 
 namespace Hopex\VkSdk\Foundation\Api\Entities\Basic;
 
-use Hopex\VkSdk\Foundation\Api\Entities\Entity;
+use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 
@@ -26,7 +26,7 @@ use Illuminate\Support\Collection;
  * @property-read int    $randomId
  * @property-read string $text
  */
-class PrivateMessage extends Entity
+class PrivateMessage extends AbstractEntity
 {
     /**
      * Time to send.
@@ -50,7 +50,7 @@ class PrivateMessage extends Entity
      */
     public function sender(): User
     {
-        return new User([]); // todo доработать получение информации
+        return new User([]); # todo доработать получение информации
     }
 
     /**
@@ -105,7 +105,7 @@ class PrivateMessage extends Entity
     public function attachments(): array
     {
         return array_map(function (array $attachment) {
-            // todo добавить сущность
+            # todo добавить сущность
             return $attachment;
         }, $this->attachments ?? []);
     }

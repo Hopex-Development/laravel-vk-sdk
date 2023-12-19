@@ -2,17 +2,17 @@
 
 namespace Hopex\VkSdk\Exceptions\Callback;
 
-use Hopex\VkSdk\Exceptions\SdkException;
+use Hopex\VkSdk\Exceptions\Exception;
 
 /**
  * Unknown secret code exception.
  *
  * @package Hopex\VkSdk\Exceptions\Callback
  */
-class UnknownSecretCodeException extends SdkException
+class UnknownSecretCodeException extends Exception
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $message = 'Confirmation code is empty or not be found in group with id [%s]';
 

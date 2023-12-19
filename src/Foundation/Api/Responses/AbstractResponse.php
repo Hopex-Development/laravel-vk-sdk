@@ -3,7 +3,7 @@
 namespace Hopex\VkSdk\Foundation\Api\Responses;
 
 use Hopex\VkSdk\Exceptions\Api\ApiException;
-use Hopex\VkSdk\Foundation\Api\Entities\Entity;
+use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
 use Throwable;
 
 /**
@@ -11,7 +11,7 @@ use Throwable;
  *
  * @package Hopex\VkSdk\Foundation\Api\Responses
  */
-abstract class Response extends Entity
+abstract class AbstractResponse extends AbstractEntity
 {
     /**
      * The base object describing the VK response.
@@ -25,8 +25,6 @@ abstract class Response extends Entity
      */
     public function __construct(array $fields)
     {
-        parent::__construct($fields);
-
         throw_if(
             !empty(data_get($fields, 'error')),
             ApiException::class,
@@ -34,6 +32,8 @@ abstract class Response extends Entity
         );
 
         $this->fields = data_get($fields, 'response', $fields);
+
+        parent::__construct($this->fields);
     }
 
     /**

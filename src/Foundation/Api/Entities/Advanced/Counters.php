@@ -2,7 +2,7 @@
 
 namespace Hopex\VkSdk\Foundation\Api\Entities\Advanced;
 
-use Hopex\VkSdk\Foundation\Api\Entities\Entity;
+use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
 
 /**
  * The number of different objects of the user. The field only returns in method
@@ -28,7 +28,7 @@ use Hopex\VkSdk\Foundation\Api\Entities\Entity;
  * @property-read int $videos
  * @property-read int $albums
  */
-class Counters extends Entity
+class Counters extends AbstractEntity
 {
     /**
      * The number of photo albums.

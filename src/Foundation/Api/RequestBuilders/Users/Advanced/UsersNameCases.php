@@ -2,14 +2,14 @@
 
 namespace Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced;
 
-use Hopex\VkSdk\Foundation\Api\RequestBuilders\SimpleRequestBuilder;
+use Hopex\VkSdk\Foundation\Api\RequestBuilders\AbstractSimpleRequestBuilder;
 
 /**
  * Users name cases. By default `nom`.
  *
  * @package Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced
  */
-class UsersNameCases extends SimpleRequestBuilder
+class UsersNameCases extends AbstractSimpleRequestBuilder
 {
     /**
      * Namely.

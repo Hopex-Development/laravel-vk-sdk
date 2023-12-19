@@ -10,7 +10,7 @@ namespace Hopex\VkSdk\Exceptions\Api;
 class DifferenceApiVersionException extends ApiException
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $message = 'The API version [%s] used by the service differs from the one specified by in the configuration [%s].';
 

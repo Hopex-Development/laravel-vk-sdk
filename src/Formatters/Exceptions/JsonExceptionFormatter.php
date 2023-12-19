@@ -12,7 +12,7 @@ use Hopex\VkSdk\Contracts\CanFormatContract;
 class JsonExceptionFormatter implements CanFormatContract
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function format($data): array
     {

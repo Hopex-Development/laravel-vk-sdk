@@ -38,7 +38,7 @@ class Format implements CanFormatContract
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function format(mixed $data): mixed
     {

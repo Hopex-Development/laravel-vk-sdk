@@ -2,9 +2,10 @@
 
 namespace Hopex\VkSdk\Foundation\Api\RequestBuilders\Users;
 
-use Hopex\VkSdk\Foundation\Api\RequestBuilders\RequestBuilder;
+use Hopex\VkSdk\Foundation\Api\RequestBuilders\AbstractRequestBuilder;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Traits\HasUsersFields;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Traits\HasUsersNameCase;
+use Hopex\VkSdk\Foundation\Core\Contracts\UsersGetRequestBuilderContract;
 use Illuminate\Support\Collection;
 
 /**
@@ -15,7 +16,7 @@ use Illuminate\Support\Collection;
  *
  * @link    https://dev.vk.com/en/method/users.get
  */
-class UsersGetRequestBuilder extends RequestBuilder
+class UsersGetRequestBuilder extends AbstractRequestBuilder
 {
     use HasUsersFields;
     use HasUsersNameCase;

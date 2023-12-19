@@ -11,15 +11,15 @@ use Hopex\VkSdk\Foundation\Core\Configuration\Models\Application;
  *
  * @package Hopex\VkSdk\Foundation\Core\Configuration\Collections
  */
-class Applications extends Collection
+class Applications extends AbstractCollection
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected string $rootKey = 'applications';
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected string $modelClass = Application::class;
 }

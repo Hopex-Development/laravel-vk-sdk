@@ -3,7 +3,7 @@
 namespace Hopex\VkSdk\Foundation\Api\Responses\Users;
 
 use Hopex\VkSdk\Foundation\Api\Entities\Basic\User;
-use Hopex\VkSdk\Foundation\Api\Responses\Response;
+use Hopex\VkSdk\Foundation\Api\Responses\AbstractResponse;
 use Illuminate\Support\Collection;
 
 /**
@@ -36,7 +36,7 @@ use Illuminate\Support\Collection;
  * @property-read  array $groups
  * @property-read  array $users
  */
-class UsersGetSubscriptionsResponse extends Response
+class UsersGetSubscriptionsResponse extends AbstractResponse
 {
     /**
      * The total number of results - a list of users and public pages to which the current user is subscribed

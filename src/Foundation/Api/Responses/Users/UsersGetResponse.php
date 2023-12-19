@@ -3,7 +3,7 @@
 namespace Hopex\VkSdk\Foundation\Api\Responses\Users;
 
 use Hopex\VkSdk\Foundation\Api\Entities\Basic\User;
-use Hopex\VkSdk\Foundation\Api\Responses\Response;
+use Hopex\VkSdk\Foundation\Api\Responses\AbstractResponse;
 use Hopex\VkSdk\Foundation\Api\Responses\Users\Traits\HasCount;
 use Hopex\VkSdk\Foundation\Api\Responses\Users\Traits\HasUsers;
 use Illuminate\Support\Collection;
@@ -36,7 +36,7 @@ use Illuminate\Support\Collection;
  *
  * @link    https://dev.vk.com/en/method/users.get
  */
-class UsersGetResponse extends Response
+class UsersGetResponse extends AbstractResponse
 {
     /**
      * Returns users.

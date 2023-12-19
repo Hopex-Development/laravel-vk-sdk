@@ -2,17 +2,17 @@
 
 namespace Hopex\VkSdk\Exceptions\Callback;
 
-use Hopex\VkSdk\Exceptions\SdkException;
+use Hopex\VkSdk\Exceptions\Exception;
 
 /**
  * Secret code not authenticated exception.
  *
  * @package Hopex\VkSdk\Exceptions\Callback
  */
-class SecretCodeNotAuthenticatedException extends SdkException
+class SecretCodeNotAuthenticatedException extends Exception
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $message = "The secret code of the event [%s] doesn't match with configuration secret code [%s].";
 

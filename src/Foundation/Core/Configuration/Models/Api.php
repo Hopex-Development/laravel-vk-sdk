@@ -12,7 +12,7 @@ use Hopex\VkSdk\Foundation\Core\Enums\Language;
  * @property-read Language|string $lang
  * @property-read float           $version
  */
-class Api extends Model
+class Api extends AbstractModel
 {
     /**
      * The version of the API that is used when sending requests.

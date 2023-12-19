@@ -11,15 +11,15 @@ use Hopex\VkSdk\Foundation\Core\Configuration\Models\Group;
  *
  * @package Hopex\VkSdk\Foundation\Core\Configuration\Collections
  */
-class Groups extends Collection
+class Groups extends AbstractCollection
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected string $rootKey = 'groups';
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected string $modelClass = Group::class;
 }

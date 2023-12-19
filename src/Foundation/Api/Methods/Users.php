@@ -5,11 +5,11 @@ namespace Hopex\VkSdk\Foundation\Api\Methods;
 use Hopex\VkSdk\Exceptions\Api\AccessTokenNotFoundException;
 use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Exceptions\Api\HttpStatusCodeException;
-use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersGetFollowersRequestBuilder as BaseUsersGetFollowersRequestBuilder;
-use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersGetRequestBuilder as BaseUsersGetRequestBuilder;
-use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersGetSubscriptionsRequestBuilder as BaseUsersGetSubscriptionsRequestBuilder;
-use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersReportRequestBuilder as BaseUsersReportRequestBuilder;
-use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersSearchRequestBuilder as BaseUsersSearchRequestBuilder;
+use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersGetFollowersRequestBuilder as UsersGetFollowersRequestBuilderFacade;
+use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersGetRequestBuilder as UsersGetRequestBuilderFacade;
+use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersGetSubscriptionsRequestBuilder as UsersGetSubscriptionsRequestBuilderFacade;
+use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersReportRequestBuilder as UsersReportRequestBuilderFacade;
+use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersSearchRequestBuilder as UsersSearchRequestBuilderFacade;
 use Hopex\VkSdk\Foundation\Api\Entities\Basic\User;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersGetFollowersRequestBuilder;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersGetRequestBuilder;
@@ -39,7 +39,7 @@ class Users
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/method/users.get
      *
-     * @param BaseUsersGetRequestBuilder|UsersGetRequestBuilder $builder
+     * @param UsersGetRequestBuilderFacade|UsersGetRequestBuilder $builder
      *
      * @throws AccessTokenNotFoundException
      * @throws ApiException
@@ -48,8 +48,9 @@ class Users
      *
      * @return UsersGetResponse
      */
-    public function get(BaseUsersGetRequestBuilder|UsersGetRequestBuilder $builder): UsersGetResponse
-    {
+    public function get(
+        UsersGetRequestBuilderFacade|UsersGetRequestBuilder $builder
+    ): UsersGetResponse {
         return new UsersGetResponse($builder->execute());
     }
 
@@ -59,7 +60,7 @@ class Users
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/method/users.getFollowers
      *
-     * @param BaseUsersGetFollowersRequestBuilder|UsersGetFollowersRequestBuilder $builder
+     * @param UsersGetFollowersRequestBuilderFacade|UsersGetFollowersRequestBuilder $builder
      *
      * @throws AccessTokenNotFoundException
      * @throws ApiException
@@ -68,8 +69,9 @@ class Users
      *
      * @return UsersGetFollowersResponse
      */
-    public function getFollowers(BaseUsersGetFollowersRequestBuilder|UsersGetFollowersRequestBuilder $builder): UsersGetFollowersResponse
-    {
+    public function getFollowers(
+        UsersGetFollowersRequestBuilderFacade|UsersGetFollowersRequestBuilder $builder
+    ): UsersGetFollowersResponse {
         return new UsersGetFollowersResponse($builder->execute());
     }
 
@@ -79,7 +81,7 @@ class Users
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/method/users.getSubscriptions
      *
-     * @param BaseUsersGetSubscriptionsRequestBuilder|UsersGetSubscriptionsRequestBuilder $builder
+     * @param UsersGetSubscriptionsRequestBuilderFacade|UsersGetSubscriptionsRequestBuilder $builder
      *
      * @throws AccessTokenNotFoundException
      * @throws ApiException
@@ -88,8 +90,9 @@ class Users
      *
      * @return UsersGetSubscriptionsResponse
      */
-    public function getSubscriptions(BaseUsersGetSubscriptionsRequestBuilder|UsersGetSubscriptionsRequestBuilder $builder): UsersGetSubscriptionsResponse
-    {
+    public function getSubscriptions(
+        UsersGetSubscriptionsRequestBuilderFacade|UsersGetSubscriptionsRequestBuilder $builder
+    ): UsersGetSubscriptionsResponse {
         return new UsersGetSubscriptionsResponse($builder->execute());
     }
 
@@ -99,7 +102,7 @@ class Users
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/method/users.report
      *
-     * @param BaseUsersReportRequestBuilder|UsersReportRequestBuilder $builder
+     * @param UsersReportRequestBuilderFacade|UsersReportRequestBuilder $builder
      *
      * @throws AccessTokenNotFoundException
      * @throws ApiException
@@ -108,8 +111,9 @@ class Users
      *
      * @return UsersReportResponse
      */
-    public function report(BaseUsersReportRequestBuilder|UsersReportRequestBuilder $builder): UsersReportResponse
-    {
+    public function report(
+        UsersReportRequestBuilderFacade|UsersReportRequestBuilder $builder
+    ): UsersReportResponse {
         return new UsersReportResponse($builder->execute());
     }
 
@@ -119,7 +123,7 @@ class Users
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/method/users.search
      *
-     * @param BaseUsersSearchRequestBuilder|UsersSearchRequestBuilder $builder
+     * @param UsersSearchRequestBuilderFacade|UsersSearchRequestBuilder $builder
      *
      * @throws AccessTokenNotFoundException
      * @throws ApiException
@@ -128,8 +132,9 @@ class Users
      *
      * @return UsersSearchResponse
      */
-    public function search(BaseUsersSearchRequestBuilder|UsersSearchRequestBuilder $builder): UsersSearchResponse
-    {
+    public function search(
+        UsersSearchRequestBuilderFacade|UsersSearchRequestBuilder $builder
+    ): UsersSearchResponse {
         return new UsersSearchResponse($builder->execute());
     }
 }

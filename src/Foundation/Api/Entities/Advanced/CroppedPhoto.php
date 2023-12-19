@@ -2,8 +2,8 @@
 
 namespace Hopex\VkSdk\Foundation\Api\Entities\Advanced;
 
+use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
 use Hopex\VkSdk\Foundation\Api\Entities\Attachments\Photo;
-use Hopex\VkSdk\Foundation\Api\Entities\Entity;
 
 /**
  * Returns data on the points at which profile and miniature photos of the user are cut, if available.
@@ -16,7 +16,7 @@ use Hopex\VkSdk\Foundation\Api\Entities\Entity;
  * @property-read array $rectangle
  * @property-read array $photo
  */
-class CroppedPhoto extends Entity
+class CroppedPhoto extends AbstractEntity
 {
     /**
      * A user photo from which the main profile photo is cut.

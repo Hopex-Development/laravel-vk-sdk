@@ -13,7 +13,7 @@ use JsonSerializable;
  *
  * @property-read int $entityVersion
  */
-abstract class Entity implements JsonSerializable, Jsonable
+abstract class AbstractEntity implements JsonSerializable, Jsonable
 {
     /**
      * Fields of current entity.
@@ -22,18 +22,20 @@ abstract class Entity implements JsonSerializable, Jsonable
      *
      * @var array|mixed|object
      */
-    protected array $fields;
+    protected array|int $fields;
 
     /**
      * Base entity.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      *
-     * @param array|object $fields
+     * @param array|object|int $fields Fields of current entity.
      */
-    public function __construct(array|object $fields)
+    public function __construct(array|object|int $fields)
     {
-        $this->fields = is_object($fields) ? json_decode($fields, true) : $fields;
+        $this->fields = is_object($fields)
+            ? json_decode($fields, true)
+            : $fields;
     }
 
     /**
@@ -90,7 +92,7 @@ abstract class Entity implements JsonSerializable, Jsonable
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @version SDK: 3
      */
@@ -100,7 +102,7 @@ abstract class Entity implements JsonSerializable, Jsonable
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @version SDK: 3
      */

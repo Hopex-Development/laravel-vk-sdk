@@ -10,7 +10,7 @@ namespace Hopex\VkSdk\Foundation\Core\Storage;
 class Schema extends Storage
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected string $rootFolder = 'vk-sdk.schemes';
 }

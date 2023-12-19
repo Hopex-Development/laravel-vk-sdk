@@ -42,12 +42,12 @@ class Group extends Model
     use HasCombineCalling;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $table = 'vk_groups';
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $fillable = [
         'group_id',
@@ -61,7 +61,7 @@ class Group extends Model
     ];
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $casts = [
         'need_secret_verify' => 'bool',
@@ -69,7 +69,7 @@ class Group extends Model
     ];
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function factory($count = null, ?Collection $state = null): VkGroupFactory
     {

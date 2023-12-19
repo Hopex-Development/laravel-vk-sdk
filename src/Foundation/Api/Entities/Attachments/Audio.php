@@ -6,7 +6,7 @@ use Hopex\VkSdk\Exceptions\Api\AccessTokenNotFoundException;
 use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Exceptions\Api\HttpStatusCodeException;
 use Hopex\VkSdk\Foundation\Api\Entities\Basic\User;
-use Hopex\VkSdk\Foundation\Api\Entities\Entity;
+use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
 use Hopex\VkSdk\Foundation\Api\Methods\Users;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced\UsersFields;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersGetRequestBuilder;
@@ -37,7 +37,7 @@ use Throwable;
  * @property-read int    $ownerId
  * @property-read int    $id
  */
-class Audio extends Entity
+class Audio extends AbstractEntity
 {
 
     /**

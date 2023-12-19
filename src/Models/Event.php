@@ -27,12 +27,12 @@ class Event extends Model
     use HasFactory;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $table = 'vk_events';
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $fillable = [
         'group_id',

@@ -2,7 +2,7 @@
 
 namespace Hopex\VkSdk\Foundation\Api\Entities\Advanced;
 
-use Hopex\VkSdk\Foundation\Api\Entities\Entity;
+use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
 
 /**
  * Language.
@@ -13,7 +13,7 @@ use Hopex\VkSdk\Foundation\Api\Entities\Entity;
  * @property-read string $nativeName
  * @property-read int    $id
  */
-class Language extends Entity
+class Language extends AbstractEntity
 {
     /**
      * ID of the language.

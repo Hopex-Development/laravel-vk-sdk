@@ -16,7 +16,7 @@ namespace Hopex\VkSdk\Foundation\Core\Configuration\Models;
  * @property string $confirmation
  * @property int    $groupId
  */
-class Group extends Model
+class Group extends AbstractModel
 {
     /**
      * The group id.

@@ -2,33 +2,33 @@
 
 namespace Hopex\VkSdk\Foundation\Api\Entities\Advanced;
 
-use Hopex\VkSdk\Foundation\Api\Entities\Entity;
+use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
 
 /**
  * School in which the user studied.
  *
  * @package Hopex\VkSdk\Foundation\Api\Entities\Advanced
  *
- * @link https://dev.vk.com/en/reference/objects/user#schools
+ * @link    https://dev.vk.com/en/reference/objects/user#schools
  *
- * @property-read string  $typeStr
- * @property-read int $type
+ * @property-read string $typeStr
+ * @property-read int    $type
  * @property-read string $speciality
  * @property-read string $class
- * @property-read int $yearGraduated
- * @property-read int $yearTo
- * @property-read int $yearFrom
+ * @property-read int    $yearGraduated
+ * @property-read int    $yearTo
+ * @property-read int    $yearFrom
  * @property-read string $name
- * @property-read int $city
- * @property-read int $country
+ * @property-read int    $city
+ * @property-read int    $country
  */
-class School extends Entity
+class School extends AbstractEntity
 {
     /**
      * The country in which the school is located.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link https://dev.vk.com/en/reference/objects/user#schools
+     * @link    https://dev.vk.com/en/reference/objects/user#schools
      *
      * @return int
      */
@@ -41,7 +41,7 @@ class School extends Entity
      * The identifier of the city in which the school is located.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link https://dev.vk.com/en/reference/objects/user#schools
+     * @link    https://dev.vk.com/en/reference/objects/user#schools
      *
      * @return int
      */
@@ -54,7 +54,7 @@ class School extends Entity
      * Name of school.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link https://dev.vk.com/en/reference/objects/user#schools
+     * @link    https://dev.vk.com/en/reference/objects/user#schools
      *
      * @return string
      */
@@ -67,7 +67,7 @@ class School extends Entity
      * Year of commencement of training.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link https://dev.vk.com/en/reference/objects/user#schools
+     * @link    https://dev.vk.com/en/reference/objects/user#schools
      *
      * @return int
      */
@@ -80,7 +80,7 @@ class School extends Entity
      * Year of graduation.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link https://dev.vk.com/en/reference/objects/user#schools
+     * @link    https://dev.vk.com/en/reference/objects/user#schools
      *
      * @return int
      */
@@ -93,7 +93,7 @@ class School extends Entity
      * The year of issue.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link https://dev.vk.com/en/reference/objects/user#schools
+     * @link    https://dev.vk.com/en/reference/objects/user#schools
      *
      * @return int
      */
@@ -106,7 +106,7 @@ class School extends Entity
      * The letter of the class.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link https://dev.vk.com/en/reference/objects/user#schools
+     * @link    https://dev.vk.com/en/reference/objects/user#schools
      *
      * @return string
      */
@@ -119,7 +119,7 @@ class School extends Entity
      * Specialization.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link https://dev.vk.com/en/reference/objects/user#schools
+     * @link    https://dev.vk.com/en/reference/objects/user#schools
      *
      * @return string
      */
@@ -132,7 +132,7 @@ class School extends Entity
      * The type identifier.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link https://dev.vk.com/en/reference/objects/user#schools
+     * @link    https://dev.vk.com/en/reference/objects/user#schools
      *
      * @return int
      */
@@ -160,7 +160,7 @@ class School extends Entity
      * * 13 — School of arts
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link https://dev.vk.com/en/reference/objects/user#schools
+     * @link    https://dev.vk.com/en/reference/objects/user#schools
      *
      * @return string
      */

@@ -2,17 +2,17 @@
 
 namespace Hopex\VkSdk\Exceptions\Formatters;
 
-use Hopex\VkSdk\Exceptions\SdkException;
+use Hopex\VkSdk\Exceptions\Exception;
 
 /**
  * Invalid input data type exception.
  *
  * @package Hopex\VkSdk\Exceptions\Formatters
  */
-class InvalidInputDataTypeException extends SdkException
+class InvalidInputDataTypeException extends Exception
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $message = 'Invalid input data type';
 }

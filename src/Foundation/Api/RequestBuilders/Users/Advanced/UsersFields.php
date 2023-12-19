@@ -3,7 +3,7 @@
 namespace Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced;
 
 use Hopex\VkSdk\Foundation\Api\Entities\Basic\User;
-use Hopex\VkSdk\Foundation\Api\RequestBuilders\SimpleRequestBuilder;
+use Hopex\VkSdk\Foundation\Api\RequestBuilders\AbstractSimpleRequestBuilder;
 
 /**
  * The information fields of the user's page that need to be received in the response.
@@ -12,7 +12,7 @@ use Hopex\VkSdk\Foundation\Api\RequestBuilders\SimpleRequestBuilder;
  *
  * @link    https://dev.vk.com/en/reference/objects/user
  */
-class UsersFields extends SimpleRequestBuilder
+class UsersFields extends AbstractSimpleRequestBuilder
 {
     /**
      * See description for {@see User::activities()}.

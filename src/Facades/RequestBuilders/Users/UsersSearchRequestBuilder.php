@@ -2,7 +2,7 @@
 
 namespace Hopex\VkSdk\Facades\RequestBuilders\Users;
 
-use Hopex\VkSdk\Foundation\Api\RequestBuilders\RequestBuilder;
+use Hopex\VkSdk\Foundation\Api\RequestBuilders\AbstractRequestBuilder;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\UsersSearchRequestBuilder as BaseUsersSearchRequestBuilder;
 use Illuminate\Support\Facades\Facade;
 
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Facade;
  *
  * @package Hopex\VkSdk\Facades\RequestBuilders\Users
  *
- * @see     RequestBuilder::query()
+ * @see     AbstractRequestBuilder::query()
  *
  * @method static BaseUsersSearchRequestBuilder query(int $id = null) Read more in "See also".
  */

@@ -2,7 +2,7 @@
 
 namespace Hopex\VkSdk\Foundation\Api\Entities\Advanced;
 
-use Hopex\VkSdk\Foundation\Api\Entities\Entity;
+use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
 
 /**
  * Information about the military service of the user.
@@ -17,7 +17,7 @@ use Hopex\VkSdk\Foundation\Api\Entities\Entity;
  * @property-read int    $unitId
  * @property-read string $unit
  */
-class Military extends Entity
+class Military extends AbstractEntity
 {
     /**
      * The number of the military unit.

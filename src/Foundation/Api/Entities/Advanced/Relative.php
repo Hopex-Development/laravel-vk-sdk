@@ -2,7 +2,7 @@
 
 namespace Hopex\VkSdk\Foundation\Api\Entities\Advanced;
 
-use Hopex\VkSdk\Foundation\Api\Entities\Entity;
+use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
 
 /**
  * Relative of user.
@@ -15,7 +15,7 @@ use Hopex\VkSdk\Foundation\Api\Entities\Entity;
  * @property-read string $type
  * @property-read string $name
  */
-class Relative extends Entity
+class Relative extends AbstractEntity
 {
     /**
      * The user ID.

@@ -9,7 +9,7 @@ use Illuminate\Support\Collection;
  *
  * @package Hopex\VkSdk\Foundation\Api\RequestBuilders
  */
-abstract class SimpleRequestBuilder
+abstract class AbstractSimpleRequestBuilder
 {
     /**
      * Dynamic fields used to build the query.
@@ -23,9 +23,9 @@ abstract class SimpleRequestBuilder
     /**
      * Implements the basic functionality of builders.
      *
-     * @see RequestBuilder
-     *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *@see      AbstractRequestBuilder
+     *
      */
     public function __construct()
     {

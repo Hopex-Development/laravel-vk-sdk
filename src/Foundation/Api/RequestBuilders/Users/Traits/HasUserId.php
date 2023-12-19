@@ -12,7 +12,7 @@ use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced\UsersFields;
 trait HasUserId
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     abstract public function addField(string|array $fields);
 

@@ -2,7 +2,7 @@
 
 namespace Hopex\VkSdk\Foundation\Api\Entities\Advanced;
 
-use Hopex\VkSdk\Foundation\Api\Entities\Entity;
+use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
 
 /**
  * Information about the city indicated on the user's page in the section "Contacts".
@@ -12,13 +12,13 @@ use Hopex\VkSdk\Foundation\Api\Entities\Entity;
  * @link    https://dev.vk.com/en/reference/objects/user#city
  *
  * @property-read string $title
- * @property-read int $id
+ * @property-read int    $id
  */
-class City extends Entity
+class City extends AbstractEntity
 {
     /**
      * City ID, which can be used to get its name using the method
-     * {@see https://dev.vk.com/en/database.getCitiesById database.getCitiesById}
+     * {@see https://dev.vk.com/en/database.getCitiesById database.getCitiesById}.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/reference/objects/user#city

@@ -10,7 +10,7 @@ namespace Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Traits;
 trait HasBounds
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     abstract public function addField(string|array $fields);
 

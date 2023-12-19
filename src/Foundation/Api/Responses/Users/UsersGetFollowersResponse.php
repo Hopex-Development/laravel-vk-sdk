@@ -2,7 +2,7 @@
 
 namespace Hopex\VkSdk\Foundation\Api\Responses\Users;
 
-use Hopex\VkSdk\Foundation\Api\Responses\Response;
+use Hopex\VkSdk\Foundation\Api\Responses\AbstractResponse;
 use Hopex\VkSdk\Foundation\Api\Responses\Users\Traits\HasUsers;
 
 /**
@@ -12,7 +12,7 @@ use Hopex\VkSdk\Foundation\Api\Responses\Users\Traits\HasUsers;
  *
  * @link    https://dev.vk.com/en/method/users.getFollowers
  */
-class UsersGetFollowersResponse extends Response
+class UsersGetFollowersResponse extends AbstractResponse
 {
     use HasUsers;
 }

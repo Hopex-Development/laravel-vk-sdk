@@ -2,7 +2,7 @@
 
 namespace Hopex\VkSdk\Foundation\Api\Entities\Advanced;
 
-use Hopex\VkSdk\Foundation\Api\Entities\Entity;
+use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
 
 /**
  * University in which the user studied.
@@ -23,7 +23,7 @@ use Hopex\VkSdk\Foundation\Api\Entities\Entity;
  * @property-read int    $country
  * @property-read int    $id
  */
-class University extends  Entity
+class University extends AbstractEntity
 {
     /**
      * University ID.

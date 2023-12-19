@@ -2,7 +2,7 @@
 
 namespace Hopex\VkSdk\Foundation\Api\Entities\Advanced;
 
-use Hopex\VkSdk\Foundation\Api\Entities\Entity;
+use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
 
 /**
  * Information about the country indicated on the user's page in the section "Contacts".
@@ -11,10 +11,10 @@ use Hopex\VkSdk\Foundation\Api\Entities\Entity;
  *
  * @link    https://dev.vk.com/en/reference/objects/user#country
  *
- * @property-read int $id
+ * @property-read int    $id
  * @property-read string $title
  */
-class Country extends Entity
+class Country extends AbstractEntity
 {
     /**
      * Country identifier that can be used to get its name using the method

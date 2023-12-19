@@ -10,7 +10,7 @@ namespace Hopex\VkSdk\Models\Traits;
 trait HasCombineCalling
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function __call($method, $parameters)
     {
@@ -23,7 +23,7 @@ trait HasCombineCalling
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function __get($key)
     {

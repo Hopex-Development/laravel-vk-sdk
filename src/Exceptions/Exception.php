@@ -2,7 +2,7 @@
 
 namespace Hopex\VkSdk\Exceptions;
 
-use Exception;
+use Exception as BaseException;
 use Hopex\VkSdk\Facades\Config;
 use Hopex\VkSdk\Formatters\Exceptions\ExceptionMessageFormatter;
 use Hopex\VkSdk\Formatters\Exceptions\JsonExceptionFormatter;
@@ -14,8 +14,17 @@ use Illuminate\Support\Facades\Log;
  *
  * @package Hopex\VkSdk\Exceptions
  */
-class SdkException extends Exception
+class Exception extends BaseException
 {
+    /**
+     * The status code for this exception.
+     *
+     * @version SDK: 3
+     *
+     * @var int
+     */
+    protected $code = 500;
+
     /**
      * The standard logging channel.
      *
@@ -23,7 +32,7 @@ class SdkException extends Exception
      *
      * @var string
      */
-    private const LOG_CHANNEL = 'channels.exception';
+    private const LOG_CHANNEL = 'exception';
 
     /**
      * Base class for all exceptions for SDK.
@@ -31,10 +40,10 @@ class SdkException extends Exception
      * @version SDK: 3
      *
      * @param string|null $message Message for exception.
-     *
      */
     public function __construct(string $message = null)
     {
+        $this->code = crc32(get_class($this));
         $this->message = $message ?? $this->getMessage();
         $this->report();
 
@@ -50,7 +59,21 @@ class SdkException extends Exception
      */
     protected function report(): void
     {
-        Log::build(Config::logging()->channels()->getByName(self::LOG_CHANNEL))->error($this->getMessage());
+        $logging = Config::logging();
+        $reportMessage = [
+            'message' => $this->getMessage(),
+            'code' => $this->getCode(),
+            'about' => 'https://vk-sdk.hopex.ru/docs/exceptions?code='.$this->getCode(),
+            'trace' => 'Tracing is disabled in the application settings',
+        ];
+
+        if ($logging->tracing()) {
+            $reportMessage['trace'] = $this->getTrace();
+        }
+
+        $report = json_encode($reportMessage, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+        Log::build($logging->channels()->getByName(self::LOG_CHANNEL))->critical($report);
     }
 
     /**
@@ -62,11 +85,8 @@ class SdkException extends Exception
      */
     final public function render()
     {
-        if (env('LOG_LEVEL') === 'debug') {
-            return new JsonResponse(
-                (new JsonExceptionFormatter())->format($this->getMessage()),
-                500
-            );
+        if (compare(config('logging.level'), 'debug')) {
+            return new JsonResponse((new JsonExceptionFormatter())->format($this->getMessage()), 500);
         }
     }
 

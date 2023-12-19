@@ -3,7 +3,7 @@
 namespace Hopex\VkSdk\Foundation\Api\Responses\Account;
 
 use Hopex\VkSdk\Exceptions\Api\ApiException;
-use Hopex\VkSdk\Foundation\Api\Responses\Response;
+use Hopex\VkSdk\Foundation\Api\Responses\AbstractResponse;
 use ReflectionClass;
 use ReflectionProperty;
 use Throwable;
@@ -15,7 +15,7 @@ use Throwable;
  *
  * @link    https://dev.vk.com/en/method/account.getInfo#Result Result
  */
-class AccountInfoResponse extends Response
+class AccountInfoAbstractResponse extends AbstractResponse
 {
     private ?bool $twoFaRequired = null;
 

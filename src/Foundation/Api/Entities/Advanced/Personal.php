@@ -2,7 +2,7 @@
 
 namespace Hopex\VkSdk\Foundation\Api\Entities\Advanced;
 
-use Hopex\VkSdk\Foundation\Api\Entities\Entity;
+use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
 use Illuminate\Support\Collection;
 
 /**
@@ -21,7 +21,7 @@ use Illuminate\Support\Collection;
  * @property-read array  $langs
  * @property-read int    $lifeMain
  */
-class Personal extends Entity
+class Personal extends AbstractEntity
 {
     /**
      * Political preferences.
@@ -93,7 +93,7 @@ class Personal extends Entity
      */
     public function languages(): Collection|array
     {
-        return collect(array_map(fn (array $language) => new Language($language),$this->langsFull ?? []));
+        return collect(array_map(fn (array $language) => new Language($language), $this->langsFull ?? []));
     }
 
     /**

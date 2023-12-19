@@ -2,17 +2,17 @@
 
 namespace Hopex\VkSdk\Exceptions\Callback;
 
-use Hopex\VkSdk\Exceptions\SdkException;
+use Hopex\VkSdk\Exceptions\Exception;
 
 /**
  * Unknown event exception.
  *
  * @package Hopex\VkSdk\Exceptions\Callback
  */
-class UnknownEventException extends SdkException
+class UnknownEventException extends Exception
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $message = 'The event cannot be processed because the [%s] method is not implemented';
 

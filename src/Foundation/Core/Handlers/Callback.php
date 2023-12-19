@@ -16,7 +16,7 @@ abstract class Callback implements CallbackEventsContract
 
     public function __construct()
     {
-        // todo добавить отдельные каналы логирования для хендлеров
-//        $this->logger = Log::build((array)SdkConfig::logging('channels.info'));
+        # todo добавить отдельные каналы логирования для хендлеров
+        # $this->logger = Log::build((array)SdkConfig::logging('channels.info'));
     }
 }

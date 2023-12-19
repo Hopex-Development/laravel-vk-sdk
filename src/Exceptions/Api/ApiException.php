@@ -2,17 +2,17 @@
 
 namespace Hopex\VkSdk\Exceptions\Api;
 
-use Hopex\VkSdk\Exceptions\SdkException;
+use Hopex\VkSdk\Exceptions\Exception;
 
 /**
  * Api exception.
  *
  * @package Hopex\VkSdk\Exceptions\Api
  */
-class ApiException extends SdkException
+class ApiException extends Exception
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $message = 'Unknown VK API exception';
 

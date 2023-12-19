@@ -2,7 +2,7 @@
 
 namespace Hopex\VkSdk\Facades\SimpleRequestBuilders\Users;
 
-use Hopex\VkSdk\Foundation\Api\RequestBuilders\RequestBuilder;
+use Hopex\VkSdk\Foundation\Api\RequestBuilders\AbstractRequestBuilder;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced\UsersFields as BaseUsersFields;
 use Illuminate\Support\Facades\Facade;
 
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Facade;
  *
  * @package Hopex\VkSdk\Facades\SimpleRequestBuilders\Users
  *
- * @see     RequestBuilder::query()
+ * @see     AbstractRequestBuilder::query()
  *
  * @method static BaseUsersFields query() Read more in "See also".
  */

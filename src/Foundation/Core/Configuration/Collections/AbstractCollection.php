@@ -7,7 +7,7 @@ namespace Hopex\VkSdk\Foundation\Core\Configuration\Collections;
  *
  * @package Hopex\VkSdk\Foundation\Core\Configuration\Collections
  */
-abstract class Collection
+abstract class AbstractCollection
 {
     /**
      * Full path of the model.

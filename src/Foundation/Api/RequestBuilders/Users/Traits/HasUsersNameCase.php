@@ -13,7 +13,7 @@ use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced\UsersNameCases;
 trait HasUsersNameCase
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     abstract public function addField(string|array $fields);
 

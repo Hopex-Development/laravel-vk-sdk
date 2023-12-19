@@ -7,7 +7,7 @@ namespace Hopex\VkSdk\Foundation\Core\Configuration\Models;
  *
  * @package Hopex\VkSdk\Foundation\Core\Configuration\Models
  */
-abstract class Model
+abstract class AbstractModel
 {
     /**
      * Fields of the config model.

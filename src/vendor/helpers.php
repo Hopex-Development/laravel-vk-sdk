@@ -1,8 +1,5 @@
 <?php
 
-use Hopex\VkSdk\Facades\Schema;
-use Illuminate\Support\Str;
-
 if (!function_exists('method_token_types')) {
     /**
      * Gets an array of allowed access token types for the specified API method. The types of token or access key that
@@ -13,14 +10,14 @@ if (!function_exists('method_token_types')) {
      * @param string $scopeWithMethod Accepts `scope` with `method` connected by a dot, for example, `account.getInfo`,
      *                                `users.get` or `execute`.
      *
-     * @return array
+     * @return array An array of allowed access token types for the specified API method.
      */
     function method_token_types(string $scopeWithMethod): array
     {
         $pair = explode('.', $scopeWithMethod);
 
         return data_get(
-            target: json_decode(Schema::get('methods'), true),
+            target: json_decode(\Hopex\VkSdk\Facades\Schema::get('methods'), true),
             key: count($pair) == 2 ? implode('.', $pair) : $pair[0],
             default: []
         );
@@ -35,7 +32,7 @@ if (!function_exists('compare')) {
      *
      * @param mixed ...$values Any objects.
      *
-     * @return bool
+     * @return bool `true` if all objects are equal, `false` otherwise.
      */
     function compare(...$values): bool
     {
@@ -66,11 +63,11 @@ if (!function_exists('snake')) {
      *
      * @param string $text Text by any case (camelCase, Pascal, etc.).
      *
-     * @return string
+     * @return string Text in snake case.
      */
     function snake(string $text): string
     {
-        return preg_replace('~(\D)(\d)~', '$1_$2', Str::snake($text));
+        return preg_replace('~(\D)(\d)~', '$1_$2', \Illuminate\Support\Str::snake($text));
     }
 }
 
@@ -82,7 +79,7 @@ if (!function_exists('camel')) {
      *
      * @param string $text Text by any case (snake_case, Pascal, etc.).
      *
-     * @return string
+     * @return string Text in camel case.
      */
     function camel(string $text): string
     {

@@ -20,7 +20,7 @@ use Throwable;
  *
  * @package Hopex\VkSdk\Foundation\Api\RequestBuilders
  */
-abstract class RequestBuilder extends SimpleRequestBuilder
+abstract class AbstractRequestBuilder extends AbstractSimpleRequestBuilder
 {
     /**
      * The method called by the API.
@@ -50,7 +50,7 @@ abstract class RequestBuilder extends SimpleRequestBuilder
     private Client $HttpClient;
 
     /**
-     * See description for {@see RequestBuilder::query()}.
+     * See description for {@see AbstractRequestBuilder::query()}.
      *
      * @version SDK: 3
      *
@@ -128,18 +128,20 @@ abstract class RequestBuilder extends SimpleRequestBuilder
     }
 
     /**
-     * Automatically receives the appropriate token for the request being executed.
+     * Retrieves the appropriate token for the request being executed.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      *
      * @throws Throwable
-     * @throws AccessTokenNotFoundException
+     * @throws AccessTokenNotFoundException If no acceptable token is found.
      *
-     * @return string
+     * @return string The acceptable token
      */
     private function getAcceptableToken(): string
     {
+        # Get the acceptable token types for the method
         $acceptableTokenTypes = method_token_types($this->method);
+        # Collect the existing tokens for each acceptable token type
         $existsTokens = collect();
 
         foreach ($acceptableTokenTypes as $acceptedTokenType) {
@@ -156,8 +158,10 @@ abstract class RequestBuilder extends SimpleRequestBuilder
             );
         }
 
+        # Filter out empty tokens and get the first non-empty token
         $token = $existsTokens->filter(fn ($token) => !empty($token))->first();
 
+        # Throw an exception if no acceptable token is found
         throw_if(
             !$token,
             AccessTokenNotFoundException::class,
@@ -179,23 +183,23 @@ abstract class RequestBuilder extends SimpleRequestBuilder
      */
     public function getFields(string $key = null): Collection
     {
-        // Check if a specific key is provided and if it exists in the fields collection
+        # Check if a specific key is provided and if it exists in the fields collection
         if ($key && $this->fields->has($key)) {
-            // Explode the comma-separated string into an array, trim each field, and map them
+            # Explode the comma-separated string into an array, trim each field, and map them
             return collect(explode(',', $this->fields->get($key)))
                 ->map(fn ($field) => trim($field))
                 ->map(function ($field) {
-                    // If the field is numeric, check if it is either 0 or 1
+                    # If the field is numeric, check if it is either 0 or 1
                     if (is_numeric($field)) {
                         return in_array($field, [0, 1]) ? (bool)$field : (int)$field;
                     }
 
-                    // If the field is not numeric, return it as is
+                    # If the field is not numeric, return it as is
                     return $field;
                 });
         }
 
-        // If no specific key is provided or the key doesn't exist in the fields collection, return the entire fields collection
+        # If no specific key is provided or the key doesn't exist in the fields collection, return the entire fields collection
         return $this->fields;
     }
 
@@ -213,26 +217,45 @@ abstract class RequestBuilder extends SimpleRequestBuilder
      */
     final public function execute(): array
     {
+        # Prepare the request fields
         $fields = $this->fields
             ->filter(fn ($field) => !empty($field))
             ->put('access_token', $this->getAcceptableToken())
             ->put('v', Config::api()->version())
             ->put('lang', $this->language);
-
         try {
-            //            dump($fields->toArray());
+            # Send the HTTP request to the VK API
             $response = Http::setClient($this->HttpClient)
                 ->timeout(10)
                 ->get(
                     url: "https://api.vk.com/method/$this->method",
                     query: $fields->toArray()
                 );
+            # Decode the JSON response
+            $responseArray = json_decode($response->body(), true);
+
+            # If the debug mode is enabled, dump the request and response details
+            if (config('app.debug')) {
+                dump([
+                    'request' => [
+                        'url' => "https://api.vk.com/method/$this->method",
+                        'query' => $fields->toArray(),
+                    ],
+                    'response' => [
+                        'status' => $response->status(),
+                        'body' => $responseArray,
+                    ],
+                ]);
+            }
         } catch (RequestException $e) {
+            # Throw an ApiException if there is an error with the request
             throw new ApiException(message: $e->getMessage());
         }
 
+        # Throw an HttpStatusCodeException if the response status is not 200
         throw_if($response->status() != 200, HttpStatusCodeException::class);
 
-        return data_get(json_decode($response->body(), true), 'response', []);
+        # Return the response array
+        return $responseArray;
     }
 }

@@ -4,7 +4,7 @@ namespace Hopex\VkSdk\Foundation\Api\Methods;
 
 use Hopex\VkSdk\Exceptions\Api\HttpStatusCodeException;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Account\AccountInfoRequestBuilder;
-use Hopex\VkSdk\Foundation\Api\Responses\Account\AccountInfoResponse;
+use Hopex\VkSdk\Foundation\Api\Responses\Account\AccountInfoAbstractResponse;
 use Throwable;
 
 /**
@@ -72,11 +72,11 @@ class Account
      * @throws HttpStatusCodeException
      * @throws Throwable
      *
-     * @return AccountInfoResponse
+     * @return AccountInfoAbstractResponse
      */
-    public function getInfo(AccountInfoRequestBuilder $builder): AccountInfoResponse
+    public function getInfo(AccountInfoRequestBuilder $builder): AccountInfoAbstractResponse
     {
-        return new AccountInfoResponse($builder->execute());
+        return new AccountInfoAbstractResponse($builder->execute());
     }
 
     public function getProfileInfo()

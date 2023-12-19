@@ -2,14 +2,14 @@
 
 namespace Hopex\VkSdk\Exceptions\Storage;
 
-use Hopex\VkSdk\Exceptions\SdkException;
+use Hopex\VkSdk\Exceptions\Exception;
 
 /**
  * Storage not found exception.
  *
  * @package Hopex\VkSdk\Exceptions\Storage
  */
-class SourceNotFoundException extends SdkException
+class SourceNotFoundException extends Exception
 {
     public $message = 'Target source file [%s] not found.'.
     'Note: The file extension is optional and a link to the repository in the public folder is not required.' .

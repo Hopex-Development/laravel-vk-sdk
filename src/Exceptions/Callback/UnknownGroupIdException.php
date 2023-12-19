@@ -2,17 +2,17 @@
 
 namespace Hopex\VkSdk\Exceptions\Callback;
 
-use Hopex\VkSdk\Exceptions\SdkException;
+use Hopex\VkSdk\Exceptions\Exception;
 
 /**
  * Unknown group ID exception.
  *
  * @package Hopex\VkSdk\Exceptions\Callback
  */
-class UnknownGroupIdException extends SdkException
+class UnknownGroupIdException extends Exception
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $message = 'Unknown community id [%d]';
 

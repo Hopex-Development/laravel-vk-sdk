@@ -22,7 +22,7 @@ class JsonLogFormatter
      *
      * @version SDK: 3
      *
-     * @param Logger $logger Logger
+     * @param Logger $logger Logger instance.
      *
      * @return void
      */
@@ -32,15 +32,16 @@ class JsonLogFormatter
             LineFormatter::SIMPLE_FORMAT,
             'Y-m-d H:i:s',
             true,
-            true)
-        )
+            true
+        ))
             ->setJsonPrettyPrint(true)
             ->addJsonEncodeOption(JSON_UNESCAPED_UNICODE)
             ->addJsonEncodeOption(JSON_UNESCAPED_SLASHES);
 
         foreach ($logger->getHandlers() as $handler) {
-            if (method_exists($handler, 'setFormatter'))
+            if (method_exists($handler, 'setFormatter')) {
                 $handler->setFormatter($formatter);
+            }
         }
     }
 }

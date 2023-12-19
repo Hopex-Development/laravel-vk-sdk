@@ -3,27 +3,27 @@
 namespace Hopex\VkSdk\Foundation\Core\Configuration\Models\Logging;
 
 use Hopex\VkSdk\Foundation\Core\Configuration\Collections\LogChannels;
-use Hopex\VkSdk\Foundation\Core\Configuration\Models\Model;
+use Hopex\VkSdk\Foundation\Core\Configuration\Models\AbstractModel;
 
 /**
  * Logging configuration model.
  *
  * @package Hopex\VkSdk\Foundation\Core\Configuration\Models\Logging
  *
- * @property bool $enabled
+ * @property bool $tracing
  */
-class Log extends Model
+class Log extends AbstractModel
 {
     /**
-     * Whether logging is enabled.
+     * Enable or disable tracing.
      *
      * @version SDK: 3
      *
      * @return bool
      */
-    public function enabled(): bool
+    public function tracing(): bool
     {
-        return $this->enabled ?? false;
+        return $this->tracing ?? false;
     }
 
     /**

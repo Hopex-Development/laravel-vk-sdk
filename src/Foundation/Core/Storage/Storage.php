@@ -4,7 +4,6 @@ namespace Hopex\VkSdk\Foundation\Core\Storage;
 
 use Hopex\VkSdk\Exceptions\Formatters\InvalidInputDataTypeException;
 use Hopex\VkSdk\Exceptions\Storage\SourceNotFoundException;
-use Hopex\VkSdk\Formatters\SourceDataFormatter;
 use Hopex\VkSdk\Foundation\Core\Logging\SourceLogger;
 use Illuminate\Support\Facades\Storage as BaseStorage;
 use Throwable;

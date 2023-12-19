@@ -2,7 +2,7 @@
 
 namespace Hopex\VkSdk\Foundation\Api\RequestBuilders\Users;
 
-use Hopex\VkSdk\Foundation\Api\RequestBuilders\RequestBuilder;
+use Hopex\VkSdk\Foundation\Api\RequestBuilders\AbstractRequestBuilder;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Enums\ReportType;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Traits\HasUserId;
 
@@ -13,12 +13,12 @@ use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Traits\HasUserId;
  *
  * @link    https://dev.vk.com/en/method/users.report
  */
-class UsersReportRequestBuilder extends RequestBuilder
+class UsersReportRequestBuilder extends AbstractRequestBuilder
 {
     use HasUserId;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected string $method = 'users.report';
 
@@ -37,6 +37,58 @@ class UsersReportRequestBuilder extends RequestBuilder
         return $this->addField([
             __FUNCTION__ => $type->value,
         ]);
+    }
+
+    /**
+     * Pornography type of complaint.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.report
+     *
+     * @return $this
+     */
+    public function typePorn(): static
+    {
+        return $this->type(ReportType::PORN);
+    }
+
+    /**
+     * Spam type of complaint.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.report
+     *
+     * @return $this
+     */
+    public function typeSpam(): static
+    {
+        return $this->type(ReportType::SPAM);
+    }
+
+    /**
+     * Insult type of complaint.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.report
+     *
+     * @return $this
+     */
+    public function typeInsult(): static
+    {
+        return $this->type(ReportType::INSULT);
+    }
+
+    /**
+     * Advertising type of complaint.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/method/users.report
+     *
+     * @return $this
+     */
+    public function typeAdvertisement(): static
+    {
+        return $this->type(ReportType::ADVERTISEMENT);
     }
 
     /**

@@ -17,7 +17,7 @@ use Hopex\VkSdk\Foundation\Api\Entities\Advanced\Relative;
 use Hopex\VkSdk\Foundation\Api\Entities\Advanced\School;
 use Hopex\VkSdk\Foundation\Api\Entities\Advanced\University;
 use Hopex\VkSdk\Foundation\Api\Entities\Attachments\Audio;
-use Hopex\VkSdk\Foundation\Api\Entities\Entity;
+use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
 use Illuminate\Support\Collection;
 
 /**
@@ -124,7 +124,7 @@ use Illuminate\Support\Collection;
  * @property-read string  $educationForm
  * @property-read string  $educationStatus
  */
-class User extends Entity
+class User extends AbstractEntity
 {
     /**
      * User ID.

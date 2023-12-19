@@ -2,7 +2,7 @@
 
 namespace Hopex\VkSdk\Foundation\Api\Responses\Users;
 
-use Hopex\VkSdk\Foundation\Api\Responses\Response;
+use Hopex\VkSdk\Foundation\Api\Responses\AbstractResponse;
 use Hopex\VkSdk\Foundation\Api\Responses\Users\Traits\HasCount;
 use Hopex\VkSdk\Foundation\Api\Responses\Users\Traits\HasUsers;
 
@@ -17,7 +17,7 @@ use Hopex\VkSdk\Foundation\Api\Responses\Users\Traits\HasUsers;
  *
  * @link    https://dev.vk.com/en/method/users.search
  */
-class UsersSearchResponse extends Response
+class UsersSearchResponse extends AbstractResponse
 {
     use HasCount;
     use HasUsers;

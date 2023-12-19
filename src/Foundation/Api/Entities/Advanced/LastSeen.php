@@ -2,7 +2,7 @@
 
 namespace Hopex\VkSdk\Foundation\Api\Entities\Advanced;
 
-use Hopex\VkSdk\Foundation\Api\Entities\Entity;
+use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
 use Illuminate\Support\Carbon;
 
 /**
@@ -15,26 +15,13 @@ use Illuminate\Support\Carbon;
  * @property-read int $time
  * @property-read int $platform
  */
-class LastSeen extends Entity
+class LastSeen extends AbstractEntity
 {
-    /**
-     * Type ID of platform.
-     *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link https://dev.vk.com/en/reference/objects/user#last_seen
-     *
-     * @return int
-     */
-    public function platformId(): int
-    {
-        return $this->platform;
-    }
-
     /**
      * Type of platform.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link https://dev.vk.com/en/reference/objects/user#last_seen
+     * @link    https://dev.vk.com/en/reference/objects/user#last_seen
      *
      * @return string
      */
@@ -53,10 +40,23 @@ class LastSeen extends Entity
     }
 
     /**
+     * Type ID of platform.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/reference/objects/user#last_seen
+     *
+     * @return int
+     */
+    public function platformId(): int
+    {
+        return $this->platform;
+    }
+
+    /**
      * Time of last visit in Unix time format represented as a Carbon object.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link https://dev.vk.com/en/reference/objects/user#last_seen
+     * @link    https://dev.vk.com/en/reference/objects/user#last_seen
      *
      * @return Carbon
      */

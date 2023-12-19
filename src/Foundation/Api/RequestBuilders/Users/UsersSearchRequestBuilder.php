@@ -2,7 +2,7 @@
 
 namespace Hopex\VkSdk\Foundation\Api\RequestBuilders\Users;
 
-use Hopex\VkSdk\Foundation\Api\RequestBuilders\RequestBuilder;
+use Hopex\VkSdk\Foundation\Api\RequestBuilders\AbstractRequestBuilder;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Enums\SearchFromList;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Enums\SearchHasPhoto;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Enums\SearchOnline;
@@ -19,13 +19,13 @@ use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Traits\HasUsersFields;
  *
  * @link    https://dev.vk.com/en/method/users.search
  */
-class UsersSearchRequestBuilder extends RequestBuilder
+class UsersSearchRequestBuilder extends AbstractRequestBuilder
 {
     use HasBounds;
     use HasUsersFields;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected string $method = 'users.search';
 

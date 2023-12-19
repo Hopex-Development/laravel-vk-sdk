@@ -3,7 +3,7 @@
 namespace Hopex\VkSdk\Foundation\Api\Entities\Helpers;
 
 use Hopex\VkSdk\Foundation\Api\Entities\Attachments\Photo;
-use Hopex\VkSdk\Foundation\Api\Entities\Entity;
+use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
 
 /**
  * Photo size. Copy of the image in different size.<br>
@@ -19,7 +19,7 @@ use Hopex\VkSdk\Foundation\Api\Entities\Entity;
  * @property-read int    $width
  * @property-read string $url
  */
-class PhotoSize extends Entity
+class PhotoSize extends AbstractEntity
 {
     /**
      * URL a copy of the image.

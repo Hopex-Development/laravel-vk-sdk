@@ -11,15 +11,15 @@ use Hopex\VkSdk\Foundation\Core\Configuration\Models\Logging\LogChannel;
  *
  * @package Hopex\VkSdk\Foundation\Core\Configuration\Collections
  */
-class LogChannels extends Collection
+class LogChannels extends AbstractCollection
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected string $rootKey = 'logging.channels';
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected string $modelClass = LogChannel::class;
 
@@ -34,6 +34,6 @@ class LogChannels extends Collection
      */
     public function getByName(string $name): array
     {
-        return data_get($this, $name, []);
+        return data_get($this->models, $name, []);
     }
 }

@@ -13,10 +13,11 @@ use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 class BindingServiceProvider extends BaseServiceProvider
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function register(): void
     {
+        # Bind the CallbackEventsService class to the application container
         $this->app->bind(CallbackEventsService::class);
     }
 }

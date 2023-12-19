@@ -5,7 +5,7 @@ namespace Hopex\VkSdk\Foundation\Api\Entities\Attachments;
 use Hopex\VkSdk\Exceptions\Api\AccessTokenNotFoundException;
 use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Exceptions\Api\HttpStatusCodeException;
-use Hopex\VkSdk\Foundation\Api\Entities\Entity;
+use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
 use Hopex\VkSdk\Foundation\Api\Entities\Helpers\PhotoSize;
 use Hopex\VkSdk\Foundation\Api\Methods\Users;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced\UsersFields;
@@ -41,7 +41,7 @@ use Throwable;
  * @property-read int    $height
  * @property-read int    $width
  */
-class Photo extends Entity
+class Photo extends AbstractEntity
 {
     /**
      * Photo ID.

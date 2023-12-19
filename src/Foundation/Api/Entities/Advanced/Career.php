@@ -2,7 +2,7 @@
 
 namespace Hopex\VkSdk\Foundation\Api\Entities\Advanced;
 
-use Hopex\VkSdk\Foundation\Api\Entities\Entity;
+use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
 
 /**
  * Information about the user’s career.
@@ -12,19 +12,18 @@ use Hopex\VkSdk\Foundation\Api\Entities\Entity;
  * @link    https://dev.vk.com/en/reference/objects/user#career
  *
  * @property-read string $position
- * @property-read int $until
- * @property-read int $from
+ * @property-read int    $until
+ * @property-read int    $from
  * @property-read string $cityName
- * @property-read int $cityId
- * @property-read int $countryId
+ * @property-read int    $cityId
+ * @property-read int    $countryId
  * @property-read string $company
- * @property-read int $groupId
- *
+ * @property-read int    $groupId
  */
-class Career extends Entity
+class Career extends AbstractEntity
 {
     /**
-     * Community ID (if available, otherwise `company`)
+     * Community ID (if available, otherwise `company`).
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/reference/objects/user#career
@@ -37,7 +36,7 @@ class Career extends Entity
     }
 
     /**
-     * Company name (if available, otherwise `groupId`);
+     * Company name (if available, otherwise `groupId`).
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/reference/objects/user#career
@@ -50,7 +49,7 @@ class Career extends Entity
     }
 
     /**
-     * Country identifier;
+     * Country identifier.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/reference/objects/user#career
@@ -102,7 +101,7 @@ class Career extends Entity
     }
 
     /**
-     * The year of termination of employment;
+     * The year of termination of employment.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
      * @link    https://dev.vk.com/en/reference/objects/user#career

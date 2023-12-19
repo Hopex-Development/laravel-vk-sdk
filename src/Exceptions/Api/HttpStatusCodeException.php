@@ -10,7 +10,7 @@ namespace Hopex\VkSdk\Exceptions\Api;
 class HttpStatusCodeException extends ApiException
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $message = 'Invalid http status code';
 }

@@ -2,7 +2,7 @@
 
 namespace Hopex\VkSdk\Foundation\Api\Entities\Advanced;
 
-use Hopex\VkSdk\Foundation\Api\Entities\Entity;
+use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
 
 /**
  * Information about the higher educational institution of the user.
@@ -19,7 +19,7 @@ use Hopex\VkSdk\Foundation\Api\Entities\Entity;
  * @property-read string $educationForm
  * @property-read string $educationStatus
  */
-class Education extends Entity
+class Education extends AbstractEntity
 {
     /**
      * University ID.

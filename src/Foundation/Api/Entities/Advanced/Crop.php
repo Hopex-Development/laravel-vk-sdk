@@ -2,7 +2,7 @@
 
 namespace Hopex\VkSdk\Foundation\Api\Entities\Advanced;
 
-use Hopex\VkSdk\Foundation\Api\Entities\Entity;
+use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
 
 /**
  * The user's cut-out photo.
@@ -16,7 +16,7 @@ use Hopex\VkSdk\Foundation\Api\Entities\Entity;
  * @property-read float $y
  * @property-read float $x
  */
-class Crop extends Entity
+class Crop extends AbstractEntity
 {
     /**
      * The `X` coordinate of the upper left corner as a percentage.

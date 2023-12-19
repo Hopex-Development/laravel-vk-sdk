@@ -2,7 +2,7 @@
 
 namespace Hopex\VkSdk\Foundation\Api\RequestBuilders\Account;
 
-use Hopex\VkSdk\Foundation\Api\RequestBuilders\RequestBuilder;
+use Hopex\VkSdk\Foundation\Api\RequestBuilders\AbstractRequestBuilder;
 
 /**
  * Account info request builder.
@@ -11,7 +11,7 @@ use Hopex\VkSdk\Foundation\Api\RequestBuilders\RequestBuilder;
  *
  * @link    https://dev.vk.com/en/method/account.getInfo
  */
-class AccountInfoRequestBuilder extends RequestBuilder
+class AccountInfoRequestBuilder extends AbstractRequestBuilder
 {
     protected string $method = 'account.getInfo';
 
