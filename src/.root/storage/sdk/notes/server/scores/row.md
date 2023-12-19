@@ -1,1 +1,0 @@
-[%COMMAND%] %NIK% «%SCORE%» (%TIME%) %MUTE%

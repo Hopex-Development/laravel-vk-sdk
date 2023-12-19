@@ -2,37 +2,41 @@
 
 namespace Hopex\VkSdk\Contracts;
 
-use Hopex\VkSdk\Foundation\Core\Entities\Messages\MessageFields;
-
 /**
  * Interface CallbackEventsContract
  * @package Hopex\VkSdk\Contracts
  */
 interface CallbackEventsContract
 {
-    /**
-     * @param MessageFields $message
-     * @return void
-     */
-    public function message_new(MessageFields $message): void;
-
-    /**
-     * @param MessageFields $message
-     * @return void
-     */
-    public function message_reply(MessageFields $message): void;
-
-    /**
-     * @param MessageFields $message
-     * @return void
-     */
-    public function message_allow(MessageFields $message): void;
-
-    /**
-     * @param MessageFields $message
-     * @return void
-     */
-    public function message_deny(MessageFields $message): void;
+//    /**
+//     * @param MessageFields $message
+//     * @return void
+//     */
+//    public function message_new(MessageFields $message): void;
+//
+//    /**
+//     * @param MessageFields $message
+//     * @return void
+//     */
+//    public function message_reply(MessageFields $message): void;
+//
+//    /**
+//     * @param MessageFields $message
+//     * @return void
+//     */
+//    public function message_allow(MessageFields $message): void;
+//
+//    /**
+//     * @param MessageFields $message
+//     * @return void
+//     */
+//    public function message_deny(MessageFields $message): void;
+//
+//    /**
+//     * @param CallbackEvent $event
+//     * @return void
+//     */
+//    public function message_event(CallbackEvent $event): void;
 
 //    /**
 //     * @param BaseEvent $event

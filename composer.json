@@ -14,32 +14,35 @@
     "authors": [
         {
             "name": "Schizo",
-            "email": "hopex.schizo@gmail.com",
-            "homepage": "https://github.com/H0pex"
+            "homepage": "https://github.com/H0pex",
+            "role": "Developer"
+        },
+        {
+            "name": "AnnieNiku",
+            "homepage": "https://github.com/AnnieNiku",
+            "role": "Translator"
         }
     ],
     "repository": "https://github.com/Hopex-Development/laravel-vk-sdk",
     "require": {
         "php": "^8",
         "ext-json": "*",
-        "xpaw/php-source-query-class": "^2.1"
+        "ext-curl": "*",
+        "ext-mbstring": "*"
     },
     "autoload": {
         "psr-4": {
             "Hopex\\VkSdk\\": "src/"
-        }
+        },
+        "files": [
+            "src/vendor/helpers.php"
+        ]
     },
     "extra": {
         "laravel": {
             "providers": [
                 "Hopex\\VkSdk\\Providers\\ServiceProvider"
-            ],
-            "aliases": {
-                "VkApi": "Hopex\\VkSdk\\Facades\\VkApi",
-                "Format": "Hopex\\VkSdk\\Facades\\Format",
-                "SdkConfig": "Hopex\\VkSdk\\Facades\\SdkConfig",
-                "RequestFields": "Hopex\\VkSdk\\Facades\\RequestFields"
-            }
+            ]
         }
     },
     "config": {

@@ -2,39 +2,46 @@
 
 namespace Hopex\VkSdk\Formatters;
 
-use Hopex\VkSdk\Contracts\CanFormatContract;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Logger;
 
 /**
- * Class JsonLogFormatter
+ * JSON log formatter.
+ *
  * @package Hopex\VkSdk\Formatters
  */
-class JsonLogFormatter implements CanFormatContract
+class JsonLogFormatter
 {
-    public function __invoke(Logger $logger)
+    public function __invoke(Logger $logger): void
     {
         $this->format($logger);
     }
 
     /**
-     * @param $data
+     * Set JSON format for logger.
+     *
+     * @version SDK: 3
+     *
+     * @param Logger $logger Logger instance.
+     *
+     * @return void
      */
-    public function format($data)
+    public function format(Logger $logger): void
     {
         $formatter = (new LineFormatter(
             LineFormatter::SIMPLE_FORMAT,
             'Y-m-d H:i:s',
             true,
-            true)
-        )
+            true
+        ))
             ->setJsonPrettyPrint(true)
             ->addJsonEncodeOption(JSON_UNESCAPED_UNICODE)
             ->addJsonEncodeOption(JSON_UNESCAPED_SLASHES);
 
-        foreach ($data->getHandlers() as $handler) {
-            if (method_exists($handler, 'setFormatter'))
+        foreach ($logger->getHandlers() as $handler) {
+            if (method_exists($handler, 'setFormatter')) {
                 $handler->setFormatter($formatter);
+            }
         }
     }
 }
