@@ -2,9 +2,16 @@
 
 namespace Hopex\VkSdk\Foundation\Api\Entities\Basic;
 
+use Hopex\VkSdk\Exceptions\Api\AccessTokenNotFoundException;
+use Hopex\VkSdk\Exceptions\Api\ApiException;
+use Hopex\VkSdk\Exceptions\Api\HttpStatusCodeException;
+use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersGetRequestBuilder;
+use Hopex\VkSdk\Facades\VkApi;
 use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
+use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced\UsersFields;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Throwable;
 
 /**
  * The object describing the private message.
@@ -19,7 +26,7 @@ use Illuminate\Support\Collection;
  * @property-read int    $out
  * @property-read int    $conversationMessageId
  * @property-read array  $fwdMessages
- * @property-read static $replyMessage
+ * @property-read array  $replyMessage
  * @property-read bool   $important
  * @property-read bool   $isHidden
  * @property-read int    $peerId
@@ -42,15 +49,29 @@ class PrivateMessage extends AbstractEntity
     }
 
     /**
-     * Sender.
+     * Sender (user).
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @see     PrivateMessage::senderId()
+     *
+     * @param UsersFields|null $usersFields              Users fields to return.
+     * @param int|null         $entityIdThatCanHasToken  Similar parameter in the {@see AbstractRequestBuilder::query()}
+     *                                                   method.
+     *
+     * @throws AccessTokenNotFoundException
+     * @throws ApiException
+     * @throws HttpStatusCodeException
+     * @throws Throwable
      *
      * @return User
      */
-    public function sender(): User
+    public function sender(UsersFields $usersFields = null, int $entityIdThatCanHasToken = null): User
     {
-        return new User([]); # todo доработать получение информации
+        return VkApi::users()->get(
+            UsersGetRequestBuilder::query($entityIdThatCanHasToken)
+                ->userIdsCommaList($this->senderId())
+                ->fields($usersFields ?? new UsersFields())
+        )->users()->first();
     }
 
     /**
@@ -133,7 +154,7 @@ class PrivateMessage extends AbstractEntity
      */
     public function hasForwardMessages(): bool
     {
-        return !empty($this->fwdMessages);
+        return (bool)$this->fwdMessages;
     }
 
     /**
@@ -151,6 +172,19 @@ class PrivateMessage extends AbstractEntity
     }
 
     /**
+     * PrivateMessage to which the current one is sent.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/reference/objects/message#reply_message
+     *
+     * @return static
+     */
+    public function replyMessage(): static
+    {
+        return new self($this->hasReplyMessage() ? $this->replyMessage : []);
+    }
+
+    /**
      * Indicates whether the message contains a response to a single message.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
@@ -160,20 +194,7 @@ class PrivateMessage extends AbstractEntity
      */
     public function hasReplyMessage(): bool
     {
-        return !empty($this->replyMessage);
-    }
-
-    /**
-     * PrivateMessage to which the current one is sent.
-     *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link    https://dev.vk.com/en/reference/objects/message#reply_message
-     *
-     * @return static|false
-     */
-    public function replyMessage(): static|false
-    {
-        return $this->hasReplyMessage() ? new self($this->replyMessage) : false;
+        return (bool)$this->replyMessage;
     }
 
     /**
