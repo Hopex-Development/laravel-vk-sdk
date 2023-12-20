@@ -3,14 +3,14 @@
 namespace Hopex\VkSdk\Foundation\Core\Logging;
 
 /**
- * The basic logging class for application resources.
+ * The basic logging class for callback requests.
  *
  * @package Hopex\VkSdk\Foundation\Core\Logging
  */
-class SourceLogger extends AbstractLogger
+class CallbackLogger extends AbstractLogger
 {
     public function __construct()
     {
-        parent::__construct('source');
+        parent::__construct('callback');
     }
 }
