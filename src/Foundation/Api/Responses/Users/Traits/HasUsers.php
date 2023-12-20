@@ -24,7 +24,13 @@ trait HasUsers
         $items = data_get($this->fields, 'items', []);
 
         if (count($items)) {
-            return collect(array_map(fn(array $item) => new User($item), $items));
+            return collect(array_map(function (array|int $item) {
+                return new User(
+                    !is_array($item) ? [
+                        'id' => $item,
+                    ] : $item
+                );
+            }, $items));
         } else {
             return collect();
         }
