@@ -90,12 +90,7 @@ class CallbackEventsService
         Session::push('group_id', $groupId);
 
         try {
-            if ((
-                    !$groupConfig->allowRetryEvents() &&
-                    !Event::whereEventId($eventId)->first()
-                ) ||
-                !empty($eventId)
-            ) {
+            if ($groupConfig->allowRetryEvents() || (!empty($event) && !Event::whereEventId($eventId)->first())) {
                 Event::updateOrCreate($this->request->only('group_id', 'type', 'event_id'));
             } else {
                 return self::SUCCESS;
