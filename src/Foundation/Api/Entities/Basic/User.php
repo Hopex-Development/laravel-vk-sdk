@@ -2,6 +2,14 @@
 
 namespace Hopex\VkSdk\Foundation\Api\Entities\Basic;
 
+use Hopex\VkSdk\Exceptions\Api\AccessTokenNotFoundException;
+use Hopex\VkSdk\Exceptions\Api\ApiException;
+use Hopex\VkSdk\Exceptions\Api\HttpStatusCodeException;
+use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersGetFollowersRequestBuilder;
+use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersGetSubscriptionsRequestBuilder;
+use Hopex\VkSdk\Facades\SimpleRequestBuilders\Users\UsersFields as UsersFieldsFacade;
+use Hopex\VkSdk\Facades\VkApi;
+use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
 use Hopex\VkSdk\Foundation\Api\Entities\Advanced\Career;
 use Hopex\VkSdk\Foundation\Api\Entities\Advanced\City;
 use Hopex\VkSdk\Foundation\Api\Entities\Advanced\Contacts;
@@ -17,8 +25,11 @@ use Hopex\VkSdk\Foundation\Api\Entities\Advanced\Relative;
 use Hopex\VkSdk\Foundation\Api\Entities\Advanced\School;
 use Hopex\VkSdk\Foundation\Api\Entities\Advanced\University;
 use Hopex\VkSdk\Foundation\Api\Entities\Attachments\Audio;
-use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
+use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced\UsersFields;
+use Hopex\VkSdk\Foundation\Api\Responses\Users\UsersGetFollowersResponse;
+use Hopex\VkSdk\Foundation\Api\Responses\Users\UsersGetSubscriptionsResponse;
 use Illuminate\Support\Collection;
+use Throwable;
 
 /**
  * The object contains information about the VK user. The set of fields can change depending on the method
@@ -127,45 +138,6 @@ use Illuminate\Support\Collection;
 class User extends AbstractEntity
 {
     /**
-     * User ID.
-     *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link    https://dev.vk.com/en/reference/objects/user#id
-     *
-     * @return int
-     */
-    public function id(): int
-    {
-        return $this->id ?? 0;
-    }
-
-    /**
-     * Name.
-     *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link    https://dev.vk.com/en/reference/objects/user#first_name
-     *
-     * @return string
-     */
-    public function firstName(): string
-    {
-        return $this->firstName ?? '';
-    }
-
-    /**
-     * Surname of user.
-     *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link    https://dev.vk.com/en/reference/objects/user#last_name
-     *
-     * @return string
-     */
-    public function lastName(): string
-    {
-        return $this->lastName ?? '';
-    }
-
-    /**
      * The field is returned if the user’s page is deleted or blocked, contains a value `deleted` or `banned`. In this
      * case, the optional fields are not returned.
      *
@@ -193,6 +165,32 @@ class User extends AbstractEntity
             $this->firstName(),
             $this->lastName(),
         ]);
+    }
+
+    /**
+     * Name.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/reference/objects/user#first_name
+     *
+     * @return string
+     */
+    public function firstName(): string
+    {
+        return $this->firstName ?? '';
+    }
+
+    /**
+     * Surname of user.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/reference/objects/user#last_name
+     *
+     * @return string
+     */
+    public function lastName(): string
+    {
+        return $this->lastName ?? '';
     }
 
     /**
@@ -375,7 +373,7 @@ class User extends AbstractEntity
      */
     public function career(): Collection|array
     {
-        return collect(array_map(fn($career) => new Career($career), $this->career ?? []));
+        return collect(array_map(fn ($career) => new Career($career), $this->career ?? []));
     }
 
     /**
@@ -405,6 +403,19 @@ class User extends AbstractEntity
     }
 
     /**
+     * The indicated Skype login in the profile.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/reference/objects/user#connections
+     *
+     * @return string
+     */
+    public function skype(): string
+    {
+        return $this->connections();
+    }
+
+    /**
      * Returns data about the services specified in the user profile, such as: Skype, LiveJournal. For each service, a
      * separate field with a string type containing the username of the user is returned.
      *
@@ -420,16 +431,16 @@ class User extends AbstractEntity
     }
 
     /**
-     * The indicated Skype login in the profile.
+     * The address of the site indicated in the profile.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link    https://dev.vk.com/en/reference/objects/user#connections
+     * @link    https://dev.vk.com/en/reference/objects/user#site
      *
      * @return string
      */
-    public function skype(): string
+    public function site(): string
     {
-        return $this->connections();
+        return $this->contacts()->site();
     }
 
     /**
@@ -449,19 +460,6 @@ class User extends AbstractEntity
                 snake('site'),
             ])->toArray()
         );
-    }
-
-    /**
-     * The address of the site indicated in the profile.
-     *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link    https://dev.vk.com/en/reference/objects/user#site
-     *
-     * @return string
-     */
-    public function site(): string
-    {
-        return $this->contacts()->site();
     }
 
     /**
@@ -922,7 +920,7 @@ class User extends AbstractEntity
      */
     public function military(): Collection|array
     {
-        return collect(array_map(fn($military) => new Military($military), $this->military ?? []));
+        return collect(array_map(fn ($military) => new Military($military), $this->military ?? []));
     }
 
     /**
@@ -1191,7 +1189,7 @@ class User extends AbstractEntity
      */
     public function relatives(): Collection|array
     {
-        return collect(array_map(fn($relative) => new Relative($relative), $this->relatives ?? []));
+        return collect(array_map(fn ($relative) => new Relative($relative), $this->relatives ?? []));
     }
 
     /**
@@ -1229,7 +1227,7 @@ class User extends AbstractEntity
      */
     public function schools(): Collection|array
     {
-        return collect(array_map(fn($school) => new School($school), $this->schools ?? []));
+        return collect(array_map(fn ($school) => new School($school), $this->schools ?? []));
     }
 
     /**
@@ -1340,7 +1338,7 @@ class User extends AbstractEntity
      */
     public function universities(): Collection|array
     {
-        return collect(array_map(fn($university) => new University($university), $this->universities ?? []));
+        return collect(array_map(fn ($university) => new University($university), $this->universities ?? []));
     }
 
     /**
@@ -1380,5 +1378,74 @@ class User extends AbstractEntity
     public function trackCode(): string
     {
         return $this->trackCode ?? '';
+    }
+
+    /**
+     * Returns a list of user IDs that are subscribers of the user.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
+     * @param UsersFieldsFacade|UsersFields|null $usersFields             Users fields to return.
+     * @param int|null                           $entityIdThatCanHasToken Similar parameter in the
+     *                                                                    {@see AbstractRequestBuilder::query()}
+     *                                                                    method.
+     *
+     * @throws AccessTokenNotFoundException
+     * @throws ApiException
+     * @throws HttpStatusCodeException
+     * @throws Throwable
+     *
+     * @return UsersGetFollowersResponse
+     */
+    public function getFollowers(
+        UsersFieldsFacade|UsersFields $usersFields = null,
+        int $entityIdThatCanHasToken = null
+    ): UsersGetFollowersResponse {
+        return VkApi::users()->getFollowers(
+            UsersGetFollowersRequestBuilder::query($entityIdThatCanHasToken)
+                ->userId($this->id())
+                ->fields($usersFields ?? new UsersFields())
+        );
+    }
+
+    /**
+     * User ID.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/reference/objects/user#id
+     *
+     * @return int
+     */
+    public function id(): int
+    {
+        return $this->id ?? 0;
+    }
+
+    /**
+     * Returns a list of IDs of users and communities followed by the user.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     *
+     * @param UsersFieldsFacade|UsersFields|null $usersFields              Users fields to return.
+     * @param int|null                           $entityIdThatCanHasToken  Similar parameter in the
+     *                                                                     {@see AbstractRequestBuilder::query()}
+     *                                                                     method.
+     *
+     * @throws AccessTokenNotFoundException
+     * @throws ApiException
+     * @throws HttpStatusCodeException
+     * @throws Throwable
+     *
+     * @return UsersGetSubscriptionsResponse
+     */
+    public function getSubscriptions(
+        UsersFieldsFacade|UsersFields $usersFields = null,
+        int $entityIdThatCanHasToken = null
+    ): UsersGetSubscriptionsResponse {
+        return VkApi::users()->getSubscriptions(
+            UsersGetSubscriptionsRequestBuilder::query($entityIdThatCanHasToken)
+                ->userId($this->id())
+                ->fields($usersFields ?? new UsersFields())
+        );
     }
 }
