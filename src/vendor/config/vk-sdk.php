@@ -42,6 +42,7 @@ return [
             'info' => make_log_channel('info'),
             'source' => make_log_channel('source'),
             'server' => make_log_channel('server'),
+            'callback' => make_log_channel('callback'),
         ],
     ],
 ];
