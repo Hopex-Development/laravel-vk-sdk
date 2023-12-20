@@ -6,9 +6,10 @@ use Hopex\VkSdk\Exceptions\Api\AccessTokenNotFoundException;
 use Hopex\VkSdk\Exceptions\Api\ApiException;
 use Hopex\VkSdk\Exceptions\Api\HttpStatusCodeException;
 use Hopex\VkSdk\Facades\RequestBuilders\Users\UsersGetRequestBuilder;
+use Hopex\VkSdk\Facades\SimpleRequestBuilders\Users\UsersFields as UsersFieldsFacade;
 use Hopex\VkSdk\Facades\VkApi;
-use Hopex\VkSdk\Foundation\Api\Entities\Basic\User;
 use Hopex\VkSdk\Foundation\Api\Entities\AbstractEntity;
+use Hopex\VkSdk\Foundation\Api\Entities\Basic\User;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\AbstractRequestBuilder;
 use Hopex\VkSdk\Foundation\Api\RequestBuilders\Users\Advanced\UsersFields;
 use Illuminate\Support\Carbon;
@@ -50,7 +51,34 @@ class Audio extends AbstractEntity
      */
     public function id(): int
     {
-        return $this->id;
+        return $this->id ?? 0;
+    }
+
+    /**
+     * The owner of the audio recording.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @see     Audio::ownerId()
+     *
+     * @param UsersFieldsFacade|UsersFields|null $usersFields             Users fields to return.
+     * @param int|null                           $entityIdThatCanHasToken Similar parameter in the
+     *                                                                    {@see AbstractRequestBuilder::query()}
+     *                                                                    method.
+     *
+     * @throws AccessTokenNotFoundException
+     * @throws ApiException
+     * @throws HttpStatusCodeException
+     * @throws Throwable
+     *
+     * @return User
+     */
+    public function owner(UsersFieldsFacade|UsersFields $usersFields = null, int $entityIdThatCanHasToken = null): User
+    {
+        return VkApi::users()->get(
+            UsersGetRequestBuilder::query($entityIdThatCanHasToken)
+                ->userIdsCommaList($this->ownerId())
+                ->fields($usersFields ?? new UsersFields())
+        )->users()->first();
     }
 
     /**
@@ -63,35 +91,7 @@ class Audio extends AbstractEntity
      */
     public function ownerId(): int
     {
-        return $this->ownerId;
-    }
-
-    /**
-     * The owner of the audio recording.
-     *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @see     Audio::ownerId()
-     *
-     * @param UsersFields|null $usersFields             Users fields to return.
-     * @param int|null         $entityIdThatCanHasToken Similar parameter in the {@see AbstractRequestBuilder::query()}
-     *                                                  method.
-     *
-     * @throws AccessTokenNotFoundException
-     * @throws ApiException
-     * @throws HttpStatusCodeException
-     * @throws Throwable
-     *
-     * @return User
-     */
-    public function owner(UsersFields $usersFields = null, int $entityIdThatCanHasToken = null): User
-    {
-        return VkApi::users()->get(
-            UsersGetRequestBuilder::query($entityIdThatCanHasToken)
-                ->userIds([
-                    $this->ownerId(),
-                ])
-                ->fields($usersFields ?? new UsersFields())
-        )->users()->first();
+        return $this->ownerId ?? 0;
     }
 
     /**
@@ -104,7 +104,7 @@ class Audio extends AbstractEntity
      */
     public function artist(): string
     {
-        return $this->artist;
+        return $this->artist ?? '';
     }
 
     /**
@@ -117,7 +117,7 @@ class Audio extends AbstractEntity
      */
     public function title(): string
     {
-        return $this->title;
+        return $this->title ?? '';
     }
 
     /**
@@ -130,7 +130,7 @@ class Audio extends AbstractEntity
      */
     public function duration(): int
     {
-        return $this->duration;
+        return $this->duration ?? 0;
     }
 
     /**
@@ -143,7 +143,7 @@ class Audio extends AbstractEntity
      */
     public function url(): string
     {
-        return $this->url;
+        return $this->url ?? '';
     }
 
     /**
@@ -156,7 +156,7 @@ class Audio extends AbstractEntity
      */
     public function lyricsId(): int
     {
-        return $this->lyricsId;
+        return $this->lyricsId ?? 0;
     }
 
     /**
@@ -169,21 +169,7 @@ class Audio extends AbstractEntity
      */
     public function albumId(): int
     {
-        return $this->albumId;
-    }
-
-    /**
-     * Genre ID from {@see https://dev.vk.com/en/reference/objects/audio-genres list of audio genres}.
-     *
-     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
-     * @link    https://dev.vk.com/en/reference/objects/audio#genre_id
-     * @see     Audio::genre()
-     *
-     * @return int
-     */
-    public function genreId(): int
-    {
-        return $this->genreId;
+        return $this->albumId ?? 0;
     }
 
     /**
@@ -223,6 +209,20 @@ class Audio extends AbstractEntity
     }
 
     /**
+     * Genre ID from {@see https://dev.vk.com/en/reference/objects/audio-genres list of audio genres}.
+     *
+     * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
+     * @link    https://dev.vk.com/en/reference/objects/audio#genre_id
+     * @see     Audio::genre()
+     *
+     * @return int
+     */
+    public function genreId(): int
+    {
+        return $this->genreId ?? 0;
+    }
+
+    /**
      * Date of addition.
      *
      * @version VK: 5.199 | SDK: 3 | Summary: 5.199.3
@@ -246,6 +246,6 @@ class Audio extends AbstractEntity
      */
     public function noSearch(): bool
     {
-        return (bool)$this->noSearch /*?? false*/ ;
+        return (bool)$this->noSearch;
     }
 }
